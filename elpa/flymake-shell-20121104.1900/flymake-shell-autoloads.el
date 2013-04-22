@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (flymake-shell-load) "flymake-shell" "flymake-shell.el"
-;;;;;;  (20849 12917 181923 865000))
+;;;;;;  (20853 22550 71138 573000))
 ;;; Generated autoloads from flymake-shell.el
 
 (autoload 'flymake-shell-load "flymake-shell" "\
@@ -14,8 +14,8 @@ Configure flymake mode to check the current buffer's shell-script syntax.
 
 ;;;***
 
-;;;### (autoloads nil nil ("flymake-shell-pkg.el") (20849 12917 244338
-;;;;;;  735000))
+;;;### (autoloads nil nil ("flymake-shell-pkg.el") (20853 22550 124488
+;;;;;;  584000))
 
 ;;;***
 

@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (global-hl-sexp-mode hl-sexp-mode) "hl-sexp" "hl-sexp.el"
-;;;;;;  (20849 12948 689924 457000))
+;;;;;;  (20853 22686 875134 987000))
 ;;; Generated autoloads from hl-sexp.el
 
 (autoload 'hl-sexp-mode "hl-sexp" "\
@@ -38,8 +38,8 @@ See `hl-sexp-mode' for more information on Hl-Sexp mode.
 
 ;;;***
 
-;;;### (autoloads nil nil ("hl-sexp-pkg.el") (20849 12948 739414
-;;;;;;  400000))
+;;;### (autoloads nil nil ("hl-sexp-pkg.el") (20853 22686 947190
+;;;;;;  797000))
 
 ;;;***
 

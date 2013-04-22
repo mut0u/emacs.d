@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil nil ("marmalade-pkg.el" "marmalade.el") (20849
-;;;;;;  12992 61382 666000))
+;;;### (autoloads nil nil ("marmalade-pkg.el" "marmalade.el") (20853
+;;;;;;  22559 400156 340000))
 
 ;;;***
 

@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil nil ("sql-indent-pkg.el" "sql-indent.el") (20849
-;;;;;;  12992 754081 987000))
+;;;### (autoloads nil nil ("sql-indent-pkg.el" "sql-indent.el") (20853
+;;;;;;  22560 2481 247000))
 
 ;;;***
 

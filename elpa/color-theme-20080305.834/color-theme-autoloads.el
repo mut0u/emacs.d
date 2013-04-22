@@ -7,7 +7,7 @@
 ;;;;;;  color-theme-compare color-theme-make-snapshot color-theme-analyze-defun
 ;;;;;;  color-theme-print color-theme-install-at-point-for-current-frame
 ;;;;;;  color-theme-install-at-mouse color-theme-describe color-theme-select)
-;;;;;;  "color-theme" "color-theme.el" (20849 11914 305905 37000))
+;;;;;;  "color-theme" "color-theme.el" (20853 22735 551133 711000))
 ;;; Generated autoloads from color-theme.el
 
 (autoload 'color-theme-select "color-theme" "\
@@ -142,8 +142,8 @@ Initialize the color theme package by loading color-theme-libraries.
 
 ;;;***
 
-;;;### (autoloads nil nil ("color-theme-pkg.el") (20849 11914 549719
-;;;;;;  387000))
+;;;### (autoloads nil nil ("color-theme-pkg.el") (20853 22735 835703
+;;;;;;  276000))
 
 ;;;***
 

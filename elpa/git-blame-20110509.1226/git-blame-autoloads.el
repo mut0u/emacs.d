@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (git-reblame git-blame-mode) "git-blame" "git-blame.el"
-;;;;;;  (20849 12877 817923 126000))
+;;;;;;  (20853 22541 307138 803000))
 ;;; Generated autoloads from git-blame.el
 
 (autoload 'git-blame-mode "git-blame" "\
@@ -21,8 +21,8 @@ Recalculate all blame information in the current buffer
 
 ;;;***
 
-;;;### (autoloads nil nil ("git-blame-pkg.el") (20849 12877 868982
-;;;;;;  73000))
+;;;### (autoloads nil nil ("git-blame-pkg.el") (20853 22541 379774
+;;;;;;  426000))
 
 ;;;***
 

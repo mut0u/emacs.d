@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil nil ("furl-pkg.el" "furl.el") (20849 12990
-;;;;;;  260373 159000))
+;;;### (autoloads nil nil ("furl-pkg.el" "furl.el") (20853 22558
+;;;;;;  483568 2000))
 
 ;;;***
 

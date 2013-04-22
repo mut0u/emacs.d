@@ -1,13 +1,23 @@
-(require-package 'slime)
-(require-package 'slime-fuzzy)
-(require-package 'slime-repl)
+;(require-package 'slime)
+;(require-package 'slime-fuzzy)
+;(require-package 'slime-repl)
 (require-package 'ac-slime)
 (require-package 'hippie-expand-slime)
 
 
-(autoload 'slime-fuzzy-init "slime-fuzzy" "" nil)
-(eval-after-load 'slime-fuzzy
-  '(require 'slime-repl))
+(setq inferior-lisp-program "/usr/bin/sbcl") ;sbcl的路径  
+(add-to-list 'load-path "~/.emacs.d/slime") ;slime的路径  ;;下载最新的slime 出了问题，暂时不知道怎么解决。  
+;;(add-to-list 'load-path "~/.emacs/slime")
+
+(require 'slime)  
+(slime-setup '(slime-fancy))
+(slime-setup '(slime-repl slime-scratch slime-editing-commands))
+
+
+
+;(autoload 'slime-fuzzy-init "slime-fuzzy" "" nil)
+;(eval-after-load 'slime-fuzzy
+;  '(require 'slime-repl))
 
 (defun smp/set-up-slime-repl-auto-complete ()
   "Bind TAB to `indent-for-tab-command', as in regular Slime buffers."
@@ -15,11 +25,11 @@
 
 (eval-after-load 'slime
   '(progn
-     (add-to-list 'load-path (concat (directory-of-library "slime") "/contrib"))
+     ;(add-to-list 'load-path (concat (directory-of-library "slime") "/contrib"))
      (setq slime-protocol-version 'ignore)
      (setq slime-net-coding-system 'utf-8-unix)
      (add-hook 'slime-repl-mode-hook 'sanityinc/lisp-setup)
-     (slime-setup '(slime-repl slime-fuzzy))
+     ;(slime-setup '(slime-repl slime-fuzzy))
      (setq slime-complete-symbol*-fancy t)
      (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
 
@@ -38,8 +48,9 @@
 
      (add-hook 'slime-repl-mode-hook 'smp/set-up-slime-repl-auto-complete)
 
-     (eval-after-load 'auto-complete
-       '(add-to-list 'ac-modes 'slime-repl-mode))))
+     ;(eval-after-load 'auto-complete
+     ;  '(add-to-list 'ac-modes 'slime-repl-mode))
+     ))
 
 
 

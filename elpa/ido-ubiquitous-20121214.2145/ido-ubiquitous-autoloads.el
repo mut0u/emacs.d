@@ -6,8 +6,8 @@
 ;;;### (autoloads (ido-ubiquitous-function-compatibility-exceptions
 ;;;;;;  ido-ubiquitous-command-compatibility-exceptions ido-ubiquitous-function-exceptions
 ;;;;;;  ido-ubiquitous-command-exceptions ido-ubiquitous-mode ido-ubiquitous)
-;;;;;;  "ido-ubiquitous" "ido-ubiquitous.el" (20849 12054 717907
-;;;;;;  673000))
+;;;;;;  "ido-ubiquitous" "ido-ubiquitous.el" (20853 22511 363139
+;;;;;;  588000))
 ;;; Generated autoloads from ido-ubiquitous.el
 
 (let ((loads (get 'ido-ubiquitous 'custom-loads))) (if (member '"ido-ubiquitous" loads) nil (put 'ido-ubiquitous 'custom-loads (cons '"ido-ubiquitous" loads))))
@@ -104,8 +104,8 @@ https://github.com/DarwinAwardWinner/ido-ubiquitous/issues")
 
 ;;;***
 
-;;;### (autoloads nil nil ("ido-ubiquitous-pkg.el") (20849 12054
-;;;;;;  908214 368000))
+;;;### (autoloads nil nil ("ido-ubiquitous-pkg.el") (20853 22511
+;;;;;;  421071 191000))
 
 ;;;***
 

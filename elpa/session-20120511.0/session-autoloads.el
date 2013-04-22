@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (session-initialize session-jump-to-last-change)
-;;;;;;  "session" "session.el" (20849 12850 509922 613000))
+;;;;;;  "session" "session.el" (20853 22517 183139 436000))
 ;;; Generated autoloads from session.el
 
 (autoload 'session-jump-to-last-change "session" "\
@@ -32,8 +32,8 @@ this function to `after-init-hook'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("session-pkg.el") (20849 12850 580863
-;;;;;;  122000))
+;;;### (autoloads nil nil ("session-pkg.el") (20853 22517 244837
+;;;;;;  295000))
 
 ;;;***
 

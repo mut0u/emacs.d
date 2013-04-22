@@ -30,14 +30,14 @@
 (require-package 'diminish)
 (require-package 'scratch)
 (require-package 'mwe-log-commands)
-(require-package 'color-theme-library)  ;;; this is modify by savior
+
 
 
 
 (require 'init-frame-hooks)
 (require 'init-xterm)
 (require 'init-themes)
-(require 'init-osx-keys)
+;(require 'init-osx-keys)
 (require 'init-gui-frames)
 (require 'init-maxframe)
 (require 'init-proxies)
@@ -66,22 +66,22 @@
 (require 'init-textile)
 (require 'init-markdown)
 (require 'init-csv)
-(require 'init-erlang)
-(require 'init-javascript)
+;(require 'init-erlang)
+;(require 'init-javascript)
 (require 'init-sh)
-(require 'init-php)
+;(require 'init-php)
 (require 'init-org)
 (require 'init-nxml)
-(require 'init-css)
+;(require 'init-css)
 (require 'init-haml)
 (require 'init-python-mode)
-(require 'init-haskell)
-(require 'init-ruby-mode)
-(require 'init-rails)
+;(require 'init-haskell)
+;(require 'init-ruby-mode)
+;(require 'init-rails)
 
 (require 'init-paredit)
 (require 'init-lisp)
-(require 'init-slime)
+;(require 'init-slime)
 ;(require 'init-clojure)
 (require 'init-common-lisp)
 
@@ -93,34 +93,28 @@
 
 ;; Extra packages which don't require any configuration
 
-(require-package 'gnuplot)
-(require-package 'lua-mode)
-(require-package 'htmlize)
-(require-package 'dsvn)
-(when *is-a-mac*
-  (require-package 'osx-location))
-(require-package 'regex-tool)
+;(require-package 'gnuplot)
+;(require-package 'lua-mode)
+;(require-package 'htmlize)
+;(require-package 'dsvn)
+
 
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient
 ;;----------------------------------------------------------------------------
-(require 'server)
-(unless (server-running-p)
-  (server-start))
+
 
 
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
 ;;----------------------------------------------------------------------------
-(setq custom-file "~/.emacs.d/custom.el")
-(when (file-exists-p custom-file)
-  (load custom-file))
+
 
 
 ;;----------------------------------------------------------------------------
 ;; Allow users to provide an optional "init-local" containing personal settings
 ;;----------------------------------------------------------------------------
-(require 'init-local nil t)
+;;(require 'init-local nil t)
 
 
 ;;----------------------------------------------------------------------------

@@ -4,8 +4,8 @@
 
 
 ;;;### (autoloads (turn-on-asdf-mode asdf-mode turn-on-redshank-mode
-;;;;;;  redshank-mode) "redshank" "redshank.el" (20849 12949 789924
-;;;;;;  476000))
+;;;;;;  redshank-mode) "redshank" "redshank.el" (20853 22688 863134
+;;;;;;  935000))
 ;;; Generated autoloads from redshank.el
 
 (autoload 'redshank-mode "redshank" "\
@@ -42,7 +42,7 @@ This function is designed to be added to hooks, for example:
 ;;;***
 
 ;;;### (autoloads (redshank-setup) "redshank-loader" "redshank-loader.el"
-;;;;;;  (20849 12949 757924 477000))
+;;;;;;  (20853 22688 831134 936000))
 ;;; Generated autoloads from redshank-loader.el
 
 (autoload 'redshank-setup "redshank-loader" "\
@@ -54,8 +54,8 @@ activate support for that, too.
 
 ;;;***
 
-;;;### (autoloads nil nil ("redshank-pkg.el") (20849 12949 866332
-;;;;;;  283000))
+;;;### (autoloads nil nil ("redshank-pkg.el") (20853 22688 964318
+;;;;;;  445000))
 
 ;;;***
 

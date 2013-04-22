@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads (idomenu) "idomenu" "idomenu.el" (20849 12056 121907
-;;;;;;  698000))
+;;;### (autoloads (idomenu) "idomenu" "idomenu.el" (20853 22512 551139
+;;;;;;  557000))
 ;;; Generated autoloads from idomenu.el
 
 (autoload 'idomenu "idomenu" "\
@@ -14,8 +14,8 @@ Switch to a buffer-local tag from Imenu via Ido.
 
 ;;;***
 
-;;;### (autoloads nil nil ("idomenu-pkg.el") (20849 12056 191076
-;;;;;;  619000))
+;;;### (autoloads nil nil ("idomenu-pkg.el") (20853 22512 618150
+;;;;;;  584000))
 
 ;;;***
 

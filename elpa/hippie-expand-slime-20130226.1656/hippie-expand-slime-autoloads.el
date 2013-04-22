@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (set-up-slime-hippie-expand try-expand-slime-fuzzy
 ;;;;;;  try-expand-slime) "hippie-expand-slime" "hippie-expand-slime.el"
-;;;;;;  (20849 12983 913925 118000))
+;;;;;;  (20853 22557 679138 374000))
 ;;; Generated autoloads from hippie-expand-slime.el
 
 (autoload 'try-expand-slime "hippie-expand-slime" "\
@@ -26,8 +26,8 @@ Add an optionally-fuzzy slime completion function to the front of
 
 ;;;***
 
-;;;### (autoloads nil nil ("hippie-expand-slime-pkg.el") (20849 12983
-;;;;;;  977164 101000))
+;;;### (autoloads nil nil ("hippie-expand-slime-pkg.el") (20853 22557
+;;;;;;  748013 205000))
 
 ;;;***
 

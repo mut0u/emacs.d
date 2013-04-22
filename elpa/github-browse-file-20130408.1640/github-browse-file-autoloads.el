@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (github-browse-file-blame github-browse-file) "github-browse-file"
-;;;;;;  "github-browse-file.el" (20849 12881 89923 188000))
+;;;;;;  "github-browse-file.el" (20853 22544 375138 723000))
 ;;; Generated autoloads from github-browse-file.el
 
 (autoload 'github-browse-file "github-browse-file" "\
@@ -29,8 +29,8 @@ region.
 
 ;;;***
 
-;;;### (autoloads nil nil ("github-browse-file-pkg.el") (20849 12881
-;;;;;;  141481 901000))
+;;;### (autoloads nil nil ("github-browse-file-pkg.el") (20853 22544
+;;;;;;  428718 521000))
 
 ;;;***
 

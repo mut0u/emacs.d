@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads nil nil ("project-local-variables-pkg.el" "project-local-variables.el")
-;;;;;;  (20849 11298 499157 912000))
+;;;;;;  (20853 22505 17460 403000))
 
 ;;;***
 

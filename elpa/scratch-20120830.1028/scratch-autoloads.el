@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads (scratch) "scratch" "scratch.el" (20849 11299 825893
-;;;;;;  502000))
+;;;### (autoloads (scratch) "scratch" "scratch.el" (20853 22506 127139
+;;;;;;  725000))
 ;;; Generated autoloads from scratch.el
 
 (autoload 'scratch "scratch" "\
@@ -14,8 +14,8 @@ Get a scratch buffer for the current mode.
 
 ;;;***
 
-;;;### (autoloads nil nil ("el-get.el" "scratch-pkg.el") (20849 11299
-;;;;;;  893661 66000))
+;;;### (autoloads nil nil ("el-get.el" "scratch-pkg.el") (20853 22506
+;;;;;;  196550 428000))
 
 ;;;***
 

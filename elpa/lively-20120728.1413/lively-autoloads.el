@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads (lively-region lively) "lively" "lively.el" (20849
-;;;;;;  12945 457924 396000))
+;;;### (autoloads (lively-region lively) "lively" "lively.el" (20853
+;;;;;;  22683 867135 66000))
 ;;; Generated autoloads from lively.el
 
 (autoload 'lively "lively" "\
@@ -19,7 +19,7 @@ Make the region lively.
 
 ;;;***
 
-;;;### (autoloads nil nil ("lively-pkg.el") (20849 12945 509708 182000))
+;;;### (autoloads nil nil ("lively-pkg.el") (20853 22683 941526 321000))
 
 ;;;***
 

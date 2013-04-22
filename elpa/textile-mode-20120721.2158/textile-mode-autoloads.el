@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads nil nil ("textile-mode-pkg.el" "textile-mode.el")
-;;;;;;  (20849 12882 418770 934000))
+;;;;;;  (20853 22545 511636 620000))
 
 ;;;***
 

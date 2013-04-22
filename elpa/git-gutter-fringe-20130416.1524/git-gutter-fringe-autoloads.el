@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads nil nil ("git-gutter-fringe-pkg.el" "git-gutter-fringe.el")
-;;;;;;  (20849 12877 34965 0))
+;;;;;;  (20853 22540 662144 602000))
 
 ;;;***
 

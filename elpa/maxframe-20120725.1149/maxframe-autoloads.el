@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (restore-frame maximize-frame x-restore-frame x-maximize-frame
 ;;;;;;  w32-restore-frame w32-maximize-frame) "maxframe" "maxframe.el"
-;;;;;;  (20849 12844 933922 509000))
+;;;;;;  (20853 22507 303139 695000))
 ;;; Generated autoloads from maxframe.el
 
 (autoload 'w32-maximize-frame "maxframe" "\
@@ -43,8 +43,8 @@ Restores a maximized frame.  See `maximize-frame'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("maxframe-pkg.el") (20849 12845 10312
-;;;;;;  374000))
+;;;### (autoloads nil nil ("maxframe-pkg.el") (20853 22507 361457
+;;;;;;  652000))
 
 ;;;***
 

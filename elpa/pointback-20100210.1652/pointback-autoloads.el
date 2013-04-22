@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (global-pointback-mode pointback-mode) "pointback"
-;;;;;;  "pointback.el" (20849 12860 705922 805000))
+;;;;;;  "pointback.el" (20853 22526 311139 196000))
 ;;; Generated autoloads from pointback.el
 
 (autoload 'pointback-mode "pointback" "\
@@ -35,8 +35,8 @@ See `pointback-mode' for more information on Pointback mode.
 
 ;;;***
 
-;;;### (autoloads nil nil ("pointback-pkg.el") (20849 12860 753567
-;;;;;;  79000))
+;;;### (autoloads nil nil ("pointback-pkg.el") (20853 22526 365086
+;;;;;;  395000))
 
 ;;;***
 

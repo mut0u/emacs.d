@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (crontab-get crontab-mode) "crontab-mode" "crontab-mode.el"
-;;;;;;  (20849 12881 617923 198000))
+;;;;;;  (20853 22544 875138 710000))
 ;;; Generated autoloads from crontab-mode.el
 
 (autoload 'crontab-mode "crontab-mode" "\
@@ -23,8 +23,8 @@ Get the crontab for the HOST into a buffer.
 
 ;;;***
 
-;;;### (autoloads nil nil ("crontab-mode-pkg.el") (20849 12881 676155
-;;;;;;  448000))
+;;;### (autoloads nil nil ("crontab-mode-pkg.el") (20853 22544 950100
+;;;;;;  683000))
 
 ;;;***
 

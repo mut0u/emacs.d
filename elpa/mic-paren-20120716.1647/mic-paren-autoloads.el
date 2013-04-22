@@ -6,7 +6,7 @@
 ;;;### (autoloads (paren-backward-sexp paren-forward-sexp paren-toggle-open-paren-context
 ;;;;;;  paren-toggle-matching-quoted-paren paren-toggle-matching-paired-delimiter
 ;;;;;;  paren-deactivate paren-activate) "mic-paren" "mic-paren.el"
-;;;;;;  (20849 12856 913922 733000))
+;;;;;;  (20853 22522 779139 289000))
 ;;; Generated autoloads from mic-paren.el
 
 (autoload 'paren-activate "mic-paren" "\
@@ -85,8 +85,8 @@ See `paren-match-quoted-paren'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("mic-paren-pkg.el") (20849 12856 984503
-;;;;;;  898000))
+;;;### (autoloads nil nil ("mic-paren-pkg.el") (20853 22522 847272
+;;;;;;  177000))
 
 ;;;***
 

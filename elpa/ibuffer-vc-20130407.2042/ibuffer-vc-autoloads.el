@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (ibuffer-vc-set-filter-groups-by-vc-root ibuffer-vc-generate-filter-groups-by-vc-root)
-;;;;;;  "ibuffer-vc" "ibuffer-vc.el" (20849 12848 625922 584000))
+;;;;;;  "ibuffer-vc" "ibuffer-vc.el" (20853 22510 147139 620000))
 ;;; Generated autoloads from ibuffer-vc.el
 
 (autoload 'ibuffer-vc-generate-filter-groups-by-vc-root "ibuffer-vc" "\
@@ -22,8 +22,8 @@ Set the current filter groups to filter by vc root dir.
 
 ;;;***
 
-;;;### (autoloads nil nil ("ibuffer-vc-pkg.el") (20849 12848 686493
-;;;;;;  785000))
+;;;### (autoloads nil nil ("ibuffer-vc-pkg.el") (20853 22510 214140
+;;;;;;  839000))
 
 ;;;***
 

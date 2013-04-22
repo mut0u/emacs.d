@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (gitignore-mode) "gitignore-mode" "gitignore-mode.el"
-;;;;;;  (20849 12879 165923 152000))
+;;;;;;  (20853 22542 611138 769000))
 ;;; Generated autoloads from gitignore-mode.el
 
 (autoload 'gitignore-mode "gitignore-mode" "\
@@ -16,8 +16,8 @@ A major mode for editing .gitignore files.
 
 ;;;***
 
-;;;### (autoloads nil nil ("gitignore-mode-pkg.el") (20849 12879
-;;;;;;  229580 421000))
+;;;### (autoloads nil nil ("gitignore-mode-pkg.el") (20853 22542
+;;;;;;  668730 46000))
 
 ;;;***
 

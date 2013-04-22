@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (turn-on-pretty-mode global-pretty-mode pretty-mode)
-;;;;;;  "pretty-mode" "pretty-mode.el" (20849 12945 945924 405000))
+;;;;;;  "pretty-mode" "pretty-mode.el" (20853 22684 447135 51000))
 ;;; Generated autoloads from pretty-mode.el
 
 (autoload 'pretty-mode "pretty-mode" "\
@@ -45,8 +45,8 @@ See `pretty-mode' for more information on Pretty mode.
 
 ;;;***
 
-;;;### (autoloads nil nil ("pretty-mode-pkg.el") (20849 12946 2899
-;;;;;;  567000))
+;;;### (autoloads nil nil ("pretty-mode-pkg.el") (20853 22684 511001
+;;;;;;  535000))
 
 ;;;***
 

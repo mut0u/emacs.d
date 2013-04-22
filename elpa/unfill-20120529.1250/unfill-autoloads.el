@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (unfill-region unfill-paragraph) "unfill" "unfill.el"
-;;;;;;  (20849 12854 669922 692000))
+;;;;;;  (20853 22521 183139 331000))
 ;;; Generated autoloads from unfill.el
 
 (autoload 'unfill-paragraph "unfill" "\
@@ -21,7 +21,7 @@ This command does the inverse of `fill-region'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("unfill-pkg.el") (20849 12854 731996 614000))
+;;;### (autoloads nil nil ("unfill-pkg.el") (20853 22521 244742 115000))
 
 ;;;***
 

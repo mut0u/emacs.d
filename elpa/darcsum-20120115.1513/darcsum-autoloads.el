@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (darcsum-view darcsum-whatsnew darcsum-changes)
-;;;;;;  "darcsum" "darcsum.el" (20849 12868 461922 950000))
+;;;;;;  "darcsum" "darcsum.el" (20853 22532 679139 29000))
 ;;; Generated autoloads from darcsum.el
 
 (autoload 'darcsum-changes "darcsum" "\
@@ -36,8 +36,8 @@ working directory is assumed.
 
 ;;;***
 
-;;;### (autoloads nil nil ("50darcsum.el" "darcsum-pkg.el") (20849
-;;;;;;  12868 523826 907000))
+;;;### (autoloads nil nil ("50darcsum.el" "darcsum-pkg.el") (20853
+;;;;;;  22532 748105 53000))
 
 ;;;***
 

@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (move-text-default-bindings move-text-up move-text-down)
-;;;;;;  "move-text" "move-text.el" (20849 12865 961922 904000))
+;;;;;;  "move-text" "move-text.el" (20853 22530 883139 76000))
 ;;; Generated autoloads from move-text.el
 
 (autoload 'move-text-down "move-text" "\
@@ -26,8 +26,8 @@ Bind `move-text-up' and `move-text-down' to M-up and M-down.
 
 ;;;***
 
-;;;### (autoloads nil nil ("move-text-pkg.el") (20849 12866 29077
-;;;;;;  423000))
+;;;### (autoloads nil nil ("move-text-pkg.el") (20853 22530 941130
+;;;;;;  257000))
 
 ;;;***
 

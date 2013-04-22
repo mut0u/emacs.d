@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil nil ("vc-darcs-pkg.el" "vc-darcs.el") (20849
-;;;;;;  12870 25256 423000))
+;;;### (autoloads nil nil ("vc-darcs-pkg.el" "vc-darcs.el") (20853
+;;;;;;  22534 167715 493000))
 
 ;;;***
 

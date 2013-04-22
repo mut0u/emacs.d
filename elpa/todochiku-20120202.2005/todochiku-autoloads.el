@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil nil ("todochiku-pkg.el" "todochiku.el") (20849
-;;;;;;  12854 247007 533000))
+;;;### (autoloads nil nil ("todochiku-pkg.el" "todochiku.el") (20853
+;;;;;;  22520 773758 1000))
 
 ;;;***
 

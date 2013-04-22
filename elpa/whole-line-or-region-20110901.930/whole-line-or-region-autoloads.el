@@ -7,7 +7,7 @@
 ;;;;;;  whole-line-or-region-delete whole-line-or-region-yank whole-line-or-region-kill-ring-save
 ;;;;;;  whole-line-or-region-kill-region whole-line-or-region-copy-region-as-kill
 ;;;;;;  whole-line-or-region-mode) "whole-line-or-region" "whole-line-or-region.el"
-;;;;;;  (20849 12855 721922 711000))
+;;;;;;  (20853 22521 847139 313000))
 ;;; Generated autoloads from whole-line-or-region.el
 
 (autoload 'whole-line-or-region-mode "whole-line-or-region" "\
@@ -69,8 +69,8 @@ Call `comment-dwim' on region or PREFIX whole lines.
 
 ;;;***
 
-;;;### (autoloads nil nil ("whole-line-or-region-pkg.el") (20849
-;;;;;;  12855 792165 608000))
+;;;### (autoloads nil nil ("whole-line-or-region-pkg.el") (20853
+;;;;;;  22521 923294 327000))
 
 ;;;***
 

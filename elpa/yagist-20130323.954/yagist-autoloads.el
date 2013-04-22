@@ -6,7 +6,7 @@
 ;;;### (autoloads (yagist-global-minor-mode yagist-minor-mode yagist-list
 ;;;;;;  yagist-region-or-buffer-private yagist-region-or-buffer yagist-buffer-private
 ;;;;;;  yagist-buffer yagist-region-private yagist-region) "yagist"
-;;;;;;  "yagist.el" (20849 12880 493923 176000))
+;;;;;;  "yagist.el" (20853 22543 779138 738000))
 ;;; Generated autoloads from yagist.el
 
 (autoload 'yagist-region "yagist" "\
@@ -84,7 +84,7 @@ See `yagist-minor-mode' for more information on Yagist minor mode.
 
 ;;;***
 
-;;;### (autoloads nil nil ("yagist-pkg.el") (20849 12880 556621 514000))
+;;;### (autoloads nil nil ("yagist-pkg.el") (20853 22543 833796 486000))
 
 ;;;***
 

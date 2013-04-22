@@ -4,8 +4,8 @@
 
 
 ;;;### (autoloads (mwe:open-command-log-buffer mwe:log-keyboard-commands)
-;;;;;;  "mwe-log-commands" "mwe-log-commands.el" (20849 11300 333893
-;;;;;;  513000))
+;;;;;;  "mwe-log-commands" "mwe-log-commands.el" (20853 22506 707139
+;;;;;;  710000))
 ;;; Generated autoloads from mwe-log-commands.el
 
 (autoload 'mwe:log-keyboard-commands "mwe-log-commands" "\
@@ -22,8 +22,8 @@ If ARG is Non-nil, the existing command log buffer is cleared.
 
 ;;;***
 
-;;;### (autoloads nil nil ("mwe-log-commands-pkg.el") (20849 11300
-;;;;;;  398556 702000))
+;;;### (autoloads nil nil ("mwe-log-commands-pkg.el") (20853 22506
+;;;;;;  767177 293000))
 
 ;;;***
 
