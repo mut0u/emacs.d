@@ -32,7 +32,7 @@
 (require-package 'mwe-log-commands)
 
 
-
+;(require 'init-w3m)
 
 (require 'init-frame-hooks)
 (require 'init-xterm)
@@ -91,6 +91,7 @@
 (require 'init-marmalade)
 (require 'init-misc)
 
+
 ;; Extra packages which don't require any configuration
 
 ;(require-package 'gnuplot)
@@ -121,6 +122,7 @@
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
+
 
 ;; (add-to-list 'load-path "~/.emacs.d/weibo.emacs-master")
 ;;(require 'weibo)
