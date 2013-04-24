@@ -306,8 +306,10 @@ to case differences."
       '(24-hours ":" minutes " ")
        display-time-interval 30)
 
-
-  (display-time-mode 1)
+;; display the time
+(display-time-mode 1)
+;;prevent backup the all files
+(setq make-backup-files nil)
 
 ;;; provide features
 (provide 'init-basic)

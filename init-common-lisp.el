@@ -20,7 +20,7 @@
 (slime-setup '(slime-repl slime-scratch slime-editing-commands))
 
 
-(slime) ;M-x slime
+;(slime) ;M-x slime
 
 
 
