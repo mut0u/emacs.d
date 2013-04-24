@@ -31,8 +31,8 @@
 (require-package 'scratch)
 (require-package 'mwe-log-commands)
 
-
-;(require 'init-w3m)
+(require 'init-basic)
+(require 'init-w3m)
 
 (require 'init-frame-hooks)
 (require 'init-xterm)

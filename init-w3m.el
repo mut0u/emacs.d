@@ -96,8 +96,8 @@ remove publicize from google.cn or google.com."
      ("e" . w3m-edit-current-url)
      ("+" . w3m-zoom-in-image)
      ("-" . w3m-zoom-out-image)
-     ("n" . w3m-visual-scroll-up)
-     ("p" . w3m-visual-scroll-down)
+     ("n" . scroll-up)
+     ("p" . scroll-down)
      ("H" . w3m-history)
      ("h" . w3m-db-history)
      ("D" . w3m-dtree)
@@ -112,14 +112,14 @@ remove publicize from google.cn or google.com."
      ("l" . w3m-copy-link-in-region)
      ("<" . w3m-shift-left)
      (">" . w3m-shift-right)
-     ("<down>" . w3m-visual-scroll-up)
-     ("<up>" . w3m-visual-scroll-down)
+     ("<down>" . scroll-up)
+     ("<up>" . scroll-down)
      ("M-n" . w3m-next-buffer)
      ("M-p" . w3m-previous-buffer)
      ("<f5>" . w3m-reload-this-page)
      ("M-<f5>" . w3m-reload-all-pages)
-     ("<f11>" . w3m-next-buffer)
-     ("C-<f11>" . w3m-previous-buffer))
+     ("<f12>" . w3m-next-buffer)
+     ("C-<f12>" . w3m-previous-buffer))
    w3m-mode-map))
 
 (eval-after-load "w3m"
@@ -132,14 +132,50 @@ remove publicize from google.cn or google.com."
   "search google web en")
 
 ;; global set browse url function
-(setq browse-url-browser-function 'w3m-browse-url)
+
+
+ (setq browse-url-browser-function 'w3m-browse-url)
+ (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+
+ ;(global-set-key "\C-xm" 'browse-url-at-point)
 
 (lazy-set-key
  '(("C-x C-z" . toggle-w3m-with-other-buffer)
    ("<f8>" . w3m-search-google-web-en)))
 
 ;;; provide features
+
+
+
+
+
+;;(if (eq window-system 'w32)
+;;(setq w3m-content-type-alist
+;;      '(("text/plain" "\\.\\(txt\\|tex\\|el\\)" nil)
+;;                ("text/html" "\\.s?html?$" w32-shellex-on-object file)
+;;                ("image/jpeg" "\\.jpe?g$"  w32-shellex-on-object file)
+;;                ("image/png" "\\.png$"     w32-shellex-on-object file)
+;;                ("image/gif" "\\.gif$"     w32-shellex-on-object file)
+;;                ("image/tiff" "\\.tif?f$"  w32-shellex-on-object file)
+;;                ("image/x-xwd" "\\.xwd$"   w32-shellex-on-object file)
+;;                ("image/x-xbm" "\\.xbm$"   w32-shellex-on-object file)
+;;                ("image/x-xpm" "\\.xpm$"   w32-shellex-on-object file)
+;;                ("image/x-bmp" "\\.bmp$"   w32-shellex-on-object file)
+;;                ("video/mpeg" "\\.mpe?g$"  w32-shellex-on-object file)
+;;                ("video/quicktime" "\\.mov$" w32-shellex-on-object file file)
+;;                ("application/postscript" "\\.\\(ps\\|eps\\)$" 
+;;w32-shellex-on-object file)
+;;                ("application/pdf" "\\.pdf$" w32-shellex-on-object file))
+;;          ))
+;;
+
+
+
+
+
+
+
+
 (provide 'init-w3m)
 
 ;;; init-w3m.el ends here
-
