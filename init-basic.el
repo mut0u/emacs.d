@@ -295,6 +295,20 @@ to case differences."
       (define-key keymap key nil))))
 
 
+
+
+ ;;(setq display-time-day-and-date t
+ ;;              display-time-24hr-format t)
+ ;;           (display-time)
+
+
+(setq display-time-string-forms
+      '(24-hours ":" minutes " ")
+       display-time-interval 30)
+
+
+  (display-time-mode 1)
+
 ;;; provide features
 (provide 'init-basic)
 
