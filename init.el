@@ -122,7 +122,7 @@
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
-
+(require 'init-doc-view)
 
 ;; (add-to-list 'load-path "~/.emacs.d/weibo.emacs-master")
 ;;(require 'weibo)

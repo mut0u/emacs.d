@@ -1,0 +1,9 @@
+;;; cookie  -*- mode: emacs-lisp; coding: iso-2022-7bit -*-
+;; This file is generated automatically by emacs-w3m vnil.
+
+(["http://news.dbanotes.net/y" "news.dbanotes.net" nil "user" "dT1XV6nP" "/" 0 "Sun, 17-Jan-2038 19:14:07 GMT" nil]
+["http://dict.cn/search/?q=corect" ".dict.cn" nil "uvid" "UXfJ/X0FgYVo" "/" 0 "Thu, 31-Dec-37 23:55:55 GMT" nil]
+["http://www.google.cn/search?&hl=zh-CN&lr=lang_zh-CN%7Clang_zh-TW&inlang=zh-CN&q=emacs%20do%20quit%20file%20do%20not%20save" ".google.cn" nil "PREF" "ID=bd35cbfb8ea4204a:FF=0:NW=1:TM=1366805100:LM=1366805100:S=TPtORmHKjukuIAfE" "/" 0 "Fri, 24-Apr-2015 12:05:00 GMT" nil]
+["http://www.google.com.hk/url?sa=p&hl=zh-CN&pref=hkredirect&pval=yes&q=http://www.google.com.hk/search%3Fhl%3Dzh-CN%26lr%3Dlang_zh-CN%257Clang_zh-TW%26inlang%3Dzh-CN%26q%3Demacs%2520do%2520quit%2520file%2520do%2520not%2520save&ust=1366805130444806&usg=AFQjCNFSOZNDHufqXXdBFO1CQf1z-iJIRA" ".google.com.hk" nil "NID" "67=C24TVdRFWuUpskxw5NR5dtnVe3N-w7IqkvGjNGJEkBYtuslaHRLBCVS66nb0y9_sRNgvHMAtCVeOhllszwJomL_n43en6N2fXuett8C-IwTN7QXKDLsWvQHq8d1tj9gv" "/" 0 "Thu, 24-Oct-2013 12:05:00 GMT" nil]
+["http://www.google.com.hk/url?sa=p&hl=zh-CN&pref=hkredirect&pval=yes&q=http://www.google.com.hk/search%3Fhl%3Dzh-CN%26lr%3Dlang_zh-CN%257Clang_zh-TW%26inlang%3Dzh-CN%26q%3Demacs%2520do%2520quit%2520file%2520do%2520not%2520save&ust=1366805130444806&usg=AFQjCNFSOZNDHufqXXdBFO1CQf1z-iJIRA" ".google.com.hk" nil "HttpOnly" nil "/" 0 "Thu, 24-Oct-2013 12:05:00 GMT" nil]
+["http://www.google.com.hk/search?hl=zh-CN&lr=lang_zh-CN%7Clang_zh-TW&inlang=zh-CN&q=emacs%20do%20quit%20file%20do%20not%20save" ".google.com.hk" nil "PREF" "ID=43b6c98d0b53b834:U=81faa0733bb98d98:FF=2:LD=zh-CN:NW=1:TM=1366805100:LM=1366805100:S=6fcqQ1WOdJJQ89Cs" "/" 0 "Fri, 24-Apr-2015 12:05:00 GMT" nil])
