@@ -1,1 +1,7 @@
 W3M/
+elpa/
+session.*
+.session
+.emacs.desktop
+
+
