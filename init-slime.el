@@ -12,7 +12,8 @@
 (require 'slime)  
 (slime-setup '(slime-fancy))
 (slime-setup '(slime-repl slime-scratch slime-editing-commands))
-
+(set-language-environment "UTF-8")
+(setq slime-net-coding-system 'utf-8-unix)
 
 
 ;(autoload 'slime-fuzzy-init "slime-fuzzy" "" nil)
