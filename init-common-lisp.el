@@ -2,7 +2,7 @@
 
 (setq inferior-lisp-program "/usr/bin/sbcl"
   lisp-indent-function 'common-lisp-indent-function
-  ;common-lisp-hyperspec-root "file:/~/.emacs.d/site-lisp/HyperSpec-7-0/HyperSpec/"
+  common-lisp-hyperspec-root "file:/home/savior/.emacs.d/site-lisp/HyperSpec-7-0/HyperSpec/"
   ) ;sbcl的路径  
 (add-to-list 'load-path "~/.emacs.d/slime") ;slime的路径  ;;下载最新的slime 出了问题，暂时不知道怎么解决。  
 ;;(add-to-list 'load-path "~/.emacs/slime")
