@@ -127,6 +127,11 @@
 ;; (add-to-list 'load-path "~/.emacs.d/weibo.emacs-master")
 ;;(require 'weibo)
 
+
+(require 'init-golang)
+
+
+
 ;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t
