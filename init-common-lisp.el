@@ -5,20 +5,31 @@
   common-lisp-hyperspec-root "file:/home/savior/.emacs.d/site-lisp/HyperSpec-7-0/HyperSpec/"
   ) ;sbcl的路径  
 (add-to-list 'load-path "~/.emacs.d/slime") ;slime的路径  ;;下载最新的slime 出了问题，暂时不知道怎么解决。  
-;;(add-to-list 'load-path "~/.emacs/slime")
+
 (require-package 'ac-slime)
 (require-package 'hippie-expand-slime)
-
 (setq lisp-indent-function 'common-lisp-indent-function)
-
-
+(set-language-environment "UTF-8")
+(setq slime-net-coding-system 'utf-8-unix)
+(setq slime-truncate-lines t)
 (require 'slime)  
 
 
-(slime-setup '(slime-fancy))
-(slime-setup '(slime-repl slime-scratch slime-editing-commands))
-(set-language-environment "UTF-8")
-(setq slime-net-coding-system 'utf-8-unix)
+
+(slime-setup '(slime-asdf slime-autodoc slime-banner slime-c-p-c ;;slime-cl-indent slime-clipboard 
+			       slime-compiler-notes-tree 
+                               ;slime-editing-commands ;;slime-enclosing-context 
+			       slime-fancy-inspector slime-fancy slime-fontifying-fu slime-fuzzy 
+                               ;;slime-highlight-edits 
+			       slime-hyperdoc slime-indentation slime-mdot-fu slime-media ;;slime-motd 
+			       slime-mrepl 
+			       slime-package-fu slime-parse ;;slime-presentation-streams 
+			       slime-presentations 
+			       slime-references slime-repl slime-sbcl-exts slime-scheme slime-scratch slime-snapshot 
+			       slime-sprof slime-tramp ;;slime-typeout-frame ;;muliti-frame 
+			       ;;slime-xref-browser
+))
+
 
 ;(slime) ;M-x slime
 
@@ -51,7 +62,7 @@
 
      (add-hook 'slime-mode-hook 'set-up-slime-ac)
      (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-
+     (add-hook 'slime-compilation-finished-hook 'slime-maybe-list-compiler-notes)
 
 
 
@@ -60,7 +71,7 @@
 (eval-after-load "lisp-mode"
   '(progn
      (define-key lisp-mode-map (kbd "TAB") 'slime-complete-symbol)))
-     
+    
 ;(require 'hyperspec)
 
 
