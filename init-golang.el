@@ -1,7 +1,7 @@
 ;; golang mode
 
 
-
+(require-package 'go-mode)
 (require 'go-mode-load)
 (require 'go-autocomplete)
 ;; speedbar
