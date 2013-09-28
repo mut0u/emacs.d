@@ -172,6 +172,16 @@ Argument STRING the string that need beauty."
   (interactive)
   (w3m-search-advance "http://dict.cn/search/?q=" "English Dict.cn" 'gbk))
 
+
+
+
+
+(defun w3m-search-dict-youdao ()
+  "Translate input word and search from dict.cn."
+  (interactive)
+  (w3m-search-advance "http://dict.youdao.com/search?q=" "English dict.youdao" 'utf-8))
+
+
 (defun w3m-search-google-lucky ()
   "Use Google Lucky search for WHAT."
   (interactive)

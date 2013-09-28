@@ -129,6 +129,8 @@
 
 
 (require 'init-golang)
+;;;(require 'init-ajoke)
+(require 'init-ibus)
 
 
 

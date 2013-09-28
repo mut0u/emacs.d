@@ -83,11 +83,12 @@ remove publicize from google.cn or google.com."
   (lazy-set-key
    '(("1" . w3m-session-save)
      ("2" . w3m-session-select)
-     ("3" . w3m-search-dict-cn)
+     ("3" . w3m-search-dict-youdao)
      ("4" . w3m-search-google-web-en)
      ("s" . w3m-search-google-web-en)
      ("S" . w3m-search-google-web-cn)
      ("5" . w3m-search-emacswiki)
+     ("6" . w3m-search-dict-cn)
      ("0" . emms-play-online)
      ("b" . w3m-previous-form)
      ("f" . w3m-next-form)
