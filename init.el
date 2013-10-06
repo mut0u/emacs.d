@@ -132,7 +132,7 @@
 ;;;(require 'init-ajoke)
 (require 'init-ibus)
 
-
+(require 'init-chm-view)
 
 ;; Local Variables:
 ;; coding: utf-8

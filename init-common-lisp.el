@@ -44,34 +44,39 @@
 
 
 
-;; From http://bc.tech.coop/blog/070515.html
 
-
-  (defun override-slime-repl-bindings-with-paredit ()
+(defun override-slime-repl-bindings-with-paredit ()
        (define-key slime-repl-mode-map (read-kbd-macro paredit-backward-delete-key) nil))
-  (add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
+
+
+(add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
 
 
 
 
 
-     (add-hook 'slime-mode-hook 'set-up-slime-hippie-expand)
-     (add-hook 'slime-repl-mode-hook 'set-up-slime-hippie-expand)
+(add-hook 'slime-mode-hook 'set-up-slime-hippie-expand)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-hippie-expand)
+(add-hook 'slime-repl-mode-hook (lambda () (setq show-trailing-whitespace nil)))
 
-     (add-hook 'slime-repl-mode-hook (lambda () (setq show-trailing-whitespace nil)))
-
-     (add-hook 'slime-mode-hook 'set-up-slime-ac)
-     (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-     (add-hook 'slime-compilation-finished-hook 'slime-maybe-list-compiler-notes)
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
 
 
+(remove-hook 'slime-compilation-finished-hook 'slime-maybe-show-compilation-log)
+(add-hook 'slime-compilation-finished-hook 'slime-maybe-list-compiler-notes)
 
-     (eval-after-load 'auto-complete '(add-to-list 'ac-modes 'slime-repl-mode))
+
+
+(eval-after-load 'auto-complete '(add-to-list 'ac-modes 'slime-repl-mode))
 
 (eval-after-load "lisp-mode"
   '(progn
-     (define-key lisp-mode-map (kbd "TAB") 'slime-complete-symbol)))
-    
+     (define-key lisp-mode-map (kbd "TAB") 'slime-complete-symbol)
+     (define-key lisp-mode-map (kbd "C-c M-l") 'slime-list-compiler-notes)))
+
+
+
 ;(require 'hyperspec)
 
 
