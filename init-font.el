@@ -61,4 +61,5 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 (qiang-set-font
  '("Bitstream Vera Sans Mono") ":pixelsize=15"
- '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "宋体"))
+ '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "宋体")
+ )

@@ -53,7 +53,10 @@
 (require 'init-auto-complete)
 (require 'init-windows)
 (require 'init-sessions)
-(require 'init-font)
+
+(when (display-graphic-p)
+   (require 'init-font))
+   
 (require 'init-mmm)
 (require 'init-growl)
 
