@@ -1,4 +1,8 @@
-((("~/.emacs.d/slime" .
+((("make-weibo-user" .
+                     [3 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("require" .
+             [0 0 0 0 1 0 1])
+  ("~/.emacs.d/slime" .
                       [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
   ("load-path" .
                [0 0 0 0 0 0 0 0 1])

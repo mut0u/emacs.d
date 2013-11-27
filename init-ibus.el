@@ -22,7 +22,7 @@
 
 (global-set-key (kbd "S-SPC") 'ibus-toggle)
 
-(global-set-key [(control f12)] 'ibus-mode)
+(global-set-key (kbd "C-x <f12>") 'ibus-mode)
 
 
 

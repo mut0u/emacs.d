@@ -310,7 +310,7 @@ to case differences."
 (display-time-mode 1)
 ;;prevent backup the all files
 (setq make-backup-files nil)
-
+(require 'goto-last-change)
 ;;; provide features
 (provide 'init-basic)
 

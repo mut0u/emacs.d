@@ -128,7 +128,7 @@
 (require 'init-doc-view)
 
 ;; (add-to-list 'load-path "~/.emacs.d/weibo.emacs-master")
-;;(require 'weibo)
+(require 'init-weibo)
 
 
 (require 'init-golang)

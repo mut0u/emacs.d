@@ -71,6 +71,12 @@ nil 0 nil "_NET_WM_STATE" 32
 nil 0 nil "_NET_WM_STATE" 32
 '(1 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
 
-
+;;==============================================================
+;;; window resize settings
+(lazy-set-key
+ '(("C-<left>"  . shrink-window-horizontally)
+   ("C-<right>" . enlarge-window-horizontally)
+   ("C-<down>"  . shrink-window)
+   ("C-<up>"    . enlarge-window)))
 
 (provide 'init-windows)
