@@ -32,6 +32,8 @@
 (require-package 'mwe-log-commands)
 
 (require 'init-basic)
+
+;(require 'init-anything-auto-install)
 (require 'init-w3m)
 
 (require 'init-frame-hooks)
@@ -128,15 +130,15 @@
 (require 'init-doc-view)
 
 ;; (add-to-list 'load-path "~/.emacs.d/weibo.emacs-master")
-(require 'init-weibo)
+;(require 'init-weibo)
 
 
-(require 'init-golang)
+;;(require 'init-golang)
 ;;;(require 'init-ajoke)
 (require 'init-ibus)
 
 (require 'init-chm-view)
-
+;(require 'init-sql)
 ;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t

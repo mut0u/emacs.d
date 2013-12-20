@@ -1,0 +1,1 @@
+(("dbi:mysql:test" "root" "") ("dbi:mysql:t" "root" "") ("dbi:mysql:abcd" "root" "") ("dbi:mysql:database=test;host=localhost" "root" "") ("dbi:mysql:database=test" "root" ""))

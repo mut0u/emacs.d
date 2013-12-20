@@ -311,6 +311,10 @@ to case differences."
 ;;prevent backup the all files
 (setq make-backup-files nil)
 (require 'goto-last-change)
+
+(add-to-list 'load-path "~/.emacs.d/plugins")
+
+
 ;;; provide features
 (provide 'init-basic)
 
