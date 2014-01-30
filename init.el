@@ -1,16 +1,11 @@
 ;;; This file bootstraps the configuration, which is divided into
-;;; This file bootstraps the configuration, which is divided into
 ;;; a number of other files.
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(require 'init-benchmarking) ;; Measure startup time
 
-;;----------------------------------------------------------------------------
-;; Which functionality to enable (use t or nil for true and false)
-;;----------------------------------------------------------------------------
-(defconst *spell-check-support-enabled* nil)
+(defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 (defconst *is-a-mac* (eq system-type 'darwin))
-(defconst *is-carbon-emacs* (eq window-system 'mac))
-(defconst *is-cocoa-emacs* (and *is-a-mac* (eq window-system 'ns)))
 
 ;;----------------------------------------------------------------------------
 ;; Bootstrap config
@@ -31,15 +26,10 @@
 (require-package 'scratch)
 (require-package 'mwe-log-commands)
 
-(require 'init-basic)
-
-;(require 'init-anything-auto-install)
-(require 'init-w3m)
-
 (require 'init-frame-hooks)
 (require 'init-xterm)
 (require 'init-themes)
-;(require 'init-osx-keys)
+(require 'init-osx-keys)
 (require 'init-gui-frames)
 (require 'init-maxframe)
 (require 'init-proxies)
@@ -47,7 +37,7 @@
 (require 'init-isearch)
 (require 'init-uniquify)
 (require 'init-ibuffer)
-(require 'init-flymake)
+;;(require 'init-flycheck)
 
 (require 'init-recentf)
 (require 'init-ido)
@@ -55,12 +45,9 @@
 (require 'init-auto-complete)
 (require 'init-windows)
 (require 'init-sessions)
-
-(when (display-graphic-p)
-   (require 'init-font))
-   
+(require 'init-w3m)
+(require 'init-fonts)
 (require 'init-mmm)
-(require 'init-growl)
 
 (require 'init-editing-utils)
 
@@ -71,74 +58,86 @@
 (require 'init-textile)
 (require 'init-markdown)
 (require 'init-csv)
-;(require 'init-erlang)
-;(require 'init-javascript)
-(require 'init-sh)
-;(require 'init-php)
+(require 'init-erlang)
+(require 'init-javascript)
+(require 'init-php)
 (require 'init-org)
 (require 'init-nxml)
-;(require 'init-css)
+(require 'init-css)
 (require 'init-haml)
 (require 'init-python-mode)
-;(require 'init-haskell)
-;(require 'init-ruby-mode)
-;(require 'init-rails)
+(require 'init-haskell)
+(require 'init-ruby-mode)
+(require 'init-rails)
+(require 'init-sql)
 
 (require 'init-paredit)
 (require 'init-lisp)
-;(require 'init-slime)
-;(require 'init-clojure)
+(require 'init-slime)
+(require 'init-clojure)
 (require 'init-common-lisp)
 
-(when *spell-check-support-enabled*
-  (require 'init-spelling))
+;; (when *spell-check-support-enabled*
+;;  (require 'init-spelling))
+
 
 (require 'init-marmalade)
 (require 'init-misc)
 
-
+(require 'init-dash)
+(require 'init-ledger)
 ;; Extra packages which don't require any configuration
 
-;(require-package 'gnuplot)
-;(require-package 'lua-mode)
-;(require-package 'htmlize)
-;(require-package 'dsvn)
-
+(require-package 'gnuplot)
+(require-package 'lua-mode)
+(require-package 'htmlize)
+(require-package 'dsvn)
+(when *is-a-mac*
+  (require-package 'osx-location))
+(require-package 'regex-tool)
 
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient
 ;;----------------------------------------------------------------------------
-
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
 
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
 ;;----------------------------------------------------------------------------
-
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 
 ;;----------------------------------------------------------------------------
 ;; Allow users to provide an optional "init-local" containing personal settings
 ;;----------------------------------------------------------------------------
-;;(require 'init-local nil t)
+(when (file-exists-p (expand-file-name "init-local.el" user-emacs-directory))
+  (error "Please move init-local.el to ~/.emacs.d/lisp"))
+(require 'init-local nil t)
 
 
 ;;----------------------------------------------------------------------------
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
-(require 'init-doc-view)
 
-;; (add-to-list 'load-path "~/.emacs.d/weibo.emacs-master")
-;(require 'init-weibo)
+(add-hook 'after-init-hook
+          (lambda ()
+            (message "init completed in %.2fms"
+                     (sanityinc/time-subtract-millis after-init-time before-init-time))))
 
 
-;;(require 'init-golang)
-;;;(require 'init-ajoke)
-(require 'init-ibus)
+;;---------------------------------------------------------------
+;;init key bounding
+;;----------------------------------------------------------------
+(require 'init-key)
 
-(require 'init-chm-view)
-;(require 'init-sql)
+(provide 'init)
+
 ;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t
