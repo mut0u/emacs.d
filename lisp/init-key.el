@@ -1,4 +1,10 @@
 
+
+
+
+;;;-----------------------------------
+;;; global key binds
+;;;-----------------------------------
 (global-set-key [f11] 'my-fullscreen);F11 全屏
 
 (global-set-key (kbd "C-<left>")  'shrink-window-horizontally)
@@ -6,7 +12,9 @@
 (global-set-key (kbd "C-<down>")  'shrink-window)
 (global-set-key (kbd "C-<up>")  'enlarge-window)
 
-
+;;;----------------------------------------
+;;; w3m key binds
+;;;----------------------------------------
 
  (after-load 'w3m
    (define-key w3m-mode-map (kbd "1")  'w3m-session-save)
@@ -53,12 +61,13 @@
    (define-key w3m-mode-map (kbd "<f8>" )  'w3m-search-google-web-en))
 
 
-
+;;;---------------------------------------------------
+;;; common lisp key binds
+;;;----------------------------------------------------
 
 (eval-after-load "lisp-mode"
   '(progn
       ;;(setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
-    
      (define-key lisp-mode-map (kbd "C-c M-l") 'slime-list-compiler-notes)))
 
 (provide 'init-key)
