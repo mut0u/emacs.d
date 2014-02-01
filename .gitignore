@@ -26,3 +26,4 @@ site-lisp/package/
 /.achievements
 /.bookmarks.el
 /history
+history
