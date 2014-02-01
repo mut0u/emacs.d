@@ -1,8 +1,10 @@
 
-
-
 (global-set-key [f11] 'my-fullscreen);F11 全屏
 
+(global-set-key (kbd "C-<left>")  'shrink-window-horizontally)
+(global-set-key (kbd "C-<right>")  'enlarge-window-horizontally)
+(global-set-key (kbd "C-<down>")  'shrink-window)
+(global-set-key (kbd "C-<up>")  'enlarge-window)
 
 
 

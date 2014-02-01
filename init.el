@@ -76,6 +76,9 @@
 (require 'init-slime)
 (require 'init-clojure)
 (require 'init-common-lisp)
+(require 'init-org2blog)
+
+
 
 ;; (when *spell-check-support-enabled*
 ;;  (require 'init-spelling))
@@ -135,6 +138,8 @@
 ;;init key bounding
 ;;----------------------------------------------------------------
 (require 'init-key)
+;;;;;;(require 'init-webkit)
+(require 'init-eim)
 
 (provide 'init)
 
