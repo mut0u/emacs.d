@@ -70,4 +70,49 @@
       ;;(setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
      (define-key lisp-mode-map (kbd "C-c M-l") 'slime-list-compiler-notes)))
 
+
+;;;------------------------------------------------------
+;;; doc-view key binds
+;;;------------------------------------------------------
+
+(after-load 'doc-view-mode
+  (define-key doc-view-mode-map (kdb ".") nil)   ;卸载按键
+  (define-key doc-view-mode-map (kdb "x") nil)   ;卸载按键
+  (define-key doc-view-mode-map (kdb "M-<") nil) ;卸载按键
+  (define-key doc-view-mode-map (kdb "M->") nil) ;卸载按键
+
+
+  (define-key doc-view-mode-map  (kdb "N") 'doc-view-next-page) ;下一页
+  (define-key doc-view-mode-map  (kdb "P") 'doc-view-previous-page) ;上一页
+  (define-key doc-view-mode-map  (kdb ".") 'doc-view-first-page) ;第一页
+  (define-key doc-view-mode-map  (kdb ",") 'doc-view-last-page) ;最后一页
+  (define-key doc-view-mode-map  (kdb "g") 'doc-view-goto-page) ;跳到第几页
+  (define-key doc-view-mode-map  (kdb "e") 'doc-view-scroll-down-or-previous-page) ;向上滚动一屏
+  (define-key doc-view-mode-map  (kdb "SPC") 'doc-view-scroll-up-or-next-page) ;向下滚动一屏
+  (define-key doc-view-mode-map  (kdb "j") 'doc-view-next-line-or-next-page) ;下一行或下一屏
+  (define-key doc-view-mode-map  (kdb "k") 'doc-view-previous-line-or-previous-page) ;上一行或上一屏
+  (define-key doc-view-mode-map  (kdb "t") 'doc-view-show-tooltip) ;当前页提示
+  (define-key doc-view-mode-map  (kdb "q") 'bury-buffer) ;隐藏buffer
+  (define-key doc-view-mode-map  (kdb "Q") 'doc-view-kill-proc-and-buffer) ;退出并结束进程
+  (define-key doc-view-mode-map  (kdb "C-s") 'doc-view-search) ;搜索
+  (define-key doc-view-mode-map  (kdb "C-S-n") 'doc-view-search-next-match) ;下一个匹配
+  (define-key doc-view-mode-map  (kdb "C-S-p") 'doc-view-search-previous-match) ;上一个匹配
+  (define-key doc-view-mode-map  (kdb "+") 'doc-view-enlarge) ;放大页面
+  (define-key doc-view-mode-map  (kdb "-") 'doc-view-shrink) ;缩小页面
+  (define-key doc-view-mode-map  (kdb "C-c C-c") 'doc-view-toggle-display) ;在文本和图像间切换
+  (define-key doc-view-mode-map  (kdb "C-c C-t") 'doc-view-open-text) ;打开文本
+  (define-key doc-view-mode-map  (kdb "r") 'revert-buffer)     ;刷新
+  (define-key doc-view-mode-map  (kdb "s") 'auto-scroll-mode) ;自动滚屏
+  (define-key doc-view-mode-map  (kdb "<") 'auto-scroll-faster) ;加快滚屏速度
+  (define-key doc-view-mode-map  (kdb ">") 'auto-scroll-slower) ;减慢滚屏速度
+
+  (define-key doc-view-mode-map  [remap scroll-up]  'doc-view-next-line-or-next-page ) ;重新定向按键, 支持 auto-scroll
+
+  )
+
+
+
+;;(lazy-set-key sdcv-key-alist doc-view-mode-map) ;sdcv的局部按键绑定
+
+
 (provide 'init-key)

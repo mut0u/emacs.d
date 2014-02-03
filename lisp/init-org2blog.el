@@ -4,18 +4,24 @@
 (require-package 'org2blog)
 (require 'org2blog-autoloads)
 ; setup proxy
-;(setq url-proxy-services '(("http" . "127.0.0.1:8087"))) ; gae
+(setq url-proxy-services '(("http" . "127.0.0.1:8087"))) ; gae
 
 (setq org2blog/wp-use-sourcecode-shortcode t)
 (setq org2blog/wp-blog-alist
       '(("mut0u"
-         :url "http://mut0u.wordpress.org/xmlrpc.php"
+         :url "http://mut0u.wordpress.com/xmlrpc.php"
          :username "mut0u"
          :default-title ""
+         :keep-new-lines t
+         :confirm t
+         :wp-code nil
          ;;:default-categories ("Linux")
          :tags-as-categories nil
          )
         ))
+
+
+
 
 (defun my-org2blog-post-subtree ()
   (interactive)

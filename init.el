@@ -41,6 +41,8 @@
 
 (require 'init-recentf)
 (require 'init-ido)
+
+(require 'init-auto-save)
 (require 'init-hippie-expand)
 (require 'init-auto-complete)
 (require 'init-windows)
@@ -140,6 +142,9 @@
 (require 'init-key)
 ;;;;;;(require 'init-webkit)
 (require 'init-eim)
+
+(require 'init-weibo)
+
 
 (provide 'init)
 
