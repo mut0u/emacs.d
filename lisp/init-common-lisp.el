@@ -14,9 +14,7 @@
                  '(cmucl ("lisp") :coding-system iso-latin-1-unix))))
 
 
-
-(setq common-lisp-hyperspec-root "file:/home/savior/.emacs.d/site-lisp/HyperSpec-7-0/HyperSpec/")
-
+(setq common-lisp-hyperspec-root (concat "file:" (expand-file-name "site-lisp/HyperSpec-7-0/HyperSpec/" user-emacs-directory )))
 
 
 

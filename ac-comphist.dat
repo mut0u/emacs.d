@@ -1,4 +1,12 @@
-((("with-open-file" .
+((("user-emacs-directory" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2])
+  ("common-lisp-hyperspec-root" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("expand-file-name" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2])
+  ("file-truename" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("with-open-file" .
    [0 0 0 0 0 0 1 0 0 0 0 0 0 0])
   ("member" .
    [0 0 0 1 0 0])
