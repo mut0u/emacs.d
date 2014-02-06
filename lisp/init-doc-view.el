@@ -6,3 +6,6 @@
 (setq doc-view-cache-directory "~/.book-cache")
 (setq doc-view-image-width (- (display-pixel-width) 16))
 (setq doc-view-resolution 200)
+
+
+(provide 'init-doc-view)

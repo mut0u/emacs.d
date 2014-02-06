@@ -82,6 +82,10 @@
 
 
 
+(require 'init-doc-view)
+
+(require 'init-chm-view)
+
 ;; (when *spell-check-support-enabled*
 ;;  (require 'init-spelling))
 

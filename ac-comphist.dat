@@ -1,4 +1,8 @@
-((("user-emacs-directory" .
+((("chm-view-delay" .
+   [0 0 0 0 1 0 0 0 0 0 0 0 0 0])
+  ("provide" .
+   [0 0 0 0 0 1 0])
+  ("user-emacs-directory" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2])
   ("common-lisp-hyperspec-root" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
@@ -13,4 +17,6 @@
   ("last" .
    [0 0 0 1])
   ("define-key" .
-   [1 0 0 0 0 0 0 0 0 0])))
+   [1 0 0 0 0 0 0 0 0 0])
+  ("auto-save-idle" .
+   [0 0 0 0 0 0 0 0 0 0 0 1 0 0])))
