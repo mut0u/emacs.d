@@ -1,3 +1,6 @@
 [submodule "site-lisp/eim"]
 	path = site-lisp/eim
 	url = https://github.com/wenbinye/emacs-eim.git
+[submodule "site-lisp/weibo"]
+	path = site-lisp/weibo
+	url = https://github.com/austin-----/weibo.emacs.git
