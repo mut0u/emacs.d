@@ -26,3 +26,5 @@ cookies
 /.bookmarks.el
 /history
 history
+frame-restore-parameters
+ac-comphist.dat
