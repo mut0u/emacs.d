@@ -25,6 +25,9 @@
 (require-package 'diminish)
 (require-package 'scratch)
 (require-package 'mwe-log-commands)
+(require 'lazy-set-key)
+(require 'tabbar)
+
 
 (require 'init-frame-hooks)
 (require 'init-xterm)
@@ -46,6 +49,9 @@
 (require 'init-hippie-expand)
 (require 'init-auto-complete)
 (require 'init-windows)
+
+
+(require 'init-tabbar)
 (require 'init-sessions)
 (require 'init-w3m)
 

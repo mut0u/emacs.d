@@ -17,4 +17,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+
+
+
+
+
+  '(tabbar-button ((t (:inherit tabbar-default :background "black" :foreground "red" :box (:line-width 1 :color "black" :style released-button)))))
+ '(tabbar-button-highlight ((t (:inherit tabbar-default :background "black" :foreground "green" :box (:color "red")))))
+ '(tabbar-default ((((class color grayscale) (background dark)) (:inherit variable-pitch :height 1.1 :family "ÎÄÈªæäµÈ¿íÎ¢Ã×ºÚ"))))
+ '(tabbar-selected ((t (:inherit tabbar-default :background "black" :foreground "green2" :box (:line-width 1 :color "#10650F")))))
+ '(tabbar-selected-face ((t (:inherit tabbar-default-face :background "black" :foreground "grey" :box (:line-width -1 :color "grey" :style released-button)))))
+ '(tabbar-separator ((t (:inherit tabbar-default :background "black" :foreground "brown" :height 0.1))))
+ '(tabbar-unselected ((t (:inherit tabbar-default :background "black" :foreground "#10650F" :box (:line-width 1 :color "#10650F")))))
+ '(tabbar-unselected-face ((t (:inherit tabbar-default-face :background "black" :foreground "white" :box (:line-width -1 :color "black" :style pressed-button)))))
  )

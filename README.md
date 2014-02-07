@@ -12,7 +12,7 @@ git clone --recursive https://github.com/mut0u/emacs.d.git
 
 
 ##更改原配置的功能
-1.更改字体设置,增加中文字体.
+1. 更改字体设置,增加中文字体.
 
 ##添加的新功能
 
