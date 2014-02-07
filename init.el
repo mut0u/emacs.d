@@ -48,7 +48,11 @@
 (require 'init-windows)
 (require 'init-sessions)
 (require 'init-w3m)
-(require 'init-fonts)
+
+
+(when (display-graphic-p)
+  (require 'init-fonts))
+
 (require 'init-mmm)
 
 (require 'init-editing-utils)
