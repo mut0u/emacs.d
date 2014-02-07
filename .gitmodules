@@ -1,0 +1,3 @@
+[submodule "site-lisp/eim"]
+	path = site-lisp/eim
+	url = https://github.com/wenbinye/emacs-eim.git
