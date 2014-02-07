@@ -3,15 +3,16 @@
 这个主要是从 [Steve Purcell](https://github.com/purcell/emacs.d) 的emacs的配置clone过来的,
 做了一点点修改,方便我的使用.
 
+```
 git clone --recursive https://github.com/mut0u/emacs.d.git
-
+```
 
 
 ##原来的配置所拥有的功能
 
 
 ##更改原配置的功能
-
+1.更改字体设置,增加中文字体.
 
 ##添加的新功能
 
