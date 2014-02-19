@@ -43,6 +43,7 @@
   ;; Hint: Customize `ns-use-native-fullscreen'
   (global-set-key (kbd "M-ƒ") 'toggle-frame-fullscreen))
 
+
 (global-set-key (kbd "M-C-8") '(lambda () (interactive) (adjust-opacity nil -5)))
 (global-set-key (kbd "M-C-9") '(lambda () (interactive) (adjust-opacity nil 5)))
 (global-set-key (kbd "M-C-0") '(lambda () (interactive) (modify-frame-parameters nil `((alpha . 100)))))

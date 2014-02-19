@@ -154,7 +154,7 @@
 ;;init key bounding
 ;;----------------------------------------------------------------
 (require 'init-key)
-;;;;;;(require 'init-webkit)
+;;;(require 'init-webkit)
 (require 'init-eim)
 
 (require 'init-weibo)

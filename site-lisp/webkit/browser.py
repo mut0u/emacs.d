@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # Copyright (C) 2011 ~ 2014 Andy Stewart
@@ -38,7 +38,8 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QPainter, QImage
 import functools
 from utils import get_parent_dir
-from xutils import get_xlib_display
+from xutils import get_xlib_display, grab_focus, ActiveWindowWatcher, get_parent_window_id
+from send_key import send_string
 
 class postGui(QtCore.QObject):
     
@@ -110,6 +111,14 @@ class BrowserBuffer(QWebView):
         
         self.press_ctrl_flag = False
         
+        self.page().mainFrame().initialLayoutCompleted.connect(self.inject_js)
+        
+    def inject_js(self):
+        with open("reverse_color.js", "r") as jsfile:
+            self.page().mainFrame().evaluateJavaScript(jsfile.read())
+            
+        call_method("message", ["injectjs"])        
+        
     def change_title(self, title):
         call_method("change-buffer-title", [self.buffer_id, title])
         
@@ -126,16 +135,36 @@ class BrowserBuffer(QWebView):
                 self.press_ctrl_flag = True
             elif event.type() == QEvent.KeyRelease and event.key() == QtCore.Qt.Key_Control:
                 self.press_ctrl_flag = False
+                
+            global emacs_xwindow_id
+            
+            xlib_display = get_xlib_display()
+            xwindow = xlib_display.create_resource_object("window", emacs_xwindow_id)
+            
+            mask = []
+            event_key = event.text()            
+            if event.modifiers() & QtCore.Qt.AltModifier == QtCore.Qt.AltModifier:
+                mask.append("Alt")
+            elif event.modifiers() & QtCore.Qt.ControlModifier == QtCore.Qt.ControlModifier:
+                mask.append("Ctrl")
+            elif event.modifiers() & QtCore.Qt.ShiftModifier == QtCore.Qt.ShiftModifier:
+                mask.append("Shift")
+            elif event.modifiers() & QtCore.Qt.MetaModifier == QtCore.Qt.MetaModifier:
+                mask.append("Super")
+                
+            send_string(xwindow, event_key, mask, event.type() == QEvent.KeyPress)
+            
+            xlib_display.sync()
         else:
             if event.type() not in [12, 77]:
                 call_method("%s %s" % (event.type(), event))
         
         return False
     
-    def add_view(self, view_id, emacs_xid, x, y, w, h):
+    def add_view(self, view_id, x, y, w, h):
         view = BrowserView(self, view_id)
         self.view_dict[view_id] = view
-        self.update_view(view_id, emacs_xid, x, y, w, h)
+        self.update_view(view_id, x, y, w, h)
         
         view.show()
         
@@ -144,8 +173,8 @@ class BrowserBuffer(QWebView):
             self.view_dict[view_id].remove()
             self.view_dict.pop(view_id)
         
-    def update_view(self, view_id, emacs_xid, x, y, w, h):
-        self.view_dict[view_id].moveresize(emacs_xid, x, y, w, h)
+    def update_view(self, view_id, x, y, w, h):
+        self.view_dict[view_id].moveresize(x, y, w, h)
         
     def remove_all_views(self):
         for view_id in self.view_dict.keys():
@@ -212,20 +241,20 @@ class BrowserView(QWidget):
         self.qimage = qimage
         self.update()
         
-    def moveresize(self, emacs_xid, x, y, w, h):
+    def moveresize(self, x, y, w, h):
         self.resize(w, h)
-        self.reparent(emacs_xid, x, y)
+        self.reparent(x, y)
         
-    def adjust_size(self, emacs_xid, x, y, w, h):
-        self.moveresize(emacs_xid, x, y, w, h)
+    def adjust_size(self, x, y, w, h):
+        self.moveresize(x, y, w, h)
         self.browser_buffer.adjust_size(w, h)
         
-    def reparent(self, emacs_xid, x, y):
+    def reparent(self, x, y):
         xlib_display = get_xlib_display()
         
-        browser_xid = self.winId().__int__()
-        browser_xwindow = xlib_display.create_resource_object("window", int(browser_xid))
-        emacs_xwindow = xlib_display.create_resource_object("window", int(emacs_xid))
+        browser_xwindow_id = self.winId().__int__()
+        browser_xwindow = xlib_display.create_resource_object("window", browser_xwindow_id)
+        emacs_xwindow = xlib_display.create_resource_object("window", emacs_xwindow_id)
         
         browser_xwindow.reparent(emacs_xwindow, x, y)
         
@@ -242,6 +271,8 @@ if __name__ == '__main__':
     server_thread = threading.Thread(target=server.serve_forever)
     server_thread.allow_reuse_address = True
     
+    emacs_xwindow_id = 0
+    
     buffer_dict = {}
     
     def call_message(message):
@@ -250,7 +281,23 @@ if __name__ == '__main__':
     def call_method(method_name, args):
         handler = server.clients[0]
         handler.call(method_name, args)
-    
+        
+    def handle_active_window(active_window_id):
+        global emacs_xwindow_id
+        
+        emacs_real_id = get_parent_window_id(emacs_xwindow_id)
+        
+        call_method("message", ["handle_active_window: %s %s %s" % (active_window_id, emacs_xwindow_id, emacs_real_id)])
+        
+        if active_window_id == emacs_real_id:
+            call_method("focus-browser-view", [])
+        
+    @postGui(False)    
+    def init(emacs_xid):
+        global emacs_xwindow_id
+        
+        emacs_xwindow_id = int(emacs_xid)
+        
     # NOTE: every epc method must should wrap with postGui.
     # Because epc server is running in sub-thread.
     @postGui(False)        
@@ -276,7 +323,7 @@ if __name__ == '__main__':
             buffer_dict[buffer_id].adjust_size(w, h)
             
     @postGui(False)        
-    def update_views(emacs_xid, view_infos):
+    def update_views(view_infos):
         buffer_view_dict = {}
         
         for view_info in view_infos:
@@ -299,18 +346,29 @@ if __name__ == '__main__':
                     (x, y, w, h) = buffer_view_dict[buffer.buffer_id][emacs_view_id]
                     # Update view.
                     if emacs_view_id in buffer_view_ids:
-                        buffer.update_view(emacs_view_id, emacs_xid, x, y, w, h)
+                        buffer.update_view(emacs_view_id, x, y, w, h)
 
                     # Create view.
                     else:
-                        buffer.add_view(emacs_view_id, emacs_xid, x, y, w, h)
+                        buffer.add_view(emacs_view_id, x, y, w, h)
                 for buffer_view_id in buffer_view_ids:
                     # Remove view.
                     if buffer_view_id not in emacs_view_ids:
                         buffer.remove_view(buffer_view_id)
             else:
                 buffer.remove_all_views()
-    
+                
+    @postGui(False)            
+    def focus_view(buffer_id, x, y, w, h):
+        if buffer_dict.has_key(buffer_id):
+            buffer = buffer_dict[buffer_id]
+            view_id = "%s_%s" % (x, y)
+            
+            if buffer.view_dict.has_key(view_id):
+                view = buffer.view_dict[view_id]
+                view_xwindow_id = view.winId().__int__()
+                grab_focus(view_xwindow_id)
+                
     def update_buffer():
         while True:
             for buffer in buffer_dict.values():
@@ -321,24 +379,32 @@ if __name__ == '__main__':
     server_thread.start()
     server.print_port()
     
+    server.register_function(init)
     server.register_function(create_buffer)
     server.register_function(remove_buffer)
     server.register_function(adjust_size)
     server.register_function(update_views)
+    server.register_function(focus_view)
     
     threading.Thread(target=update_buffer).start()            
+    
+    active_window_watcher = ActiveWindowWatcher()
+    active_window_watcher.activeWindowChanged.connect(handle_active_window)
+    active_window_watcher.start()        
     
     # This function just for test python module.
     def test():
         emacs_xid = "106954839"
         
+        init(emacs_xid)
+        
         create_buffer("1", "http://www.google.com", 1600, 400)
 
         # View will adjust.
-        buffer_dict["1"].add_view("400_500", emacs_xid, 400, 500, 300, 400)
+        buffer_dict["1"].add_view("400_500", 400, 500, 300, 400)
 
         # View will destory.
-        buffer_dict["1"].add_view("900_500", emacs_xid, 900, 500, 300, 400)
+        buffer_dict["1"].add_view("900_500", 900, 500, 300, 400)
 
         # View will add.
         view_infos = [
@@ -348,9 +414,9 @@ if __name__ == '__main__':
             ["1", 400, 500, 500, 400],
         ]
         
-        update_views(emacs_xid, view_infos)
+        update_views(view_infos)
         
-        adjust_size(emacs_xid, "1", "400_500", 400, 500, 500, 400)
+        adjust_size("1", "400_500", 400, 500, 500, 400)
         
     # test()    
         

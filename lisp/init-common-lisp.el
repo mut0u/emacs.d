@@ -6,6 +6,13 @@
                               (normal-mode))))
 
 (after-load 'slime
+  (slime-setup '(slime-asdf slime-autodoc slime-banner
+                               slime-compiler-notes-tree
+                               slime-fancy-inspector slime-fancy slime-fontifying-fu slime-fuzzy
+                               slime-hyperdoc slime-indentation
+                               slime-presentations
+))
+
   (when (executable-find "sbcl")
     (add-to-list 'slime-lisp-implementations
                  '(sbcl ("sbcl") :coding-system utf-8-unix)))
@@ -15,6 +22,7 @@
 
 
 (setq common-lisp-hyperspec-root (concat "file:" (expand-file-name "site-lisp/HyperSpec-7-0/HyperSpec/" user-emacs-directory )))
+
 
 
 
@@ -44,6 +52,26 @@
                               "basic+search")))))))
 
 (define-key lisp-mode-map (kbd "C-c l") 'lispdoc)
+
+
+
+
+
+
+;(r 'slime-compilation-finished-hook 'slime-maybe-show-compilation-log)
+;
+
+(setq slime-compilation-finished-hook '(
+
+ slime-list-compiler-notes
+             slime-maybe-list-compiler-notes
+            ;; slime-maybe-show-compilation-log
+
+            ))
+
+
+
+     ;; slime-maybe-list-compiler-notes
 
 
 (provide 'init-common-lisp)

@@ -126,8 +126,11 @@
 (defvar pyepc-file (expand-file-name "browser.py" (file-name-directory load-file-name)))
 
 (defvar pyepc-browser
-  (epc:start-epc (or (getenv "PYTHON") "python3")
-                 (list pyepc-file)))
+  (let* ((browser
+          (epc:start-epc (or (getenv "PYTHON") "python")
+                         (list pyepc-file))))
+    (epc:call-deferred browser 'init (list (webkit-get-emacs-xid)))
+    browser))
 
 (defvar webkit-buffer-dict (make-hash-table :test 'equal))
 
@@ -188,7 +191,7 @@
                    )
               (add-to-list 'view-infos (list buffer-id x y w h))
               ))))
-    (epc:call-deferred pyepc-browser 'update_views (list (webkit-get-emacs-xid) view-infos))
+    (epc:call-deferred pyepc-browser 'update_views (list view-infos))
 
     (with-current-buffer selected-buffer
       (if (string= "webkit-mode" (format "%s" major-mode))
@@ -207,6 +210,27 @@
           (epc:call-deferred pyepc-browser 'remove_buffer (list buffer-id))
           (remhash buffer-id webkit-buffer-dict)))))
 
+(defun webkit-focus-browser-view ()
+  (interactive)
+  (with-current-buffer (current-buffer)
+    (if (string= "webkit-mode" (format "%s" major-mode))
+        (let* ((window-allocation (webkit-get-window-allocation (get-buffer-window (current-buffer))))
+               (x (nth 0 window-allocation))
+               (y (nth 1 window-allocation))
+               (w (nth 2 window-allocation))
+               (h (nth 3 window-allocation))
+               )
+          (epc:call-deferred pyepc-browser 'focus_view (list buffer-id x y w h))
+          (message "Focus view: %S" buffer-id)
+          )
+      )))
+
+(defadvice switch-to-buffer (after webkit-switch-to-buffer-advice activate)
+  (webkit-focus-browser-view))
+
+(defadvice other-window (after webkit-other-window-advice activate)
+  (webkit-focus-browser-view))
+
 (add-hook 'window-configuration-change-hook #'webkit-monitor-window-change)
 (add-hook 'kill-buffer-hook #'webkit-monitor-buffer-kill)
 
@@ -224,6 +248,12 @@
                    'change-buffer-title
                    (lambda (&rest args)
                      (webkit-change-buffer-title (nth 0 args) (nth 1 args))
+                     ))
+
+(epc:define-method pyepc-browser
+                   'focus-browser-view
+                   (lambda (&rest args)
+                     (webkit-focus-browser-view)
                      ))
 
 (provide 'webkit)
