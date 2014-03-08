@@ -4,7 +4,7 @@
 (require-package 'org2blog)
 (require 'org2blog-autoloads)
 ; setup proxy
-(setq url-proxy-services '(("http" . "127.0.0.1:8087"))) ; gae
+;(setq url-proxy-services '(("http" . "127.0.0.1:8087"))) ; gae
 
 (setq org2blog/wp-use-sourcecode-shortcode t)
 (setq org2blog/wp-blog-alist

@@ -12,6 +12,11 @@
 (global-set-key (kbd "C-<down>")  'shrink-window)
 (global-set-key (kbd "C-<up>")  'enlarge-window)
 
+
+(when window-system
+  (global-unset-key "\C-z")
+  (global-unset-key "\C-x\C-z"))
+
 ;;;----------------------------------------
 ;;; w3m key binds
 ;;; I do not know why i change the binds to lazy-set will get error.
