@@ -1,9 +1,10 @@
-;;; This file bootstraps the configuration, which is divided into
-;;; a number of other files.
+
+(let ((minver 23))
+  (unless (>= emacs-major-version minver)
+    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (require 'init-benchmarking) ;; Measure startup time
-
 
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 (defconst *is-a-mac* (eq system-type 'darwin))
@@ -35,7 +36,6 @@
 (require 'init-themes)
 (require 'init-osx-keys)
 (require 'init-gui-frames)
-(require 'init-maxframe)
 (require 'init-proxies)
 (require 'init-dired)
 (require 'init-isearch)
@@ -100,6 +100,9 @@
 ;; (when *spell-check-support-enabled*
 ;;  (require 'init-spelling))
 
+
+(when *spell-check-support-enabled*
+  (require 'init-spelling))
 
 (require 'init-marmalade)
 (require 'init-misc)

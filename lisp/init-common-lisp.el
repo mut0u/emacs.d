@@ -12,7 +12,6 @@
                                slime-hyperdoc slime-indentation
                                slime-presentations
 ))
-
   (when (executable-find "sbcl")
     (add-to-list 'slime-lisp-implementations
                  '(sbcl ("sbcl") :coding-system utf-8-unix)))
@@ -54,12 +53,6 @@
 (define-key lisp-mode-map (kbd "C-c l") 'lispdoc)
 
 
-
-
-
-
-;(r 'slime-compilation-finished-hook 'slime-maybe-show-compilation-log)
-;
 
 (setq slime-compilation-finished-hook '(
 

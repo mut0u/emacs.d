@@ -1,9 +1,19 @@
+<<<<<<< HEAD
 W3M/
 /auto-save-list
 elpa/
 session.*
 .session
 .emacs.desktop
+=======
+/url/cache
+/.emacs.desktop
+/auto-save-list
+/.session
+/custom.el
+*.elc
+CVS
+>>>>>>> purcell
 .svn
 *~
 .cvsignore
@@ -17,6 +27,10 @@ cookies
 /ac-comphist.dat
 \#*
 /elpa
+<<<<<<< HEAD
+=======
+site-lisp/package/
+>>>>>>> purcell
 /swank
 /.mc-lists.el
 /var
@@ -25,6 +39,10 @@ cookies
 /.achievements
 /.bookmarks.el
 /history
+<<<<<<< HEAD
 history
 frame-restore-parameters
 ac-comphist.dat
+=======
+/helm-adaptive-history
+>>>>>>> purcell

@@ -1,8 +1,6 @@
 (require-package 'sql-indent)
 (after-load 'sql
-  (require 'sql-indent)
-  ;(require 'sql-completion)
-  )
+  (require 'sql-indent))
 
 (defun sanityinc/pop-to-sqli-buffer ()
   "Switch to the corresponding sqli buffer."
