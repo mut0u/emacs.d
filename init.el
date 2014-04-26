@@ -30,7 +30,6 @@
 (require 'lazy-set-key)
 (require 'tabbar)
 
-
 (require 'init-frame-hooks)
 (require 'init-xterm)
 (require 'init-themes)
@@ -92,7 +91,7 @@
 (require 'init-org2blog)
 
 
-
+(require 'init-ecb)
 (require 'init-doc-view)
 
 (require 'init-chm-view)
@@ -158,10 +157,18 @@
 ;;init key bounding
 ;;----------------------------------------------------------------
 (require 'init-key)
+
+
+;(require 'init-minibuffer-tray)
 ;;;(require 'init-webkit)
 (require 'init-eim)
-
+(require 'init-etags)
 (require 'init-weibo)
+;;;(require 'init-webqq)
+(require 'init-ppt)
+
+
+
 
 (provide 'init)
 

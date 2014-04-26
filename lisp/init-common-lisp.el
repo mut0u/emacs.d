@@ -55,16 +55,11 @@
 
 
 (setq slime-compilation-finished-hook '(
+                                        slime-list-compiler-notes
+                                        slime-maybe-list-compiler-notes
+                                        ;; slime-maybe-show-compilation-log
+                                        ))
 
- slime-list-compiler-notes
-             slime-maybe-list-compiler-notes
-            ;; slime-maybe-show-compilation-log
-
-            ))
-
-
-
-     ;; slime-maybe-list-compiler-notes
 
 
 (provide 'init-common-lisp)

@@ -13,6 +13,9 @@
 (global-set-key (kbd "C-<up>")  'enlarge-window)
 
 
+
+(global-unset-key "\C-h\C-n")    ;;; remove the news of Emacs
+
 (when window-system
   (global-unset-key "\C-z")
   (global-unset-key "\C-x\C-z"))

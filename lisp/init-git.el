@@ -80,7 +80,7 @@
 (require-package 'github-browse-file)
 (require-package 'bug-reference-github)
 (add-hook 'prog-mode-hook 'bug-reference-prog-mode)
-
+(remove-hook 'find-file-hooks 'vc-find-file-hook)
 
 
 (provide 'init-git)

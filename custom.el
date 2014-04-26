@@ -27,6 +27,11 @@
  '(tabbar-unselected ((t (:background "grey20" :foreground "grey60" :height 0.97))))
 
 
+;;;
+;;;  '(mode-line ((t (:background "#3E0303" :foreground "#3E0303" :height 1))))
+;;;  '(mode-line-highlight ((t (:height 1))))
+;;;  '(mode-line-inactive ((t (:background "gray10" :foreground "gray10" :height 1))))
+
 
 ;;; '(tabbar-button ((t (:inherit tabbar-default :background "black" :foreground "red" :box (:line-width 1 :color "black" :style released-button)))))
 ;;;'(tabbar-button-highlight ((t (:inherit tabbar-default :background "black" :foreground "green" :box (:color "red")))))
@@ -36,4 +41,10 @@
 ;;;'(tabbar-separator ((t (:inherit tabbar-default :background "black" :foreground "brown" :height 0.1))))
 ;;;'(tabbar-unselected ((t (:inherit tabbar-default :background "black" :foreground "#10650F" :box (:line-width 1 :color "#10650F")))))
 ;;;'(tabbar-unselected-face ((t (:inherit tabbar-default-face :background "black" :foreground "white" :box (:line-width -1 :color "black" :style pressed-button)))))
+
+
+
+
+
+
  )

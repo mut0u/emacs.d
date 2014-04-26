@@ -97,4 +97,8 @@
     (autoload 'omlg-grab-link "org-mac-link")
     (define-key org-mode-map (kbd "C-c g") 'omlg-grab-link)))
 
+
+(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
+
+
 (provide 'init-org)
