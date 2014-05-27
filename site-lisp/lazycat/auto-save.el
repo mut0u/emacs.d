@@ -88,7 +88,7 @@
   "Auto save file when emacs idle."
   :group 'auto-save)
 
-(defcustom auto-save-idle 2
+(defcustom auto-save-idle 3
   "The idle seconds to auto save file."
   :type 'integer
   :group 'auto-save)

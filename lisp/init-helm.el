@@ -1,75 +1,124 @@
-(helm-mode 1)
+;;; init-helm.el --- Init helm
 
-(setq helm-completing-read-handlers-alist
-      '((describe-function . ido)
-        (describe-variable . ido)
-        (debug-on-entry . helm-completing-read-symbols)
-        (find-function . helm-completing-read-symbols)
-        (find-tag . helm-completing-read-with-cands-in-buffer)
-        (ffap-alternate-file . nil)
-        (tmm-menubar . nil)
-        (dired-do-copy . nil)
-        (dired-do-rename . nil)
-        (dired-create-directory . nil)
-        (find-file . ido)
-        (copy-file-and-rename-buffer . nil)
-        (rename-file-and-buffer . nil)
-        (w3m-goto-url . nil)
-        (ido-find-file . nil)
-        (ido-edit-input . nil)
-        (mml-attach-file . ido)
-        (read-file-name . ni)
-        (yas/compile-directory . ido)
-        (execute-extended-command . ido)
-        (wg-load . ido)
-        (read-directory-name . ido)
-        ))
+;; Filename: init-helm.el
+;; Description: Init helm
+;; Author: Andy Stewart <andy@freedom>
+;; Maintainer: Andy Stewart <andy@freedom>
+;; Copyright (C) 2013, Andy Stewart, all rights reserved.
+;; Created: 2013-12-30 16:23:29
+;; Version: 0.1
+;; Last-Updated: 2013-12-30 16:23:29
+;;           By: Andy Stewart
+;; URL: http://www.emacswiki.org/emacs/download/init-helm.el
+;; Keywords:
+;; Compatibility: GNU Emacs 24.3.50.1
+;;
+;; Features that might be required by this library:
+;;
+;;
+;;
 
-;; {{make helm-ls-git-ls more UI friendly
-(require 'helm-ls-git)
-(helm-attrset 'header-name
-                '(lambda (name) (concat name ", `C-]' to toggle full path"))
-                helm-source-ls-git)
-(define-key helm-map (kbd ",k") 'helm-keyboard-quit)
-;; }}
+;;; This file is NOT part of GNU Emacs
 
-;; {{helm-gtags
-;; customize
-(setq helm-c-gtags-path-style 'relative)
-(setq helm-c-gtags-ignore-case t)
-(setq helm-c-gtags-read-only t)
-(add-hook 'c-mode-hook (lambda () (helm-gtags-mode)))
-(add-hook 'c++-mode-hook (lambda () (helm-gtags-mode)))
-;; }}
+;;; License
+;;
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
 
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
 
+;; You should have received a copy of the GNU General Public License
+;; along with this program; see the file COPYING.  If not, write to
+;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+;; Floor, Boston, MA 02110-1301, USA.
 
-;; key bindings
-(add-hook 'helm-gtags-mode-hook
-          '(lambda ()
-              (local-set-key (kbd "M-t") 'helm-gtags-find-tag)
-              (local-set-key (kbd "M-r") 'helm-gtags-find-rtag)
-              (local-set-key (kbd "M-s") 'helm-gtags-find-symbol)
-              (local-set-key (kbd "C-t") 'helm-gtags-pop-stack)
-              (local-set-key (kbd "C-c C-f") 'helm-gtags-pop-stack)))
-;; ==end
+;;; Commentary:
+;;
+;; Init helm
+;;
 
-(if *emacs24*
-    (progn
-      (autoload 'helm-c-yas-complete "helm-c-yasnippet" nil t)
-      (global-set-key (kbd "C-x C-o") 'helm-find-files)
-      (global-set-key (kbd "C-c f") 'helm-for-files)
-      (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
-      (global-set-key (kbd "C-c C-g") 'helm-ls-git-ls)
-      (global-set-key (kbd "C-c i") 'helm-imenu)
-      )
-  (global-set-key (kbd "C-x C-o") 'ffap)
-  )
+;;; Installation:
+;;
+;; Put init-helm.el to your load-path.
+;; The load-path is usually ~/elisp/.
+;; It's set in your ~/.emacs like this:
+;; (add-to-list 'load-path (expand-file-name "~/elisp"))
+;;
+;; And the following to your ~/.emacs startup file.
+;;
+;; (require 'init-helm)
+;;
+;; No need more.
 
-(autoload 'helm-swoop "helm-swoop" "helm-swoop" t)
-(autoload 'helm-back-to-last-point "helm-swoop" t)
+;;; Customize:
+;;
+;;
+;;
+;; All of the above can customize by:
+;;      M-x customize-group RET init-helm RET
+;;
 
-;; When doing isearch, hand the word over to helm-swoop
-(define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
+;;; Change log:
+;;
+;; 2013/12/30
+;;      * First released.
+;;
+
+;;; Acknowledgements:
+;;
+;;
+;;
+
+;;; TODO
+;;
+;;
+;;
+
+;;; Require
+
+(require-package 'helm-files)
+(require-package 'helm-config)
+(require-package 'helm-helm-commands)
+(require-package 'helm-c-yasnippet)
+(require-package 'helm-apt)
+(require-package 'helm-ls-git)
+(require-package 'helm-descbinds)
+(require-package 'apt-utils)
+
+;;; Code:
+
+(setq helm-apt-cache-show-function
+      '(lambda (package)
+         (require 'init-apt-utils)
+         (apt-utils-show-package-1 package)))
+
+(defun helm-dwim ()
+  (interactive)
+  (let ((helm-ff-transformer-show-only-basename nil))
+    (helm-other-buffer
+     '(
+       helm-source-findutils
+       helm-source-buffers-list
+       helm-source-recentf
+       helm-source-locate
+       helm-source-ls-git
+       helm-c-source-yasnippet
+       helm-source-apt
+       )
+     "*helm search*")))
+
+(lazy-set-key
+ '(
+   ("M-s-j" . helm-next-source)
+   ("M-s-k" . helm-previous-source)
+   )
+ helm-map)
 
 (provide 'init-helm)
+
+;;; init-helm.el ends here

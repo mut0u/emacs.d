@@ -63,6 +63,12 @@
 
 (require 'init-editing-utils)
 
+
+
+
+(require 'init-base)
+
+
 (require 'init-darcs)
 (require 'init-git)
 
@@ -156,8 +162,12 @@
 ;;---------------------------------------------------------------
 ;;init key bounding
 ;;----------------------------------------------------------------
-(require 'init-key)
+;;;(require 'init-company-mode)   ;;; maybe not use this configure
 
+(require 'init-key)
+(require 'init-backup)
+(require 'init-yasnippet)
+(require 'init-doxymacs)
 
 ;(require 'init-minibuffer-tray)
 ;;;(require 'init-webkit)

@@ -1,5 +1,10 @@
 (require-package 'auto-complete)
+
 (require 'auto-complete-config)
+
+(require-package 'auto-complete-clang)
+(require 'auto-complete-clang-extension)
+
 (global-auto-complete-mode t)
 (setq-default ac-expand-on-auto-complete nil)
 (setq-default ac-auto-start nil)
@@ -36,8 +41,19 @@
 (add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
 
 
+
+
+
+
+
+
+
 (set-default 'ac-sources
-             '(ac-source-imenu
+             '(
+               ac-source-yasnippet
+               ac-source-imenu
+               ac-source-abbrev
+
                ac-source-dictionary
                ac-source-words-in-buffer
                ac-source-words-in-same-mode-buffers

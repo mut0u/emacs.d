@@ -143,4 +143,67 @@
 ;;(lazy-set-key sdcv-key-alist doc-view-mode-map) ;sdcv的局部按键绑定
 
 
+
+;;; ### Paredit ###
+;;; --- 结构化编程
+;;;;;;;;;;;;;;;(lazy-unset-key
+;;;;;;;;;;;;;;; '("M-J" "M-r" "M-s" "M-;" "C-M-f" "C-M-b" "M-)")
+;;;;;;;;;;;;;;; paredit-mode-map)                      ;卸载按键
+;;;;;;;;;;;;;;;(defvar paredit-key-alist nil)
+;;;;;;;;;;;;;;;(setq paredit-key-alist
+;;;;;;;;;;;;;;;      '(
+;;;;;;;;;;;;;;;        ;; 符号插入
+;;;;;;;;;;;;;;;        ("(" . paredit-open-parenthesis)           ;智能 (
+;;;;;;;;;;;;;;;        (")" . paredit-close-parenthesis)          ;智能 )
+;;;;;;;;;;;;;;;        ("[" . paredit-open-bracket)               ;智能 [
+;;;;;;;;;;;;;;;        ("]" . paredit-close-bracket)              ;智能 ]
+;;;;;;;;;;;;;;;        ("{" . paredit-open-curly)                 ;智能 {
+;;;;;;;;;;;;;;;        ("}" . paredit-close-curly)                ;智能 }
+;;;;;;;;;;;;;;;        ("C-s-," . paredit-open-angled)            ;智能 <
+;;;;;;;;;;;;;;;        ("C-s-." . paredit-close-angled)           ;智能 >
+;;;;;;;;;;;;;;;        ("\"" . paredit-doublequote)               ;智能 "
+;;;;;;;;;;;;;;;        ("\\" . paredit-backslash)                 ;智能 \
+;;;;;;;;;;;;;;;        ;; 删除
+;;;;;;;;;;;;;;;        ("M-o" . paredit-backward-delete)          ;向后删除
+;;;;;;;;;;;;;;;        ("C-d" . paredit-forward-delete)           ;向前删除
+;;;;;;;;;;;;;;;        ("C-M-m" . paredit-forward-kill-word)      ;向前按词删除
+;;;;;;;;;;;;;;;        ("C-M-n" . paredit-backward-kill-word)     ;向后按词删除
+;;;;;;;;;;;;;;;        ;; 移动
+;;;;;;;;;;;;;;;        ("C-M-S-m" . paredit-forward)              ;向前移动
+;;;;;;;;;;;;;;;        ("C-M-S-n" . paredit-backward)             ;向后移动
+;;;;;;;;;;;;;;;        ;; 包围
+;;;;;;;;;;;;;;;        ("M-\"" . paredit-meta-doublequote)        ;用 " " 包围对象, 或跳出字符串
+;;;;;;;;;;;;;;;        ("M-[" . paredit-wrap-square)              ;用 [ ] 包围对象
+;;;;;;;;;;;;;;;        ("M-{" . paredit-wrap-curly)               ;用 { } 包围对象
+;;;;;;;;;;;;;;;        ("C-(" . paredit-wrap-angled)              ;用 < > 包围对象
+;;;;;;;;;;;;;;;        ;; 跳出并换行缩进
+;;;;;;;;;;;;;;;        ("M-}" . paredit-close-curly-and-newline)  ;跳出 { } 并换行
+;;;;;;;;;;;;;;;        ("M-]" . paredit-close-square-and-newline) ;跳出 [ ] 并换行
+;;;;;;;;;;;;;;;        ("C-)" . paredit-close-angled-and-newline) ;跳出 < > 并换行
+;;;;;;;;;;;;;;;        ;; 其他
+;;;;;;;;;;;;;;;        ("C-j" . paredit-newline)          ;智能换行并缩进
+;;;;;;;;;;;;;;;        ("M-q" . paredit-reindent-defun)   ;重新格式化函数
+;;;;;;;;;;;;;;;        ("M-s-r" . paredit-raise-sexp)     ;提取表达式, 并删除同一等级的其他表达式
+;;;;;;;;;;;;;;;        ("M-s-b" . paredit-convolute-sexp) ;嵌套表达式
+;;;;;;;;;;;;;;;        ("M-s-'" . one-key-menu-paredit)   ;Paredit 菜单
+;;;;;;;;;;;;;;;        ))
+;;;;;;;;;;;;;;;(lazy-set-key paredit-key-alist paredit-mode-map)
+;;;;;;;;;;;;;;;(lazy-set-mode-autoload-key
+;;;;;;;;;;;;;;; '(
+;;;;;;;;;;;;;;;   ("C-k" . paredit-kill+))             ;增强的 paredit-kill
+;;;;;;;;;;;;;;; paredit-mode-map nil "paredit-extension")
+;;;;;;;;;;;;;;;(lazy-set-autoload-key
+;;;;;;;;;;;;;;; '(
+;;;;;;;;;;;;;;;   ("C-M-:" . paredit-comment-list-and-newline) ;注释当前LIST并换行
+;;;;;;;;;;;;;;;   ("M-:" . paredit-close-round-and-newline+)   ;跳出 ( ) 或 " " 并换行
+;;;;;;;;;;;;;;;   ("M-?" . paredit-forward-sexp-and-newline)   ;移动到下一个表达式, 并换行
+;;;;;;;;;;;;;;;   ("M-(" . paredit-wrap-sexp)                  ;用 ( ) 包围当前对象
+;;;;;;;;;;;;;;;   ("M-)" . paredit-splice-sexp+)               ;去除包围对象的括号, 并删除空行
+;;;;;;;;;;;;;;;   ("C-S-k" . paredit-duplicate-closest-sexp)   ;复制光标处的语法块
+;;;;;;;;;;;;;;;   )
+;;;;;;;;;;;;;;; "paredit-extension")
+
+
+
+
 (provide 'init-key)
