@@ -20,6 +20,21 @@
   (global-unset-key "\C-z")
   (global-unset-key "\C-x\C-z"))
 
+
+
+;;;--------------------------------------------------
+;;; Python key binds  it not work and i do not konw why
+;;;-------------------------------------------------
+(after-load 'python
+
+     (define-key python-mode-map (kbd "C-c C-b") 'python-add-breakpoint)
+     (define-key python-mode-map (kbd "<backspace>")  'paredit-backward-delete))
+
+
+
+
+
+
 ;;;----------------------------------------
 ;;; w3m key binds
 ;;; I do not know why i change the binds to lazy-set will get error.
@@ -81,13 +96,6 @@
       ;;(setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
      (define-key lisp-mode-map (kbd "C-c M-l") 'slime-list-compiler-notes)))
 
-
-;;;--------------------------------------------------
-;;; Python key binds
-;;;-------------------------------------------------
-(after-load 'python-mode
-   (define-key python-mode-map (kbd "C-c C-b")  'python-add-breakpoint)
-   (define-key python-mode-map (kbd "<f8>" )  'w3m-search-google-web-en))
 
 
 
@@ -151,6 +159,9 @@
  "tabbar-extension")
 
 ;;(lazy-set-key sdcv-key-alist doc-view-mode-map) ;sdcv的局部按键绑定
+
+
+
 
 
 

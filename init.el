@@ -84,7 +84,7 @@
 (require 'init-html)
 (require 'init-css)
 (require 'init-haml)
-(require 'init-python-mode)
+(require 'init-python)
 (require 'init-haskell)
 (require 'init-ruby-mode)
 (require 'init-rails)

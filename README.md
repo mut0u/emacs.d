@@ -23,6 +23,9 @@ git clone --recursive https://github.com/mut0u/emacs.d.git
 5. 加入autosave.el, 所有的文件修改都会自动保存.
 6. 加入doc-view.el, 可以使用Emacs察看PDF文档.(因为这个功能是将PDF文件生成图片然后在显示出来,使用起来不是很顺手,只作为latex的一个察看方式)
 7. 加入ecb, 支持工程视图
+8. 加入了Python的相应基本配置，还没有配置的很好，但是基本可以使用
 
 ##说明
-我目前主要使用的是 common lisp, 因此别的东西并没有特别的配置,默认的配置已经相当好了.
+我目前主要使用的是 common lisp,
+同时Python刚开始使用，做了基本配置
+因此别的东西并没有特别的配置, 默认的配置已经相当好了.
