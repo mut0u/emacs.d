@@ -82,6 +82,16 @@
      (define-key lisp-mode-map (kbd "C-c M-l") 'slime-list-compiler-notes)))
 
 
+;;;--------------------------------------------------
+;;; Python key binds
+;;;-------------------------------------------------
+(after-load 'python-mode
+   (define-key python-mode-map (kbd "C-c C-b")  'python-add-breakpoint)
+   (define-key python-mode-map (kbd "<f8>" )  'w3m-search-google-web-en))
+
+
+
+
 ;;;------------------------------------------------------
 ;;; doc-view key binds
 ;;;------------------------------------------------------

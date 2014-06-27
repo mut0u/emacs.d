@@ -2,7 +2,7 @@
 (require-package 'whole-line-or-region)
 
 (when (fboundp 'electric-pair-mode)
-  (setq-default electric-pair-mode 1))
+  (electric-pair-mode))
 
 ;;----------------------------------------------------------------------------
 ;; Some basic preferences
@@ -40,6 +40,15 @@
 (setq global-auto-revert-non-file-buffers t
       auto-revert-verbose nil)
 
+(transient-mark-mode t)
+
+
+;;; Whitespace
+
+(defun sanityinc/no-trailing-whitespace ()
+  "Turn off display of trailing whitespace in this buffer."
+  (setq show-trailing-whitespace nil))
+
 ;; But don't show trailing whitespace in SQLi, inf-ruby etc.
 (dolist (hook '(special-mode-hook
                 eww-mode
@@ -48,21 +57,35 @@
                 compilation-mode-hook
                 twittering-mode-hook
                 minibuffer-setup-hook))
-  (add-hook hook
-            (lambda () (setq show-trailing-whitespace nil))))
+  (add-hook hook #'sanityinc/no-trailing-whitespace))
 
 
 (require-package 'whitespace-cleanup-mode)
 (global-whitespace-cleanup-mode t)
 
-(transient-mark-mode t)
+
+;;; Newline behaviour
 
 (global-set-key (kbd "RET") 'newline-and-indent)
+(defun sanityinc/newline-at-end-of-line ()
+  "Move to end of line, enter a newline, and reindent."
+  (interactive)
+  (move-end-of-line 1)
+  (newline-and-indent))
+
+(global-set-key (kbd "S-<return>") 'sanityinc/newline-at-end-of-line)
+
+
 
 (when (eval-when-compile (string< "24.3.1" emacs-version))
   ;; https://github.com/purcell/emacs.d/issues/138
   (after-load 'subword
     (diminish 'subword-mode)))
+
+
+
+(when (fboundp 'global-prettify-symbols-mode)
+  (global-prettify-symbols-mode))
 
 
 (require-package 'undo-tree)
@@ -146,20 +169,6 @@
 (global-set-key (kbd "C-c c a") 'mc/edit-beginnings-of-lines)
 
 
-(defun duplicate-region (beg end)
-  "Insert a copy of the current region after the region."
-  (interactive "r")
-  (save-excursion
-    (goto-char end)
-    (insert (buffer-substring beg end))))
-
-(defun duplicate-line-or-region (prefix)
-  "Duplicate either the current line or any current region."
-  (interactive "*p")
-  (whole-line-or-region-call-with-region 'duplicate-region prefix t))
-
-(global-set-key (kbd "C-c p") 'duplicate-line-or-region)
-
 ;; Train myself to use M-f and M-b instead
 (global-unset-key [M-left])
 (global-unset-key [M-right])
@@ -226,11 +235,13 @@
 ;; it will use those keybindings. For this reason, you might prefer to
 ;; use M-S-up and M-S-down, which will work even in lisp modes.
 ;;----------------------------------------------------------------------------
-(require-package 'move-text)
-(global-set-key [M-up] 'move-text-up)
-(global-set-key [M-down] 'move-text-down)
-(global-set-key [M-S-up] 'move-text-up)
-(global-set-key [M-S-down] 'move-text-down)
+(require-package 'move-dup)
+(global-set-key [M-up] 'md/move-lines-up)
+(global-set-key [M-down] 'md/move-lines-down)
+(global-set-key [M-S-up] 'md/move-lines-up)
+(global-set-key [M-S-down] 'md/move-lines-down)
+
+(global-set-key (kbd "C-c p") 'md/duplicate-down)
 
 ;;----------------------------------------------------------------------------
 ;; Fix backward-up-list to understand quotes, see http://bit.ly/h7mdIL

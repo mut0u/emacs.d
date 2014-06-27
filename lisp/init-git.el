@@ -30,6 +30,9 @@
   (global-magit-wip-save-mode)
   (diminish 'magit-wip-save-mode))
 
+(after-load 'magit
+  (diminish 'magit-auto-revert-mode))
+
 
 (when *is-a-mac*
   (after-load 'magit
@@ -45,8 +48,11 @@
 ;;; git-svn support
 
 (require-package 'magit-svn)
-(after-load 'magit-key-mode
-  (require 'magit-svn))
+(autoload 'magit-svn-enabled "magit-svn")
+(defun sanityinc/maybe-enable-magit-svn-mode ()
+  (when (magit-svn-enabled)
+    (magit-svn-mode)))
+(add-hook 'magit-status-mode-hook #'sanityinc/maybe-enable-magit-svn-mode)
 
 (after-load 'compile
   (dolist (defn (list '(git-svn-updated "^\t[A-Z]\t\\(.*\\)$" 1 nil nil 0 1)
@@ -80,7 +86,7 @@
 (require-package 'github-browse-file)
 (require-package 'bug-reference-github)
 (add-hook 'prog-mode-hook 'bug-reference-prog-mode)
-(remove-hook 'find-file-hooks 'vc-find-file-hook)
+
 
 
 (provide 'init-git)

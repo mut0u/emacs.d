@@ -1,4 +1,7 @@
 
+;;; This file bootstraps the configuration, which is divided into
+;;; a number of other files.
+
 (let ((minver 23))
   (unless (>= emacs-major-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
@@ -49,9 +52,6 @@
 (require 'init-hippie-expand)
 (require 'init-auto-complete)
 (require 'init-windows)
-
-
-(require 'init-tabbar)
 (require 'init-sessions)
 (require 'init-w3m)
 
@@ -66,7 +66,7 @@
 
 
 
-(require 'init-base)
+(require 'init-vc)
 
 
 (require 'init-darcs)
@@ -81,6 +81,7 @@
 (require 'init-php)
 (require 'init-org)
 (require 'init-nxml)
+(require 'init-html)
 (require 'init-css)
 (require 'init-haml)
 (require 'init-python-mode)
@@ -93,6 +94,8 @@
 (require 'init-lisp)
 (require 'init-slime)
 (require 'init-clojure)
+(when (>= emacs-major-version 24)
+  (require 'init-clojure-cider))
 (require 'init-common-lisp)
 (require 'init-org2blog)
 
