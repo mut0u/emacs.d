@@ -1,6 +1,22 @@
 (require-package 'jedi)
 ;(require-package 'pretty-lambdada)
 
+
+(require 'pymacs)
+(pymacs-load "ropemacs" "rope-")
+
+
+
+(defun load-ropemacs ()
+  "Load pymacs and ropemacs"
+  (interactive)
+  (require 'pymacs)
+  (pymacs-load "ropemacs" "rope-")
+  ;; Automatically save project python buffers before refactorings
+  (setq ropemacs-confirm-saving 'nil)
+)
+(global-set-key "\C-xpl" 'load-ropemacs)
+
 (define-coding-system-alias 'utf8 'utf-8)
 (setq auto-mode-alist
       (append '(("SConstruct\\'" . python-mode)
