@@ -29,3 +29,6 @@ git clone --recursive https://github.com/mut0u/emacs.d.git
 我目前主要使用的是 common lisp,
 同时Python刚开始使用，做了基本配置
 因此别的东西并没有特别的配置, 默认的配置已经相当好了.
+
+##系统依赖
+- pylint: 可以使用pip install pylint来安装
