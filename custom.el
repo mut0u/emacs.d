@@ -24,7 +24,6 @@
  '(ecb-split-edit-window-after-start nil)
  '(ecb-tip-of-the-day nil)
  '(ecb-windows-width 0.2)
- '(ede-project-directories (quote ("/Users/savior/workspace/python/ershouche" "/Users/savior/workspace/python/ershouche/account" "/Users/savior/workspace/python/bihang/account")))
  '(fci-rule-color "#eee8d5")
  '(session-use-package t nil (session))
  '(vc-annotate-background nil)

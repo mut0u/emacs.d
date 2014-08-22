@@ -38,8 +38,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
                         (font-spec :family zh-font-name)))))
 
 
-(defvar my/en-font-list '("Bitstream Vera Sans Mono"))
-(defvar my/font-size "13")
+(defvar my/en-font-list '("Source Code Pro Light" "Bitstream Vera Sans Mono"))
+(defvar my/font-size "12")
 (defvar my/zh-font-list '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "宋体"))
 
 (qiang-set-font  my/en-font-list 13  my/zh-font-list)

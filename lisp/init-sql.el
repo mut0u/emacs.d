@@ -2,6 +2,8 @@
 (after-load 'sql
   (require 'sql-indent))
 
+(setf sql-output-newline-count 1)
+
 (defun sanityinc/pop-to-sqli-buffer ()
   "Switch to the corresponding sqli buffer."
   (interactive)
@@ -14,6 +16,7 @@
       (sanityinc/pop-to-sqli-buffer))))
 
 (after-load 'sql
+  (toggle-truncate-lines)
   (define-key sql-mode-map (kbd "C-c C-z") 'sanityinc/pop-to-sqli-buffer)
   (add-hook 'sql-interactive-mode-hook 'sanityinc/never-indent)
   (when (package-installed-p 'dash-at-point)

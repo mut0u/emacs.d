@@ -108,10 +108,10 @@
                                         ;(require-package 'flycheck-pyflakes)
 ;(add-hook 'python-mode-hook 'flycheck-mode)
 
-
 ;(eval-after-load 'flycheck
 ;  (add-to-list 'flycheck-disabled-checkers 'python-pylint))
 
-
+(after-load 'python-mode
+  (setf  python-check-command "epylint"))
 
 (provide 'init-python)

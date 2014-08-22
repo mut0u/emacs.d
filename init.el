@@ -171,7 +171,7 @@
 (require 'init-backup)
 (require 'init-yasnippet)
 (require 'init-doxymacs)
-
+(require 'init-tabbar)
 ;(require 'init-minibuffer-tray)
 ;;;(require 'init-webkit)
 (require 'init-eim)
