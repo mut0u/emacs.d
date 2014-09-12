@@ -39,10 +39,10 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 
 (defvar my/en-font-list '("Source Code Pro Light" "Bitstream Vera Sans Mono"))
-(defvar my/font-size "12")
+(defvar my/font-size "16")
 (defvar my/zh-font-list '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "宋体"))
 
-(qiang-set-font  my/en-font-list 13  my/zh-font-list)
+(qiang-set-font  my/en-font-list 16  my/zh-font-list)
 
 
 (defun sanityinc/increment-default-font-height (delta)
