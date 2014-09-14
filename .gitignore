@@ -34,10 +34,16 @@ site-lisp/package/
 /.bookmarks.el
 /history
 history
+/places
 /site-lisp/eim/py.txt
 frame-restore-parameters
 ac-comphist.dat
 .smex-items
 /helm-adaptive-history
+/thumbs/
+/emms/
+/.smex-items
+/image-dired/
+/eshell
 ede-projects.el
 frame-restore-parameters

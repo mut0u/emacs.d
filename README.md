@@ -32,3 +32,5 @@ git clone --recursive https://github.com/mut0u/emacs.d.git
 
 ##系统依赖
 - pylint: 可以使用pip install pylint来安装
+- rope  `sudo pip install rope`
+- ropemacs  `sudo pip install ropemacs` 

@@ -1,6 +1,6 @@
-(require-package 'wget)
+;(require-package 'wget)
 (require-package 'w3m)
-
+(require 'wget)
 
 
 (defun w3m-setting ()
