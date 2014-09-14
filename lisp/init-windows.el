@@ -63,5 +63,12 @@ Call a second time to restore the original window configuration."
                   (interactive)
                   (switch-to-buffer nil)))
 
+;;this is useful for me
+(defun my-fullscreen ()
+  (interactive)
+  (x-send-client-message
+   nil 0 nil "_NET_WM_STATE" 32
+   '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+
 
 (provide 'init-windows)

@@ -86,7 +86,7 @@
 
 
 
-;(tabbar-mode 1)
+;;(tabbar-mode 1)
 
 
 (defcustom tabbar-hide-header-button t

@@ -32,6 +32,7 @@ site-lisp/package/
 /frame-restore-parameters
 /.achievements
 /.bookmarks.el
+/history
 history
 /site-lisp/eim/py.txt
 frame-restore-parameters
