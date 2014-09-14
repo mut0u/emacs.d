@@ -39,3 +39,5 @@ frame-restore-parameters
 ac-comphist.dat
 .smex-items
 /helm-adaptive-history
+ede-projects.el
+frame-restore-parameters
