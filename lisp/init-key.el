@@ -22,11 +22,10 @@
 ;;;--------------------------------------------------
 ;;; Python key binds  it not work and i do not konw why
 ;;;-------------------------------------------------
-(after-load 'python
-
-     (define-key python-mode-map (kbd "C-c C-b") 'python-add-breakpoint)
-     (define-key python-mode-map (kbd "<backspace>")  'paredit-backward-delete))
-
+;;;(after-load 'python
+;;;
+;;;     (define-key python-mode-map (kbd "C-c C-b") 'python-add-breakpoint)
+;;;     (define-key python-mode-map (kbd "<backspace>")  'paredit-backward-delete))
 
 
 

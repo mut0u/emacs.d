@@ -1,4 +1,3 @@
-(setq save-interprogram-paste-before-kill nil)
 ;;; This file bootstraps the configuration, which is divided into
 ;;; a number of other files.
 
@@ -181,7 +180,8 @@
 (require 'init-ppt)
 
 
-
+(when *is-a-mac*
+  (setq save-interprogram-paste-before-kill nil))
 
 (provide 'init)
 

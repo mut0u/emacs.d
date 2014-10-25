@@ -22,10 +22,14 @@
   (add-hook 'cider-repl-mode-hook 'subword-mode)
   (add-hook 'cider-repl-mode-hook 'paredit-mode)
   (define-key cider-mode-map (kbd "C-c C-d") 'ac-cider-popup-doc)
-
+  (define-key cider-mode-map (kbd "C-c C-x") nil)
   ;; nrepl isn't based on comint
   (add-hook 'cider-repl-mode-hook
             (lambda () (setq show-trailing-whitespace nil))))
 
+(after-load 'cider-repl
+  (define-key cider-repl-mode-map (kbd "C-c C-x") nil)
+
+  )
 
 (provide 'init-clojure-cider)
