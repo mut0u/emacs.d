@@ -1,5 +1,4 @@
 (require-package 'auto-complete)
-
 (require 'auto-complete-config)
 
 (require-package 'auto-complete-clang)
