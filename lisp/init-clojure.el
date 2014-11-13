@@ -34,11 +34,10 @@
   (add-hook 'clojure-mode-hook 'sanityinc/lisp-setup)
   (add-hook 'clojure-mode-hook 'subword-mode))
 
-
 
 ;; Use clojure-mode for clojurescript, since clojurescript-mode
 ;; pulls in Slime
 (add-auto-mode 'clojure-mode "\\.cljs\\'")
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
+(turn-on-page-break-lines-mode)
 (provide 'init-clojure)

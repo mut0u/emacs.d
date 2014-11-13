@@ -66,19 +66,11 @@
   (require 'init-fonts))
 
 (require 'init-mmm)
-
 (require 'init-editing-utils)
-
-
-
-
 (require 'init-vc)
-
-
 (require 'init-darcs)
 (require 'init-git)
 (require 'init-github)
-
 (require 'init-compile)
 (require 'init-crontab)
 (require 'init-textile)
@@ -97,7 +89,6 @@
 (require 'init-ruby-mode)
 (require 'init-rails)
 (require 'init-sql)
-
 (require 'init-paredit)
 (require 'init-lisp)
 (require 'init-slime)
@@ -106,11 +97,8 @@
   (require 'init-clojure-cider))
 (require 'init-common-lisp)
 (require 'init-org2blog)
-
-
 (require 'init-ecb)
 (require 'init-doc-view)
-
 (require 'init-chm-view)
 
 ;; (when *spell-check-support-enabled*
@@ -174,7 +162,7 @@
 ;;init key bounding
 ;;----------------------------------------------------------------
 ;;;(require 'init-company-mode)   ;;; maybe not use this configure
-
+(require 'init-mew)
 (require 'init-key)
 (require 'init-backup)
 (require 'init-yasnippet)
