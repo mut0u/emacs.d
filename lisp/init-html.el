@@ -3,6 +3,7 @@
 
 (require-package 'tagedit)
 (after-load 'sgml-mode
+  (define-key html-mode-map (kbd "C-M-\\") 'web-beautify-html)
   (tagedit-add-paredit-like-keybindings)
   (add-hook 'sgml-mode-hook (lambda () (tagedit-mode 1))))
 

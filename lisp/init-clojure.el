@@ -4,6 +4,7 @@
 (require-package 'clojure-mode)
 (require-package 'cljsbuild-mode)
 (require-package 'elein)
+(require-package 'page-break-lines)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Slime with Clojure
@@ -39,5 +40,9 @@
 ;; pulls in Slime
 (add-auto-mode 'clojure-mode "\\.cljs\\'")
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(turn-on-page-break-lines-mode)
+
+
+(eval-after-load 'page-break-lines
+  '(push 'clojure-mode page-break-lines-modes))
+
 (provide 'init-clojure)

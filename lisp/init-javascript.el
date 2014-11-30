@@ -41,7 +41,9 @@
    js2-bounce-indent-p nil)
 
   (after-load 'js2-mode
-    (js2-imenu-extras-setup)))
+    (js2-imenu-extras-setup)
+    (define-key js2-mode-map (kbd "C-M-\\") 'web-beautify-js)
+    ))
 
 ;; js-mode
 (setq-default js-indent-level preferred-javascript-indent-level)
