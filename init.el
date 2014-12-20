@@ -176,8 +176,8 @@
 ;;;(require 'init-webqq)
 (require 'init-ppt)
 ;;(require 'init-ediff)
-(require 'remote-emacsclient)
-(update-tramp-emacs-server-port-forward tramp-default-method)
+;;(require 'remote-emacsclient)
+;;(update-tramp-emacs-server-port-forward tramp-default-method)
 
 (when *is-a-mac*
   (setq save-interprogram-paste-before-kill nil))
