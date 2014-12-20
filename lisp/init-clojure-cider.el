@@ -10,6 +10,44 @@
 
 (setq nrepl-popup-stacktraces nil)
 
+
+(require 'cider-interaction)
+
+(defun michael/eval-form (form)
+  (let* (
+         (ns-form (if (cider-ns-form-p form) "" (format "(ns %s)" (cider-current-ns)))))
+    (with-current-buffer (get-buffer-create cider-read-eval-buffer)
+      (erase-buffer)
+      (clojure-mode)
+      (unless (string= "" ns-form)
+        (insert ns-form "\n\n"))
+      (let ((start-pos (point)))
+        (insert form)
+        (cider-interactive-eval form start-pos)))))
+
+
+(defun michael/def ()
+  (interactive)
+  (let* ((begin  (region-beginning) )
+         (end (region-end))
+         (index1 begin)
+         (index2 (save-excursion (goto-char begin) (forward-sexp) (forward-sexp) (point))))
+    (while (<= index2 end)
+      (michael/eval-form (concat "(def "
+                                 (buffer-substring-no-properties
+                                  index1
+                                  index2
+                                  )  ")" ))
+      (setf index1 index2)
+      (setf index2 (progn
+                     (goto-char index2)
+                     (forward-sexp)
+                     (forward-sexp)
+                     (point))))))
+
+
+
+
 (after-load 'cider
   (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
   (add-hook 'cider-mode-hook 'ac-cider-setup)
