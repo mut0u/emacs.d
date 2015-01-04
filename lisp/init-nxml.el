@@ -33,7 +33,9 @@ indentation rules."
 (add-hook 'nxml-mode-hook (lambda () (tidy-build-menu nxml-mode-map)))
 
 
-
+(after-load 'nxml-mode
+  (define-key nxml-mode-map (kbd "C-M-\\") 'sanityinc/pp-xml-region)
+  )
 
 (defun nxml-pretty-format ()
   (interactive)

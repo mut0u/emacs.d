@@ -81,11 +81,12 @@
 
 ;;; Require
 
-(require-package 'helm-files)
-(require-package 'helm-config)
+(require-package 'helm)
+(require 'helm-files)
+(require 'helm-config)
 (require-package 'helm-helm-commands)
 (require-package 'helm-c-yasnippet)
-(require-package 'helm-apt)
+(require 'helm-apt)
 (require-package 'helm-ls-git)
 (require-package 'helm-descbinds)
 (require-package 'apt-utils)
