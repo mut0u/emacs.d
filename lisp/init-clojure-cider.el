@@ -43,7 +43,8 @@
                      (goto-char index2)
                      (forward-sexp)
                      (forward-sexp)
-                     (point))))))
+                     (point)))))
+  (pop-to-mark-command))
 
 
 

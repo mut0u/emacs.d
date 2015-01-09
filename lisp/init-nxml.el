@@ -34,8 +34,7 @@ indentation rules."
 
 
 (after-load 'nxml-mode
-  (define-key nxml-mode-map (kbd "C-M-\\") 'sanityinc/pp-xml-region)
-  )
+  (define-key nxml-mode-map (kbd "C-M-\\") 'sanityinc/pp-xml-region))
 
 (defun nxml-pretty-format ()
   (interactive)
