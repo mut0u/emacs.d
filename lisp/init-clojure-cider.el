@@ -47,7 +47,29 @@
   (pop-to-mark-command))
 
 
-
+(defun michael/create-test-file ()
+  (interactive)
+  (let* ((file-path (buffer-file-name))
+         (project-path-index (string-match-p "src" file-path)))
+    (if (not project-path-index)
+        (message "This is not a project file.")
+      (let* ((project-path (substring file-path 0 project-path-index))
+             (src-file-path (substring file-path (+ project-path-index 3)))
+             (test-file-path (concat project-path
+                                     "test"
+                                     (substring src-file-path
+                                                0
+                                                (string-match-p ".clj$" src-file-path))
+                                     "_test.clj")))
+        (when (not (file-exists-p test-file-path))
+          (let ((namespace (replace-regexp-in-string
+                            "/" "."
+                            (replace-regexp-in-string "_" "-"
+                                                      (concat (first (split-string
+                                                                      (substring src-file-path 1) "\\.")) "_test")))))
+            ;; need to change create new file with shell command . TODO
+            (shell-command (concat "echo '"  (format "(ns %s\n)" namespace)  "' > "  test-file-path))))
+        (switch-to-buffer (find-file-noselect test-file-path))))))
 
 (after-load 'cider
   (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
