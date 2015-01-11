@@ -61,14 +61,15 @@
                                                 0
                                                 (string-match-p ".clj$" src-file-path))
                                      "_test.clj")))
-        (when (not (file-exists-p test-file-path))
-          (let ((namespace (replace-regexp-in-string
-                            "/" "."
-                            (replace-regexp-in-string "_" "-"
-                                                      (concat (first (split-string
-                                                                      (substring src-file-path 1) "\\.")) "_test")))))
-            ;; need to change create new file with shell command . TODO
-            (shell-command (concat "echo '"  (format "(ns %s\n)" namespace)  "' > "  test-file-path))))
+        (if (not (file-exists-p test-file-path))
+            (let ((namespace (replace-regexp-in-string
+                              "/" "."
+                              (replace-regexp-in-string "_" "-"
+                                                        (concat (first (split-string
+                                                                        (substring src-file-path 1) "\\.")) "_test")))))
+              (with-current-buffer
+                  (switch-to-buffer (find-file-noselect test-file-path nil nil t))
+                (insert (format "(ns %s\n)" namespace) ))))
         (switch-to-buffer (find-file-noselect test-file-path))))))
 
 (after-load 'cider
