@@ -45,5 +45,7 @@ ac-comphist.dat
 /.smex-items
 /image-dired/
 /eshell
+/.cask/
+/.sx/
 ede-projects.el
 frame-restore-parameters

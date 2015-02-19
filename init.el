@@ -47,6 +47,7 @@
 (require 'init-proxies)
 (require 'init-dired)
 (require 'init-isearch)
+(require 'init-grep)
 (require 'init-uniquify)
 (require 'init-ibuffer)
 ;;(require 'init-flycheck)
@@ -97,7 +98,7 @@
   (require 'init-clojure-cider))
 (require 'init-common-lisp)
 (require 'init-org2blog)
-(require 'init-ecb)
+;;(require 'init-ecb)
 (require 'init-doc-view)
 (require 'init-chm-view)
 
@@ -168,7 +169,7 @@
 (require 'init-yasnippet)
 (require 'init-doxymacs)
 (require 'init-tabbar)
-(require 'init-helm)
+;;(require 'init-helm)
 
 ;;(require 'init-minibuffer-tray)
 ;;;(require 'init-webkit)

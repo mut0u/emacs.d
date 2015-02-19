@@ -89,6 +89,11 @@
   (add-hook 'cider-repl-mode-hook
             (lambda () (setq show-trailing-whitespace nil))))
 
+(require-package 'flycheck-clojure)
+(after-load 'flycheck
+  (flycheck-clojure-setup))
+  
+
 (after-load 'cider-repl
   (define-key cider-repl-mode-map (kbd "C-c C-x") nil)
 
