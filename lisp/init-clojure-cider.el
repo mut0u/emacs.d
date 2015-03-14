@@ -13,19 +13,6 @@
 
 (require 'cider-interaction)
 
-(defun michael/eval-form (form)
-  (let* (
-         (ns-form (if (cider-ns-form-p form) "" (format "(ns %s)" (cider-current-ns)))))
-    (with-current-buffer (get-buffer-create cider-read-eval-buffer)
-      (erase-buffer)
-      (clojure-mode)
-      (unless (string= "" ns-form)
-        (insert ns-form "\n\n"))
-      (let ((start-pos (point)))
-        (insert form)
-        (cider-interactive-eval form)))))
-
-
 (defun michael/def ()
   (interactive)
   (let* ((begin  (region-beginning) )
@@ -33,11 +20,10 @@
          (index1 begin)
          (index2 (save-excursion (goto-char begin) (forward-sexp) (forward-sexp) (point))))
     (while (<= index2 end)
-      (michael/eval-form (concat "(def "
-                                 (buffer-substring-no-properties
-                                  index1
-                                  index2
-                                  )  ")" ))
+      (cider-interactive-eval (concat "(def "
+                                      (buffer-substring-no-properties
+                                       index1
+                                       index2)  ")" ))
       (setf index1 index2)
       (setf index2 (progn
                      (goto-char index2)
@@ -95,8 +81,6 @@
 
 
 (after-load 'cider-repl
-  (define-key cider-repl-mode-map (kbd "C-c C-x") nil)
-
-  )
+  (define-key cider-repl-mode-map (kbd "C-c C-x") nil))
 
 (provide 'init-clojure-cider)
