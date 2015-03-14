@@ -1,4 +1,5 @@
 (require-package 'tidy)
+(require-package 'web-beautify)
 (add-hook 'html-mode-hook (lambda () (tidy-build-menu html-mode-map)))
 
 (require-package 'tagedit)

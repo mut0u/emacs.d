@@ -23,7 +23,7 @@
         (insert ns-form "\n\n"))
       (let ((start-pos (point)))
         (insert form)
-        (cider-interactive-eval form start-pos)))))
+        (cider-interactive-eval form)))))
 
 
 (defun michael/def ()
@@ -92,7 +92,7 @@
 (require-package 'flycheck-clojure)
 (after-load 'flycheck
   (flycheck-clojure-setup))
-  
+
 
 (after-load 'cider-repl
   (define-key cider-repl-mode-map (kbd "C-c C-x") nil)
