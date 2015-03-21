@@ -27,7 +27,7 @@
   (when (and (not (minibufferp))
 	     (fboundp 'auto-complete-mode)
 	     auto-complete-mode)
-    (auto-complete)))
+    #'auto-complete))
 
 (defun sanityinc/never-indent ()
   (set (make-local-variable 'indent-line-function) (lambda () 'noindent)))
@@ -48,11 +48,9 @@
 
 
 (set-default 'ac-sources
-             '(
+             '(ac-source-imenu
                ac-source-yasnippet
-               ac-source-imenu
                ac-source-abbrev
-
                ac-source-dictionary
                ac-source-words-in-buffer
                ac-source-words-in-same-mode-buffers

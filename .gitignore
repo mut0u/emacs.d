@@ -47,5 +47,6 @@ ac-comphist.dat
 /eshell
 /.cask/
 /.sx/
+/org-clock-save.el
 ede-projects.el
 frame-restore-parameters

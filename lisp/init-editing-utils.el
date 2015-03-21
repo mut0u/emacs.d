@@ -44,6 +44,7 @@
 
 ;; But don't show trailing whitespace in SQLi, inf-ruby etc.
 (dolist (hook '(special-mode-hook
+                Info-mode-hook
                 eww-mode-hook
                 term-mode-hook
                 comint-mode-hook
@@ -92,6 +93,7 @@
 (dolist (hook '(prog-mode-hook html-mode-hook css-mode-hook))
   (add-hook hook 'highlight-symbol-mode)
   (add-hook hook 'highlight-symbol-nav-mode))
+(add-hook 'org-mode-hook 'highlight-symbol-nav-mode)
 (after-load 'highlight-symbol
   (diminish 'highlight-symbol-mode)
   (defadvice highlight-symbol-temp-highlight (around sanityinc/maybe-suppress activate)
