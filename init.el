@@ -37,7 +37,7 @@
 (require-package 'scratch)
 (require-package 'mwe-log-commands)
 (require 'lazy-set-key)
-(require 'tabbar)
+
 
 (require 'init-frame-hooks)
 (require 'init-xterm)
@@ -97,19 +97,12 @@
 (when (>= emacs-major-version 24)
   (require 'init-clojure-cider))
 (require 'init-common-lisp)
-(require 'init-org2blog)
-;;(require 'init-ecb)
-(require 'init-doc-view)
-(require 'init-chm-view)
 
-;; (when *spell-check-support-enabled*
-;;  (require 'init-spelling))
 
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))
 
-;;;(require 'init-marmalade);; purcell-remove
 (require 'init-misc)
 
 (require 'init-dash)
@@ -162,28 +155,61 @@
 ;;---------------------------------------------------------------
 ;;init key bounding
 ;;----------------------------------------------------------------
-;;;(require 'init-company-mode)   ;;; maybe not use this configure
-(require 'init-mew)
+
+;;(require 'tabbar)
+
+
+;;(require 'init-mew)
 (require 'init-key)
 (require 'init-backup)
-(require 'init-yasnippet)
-(require 'init-doxymacs)
-(require 'init-tabbar)
-;;(require 'init-helm)
+;;(require 'init-yasnippet)
+;;(require 'init-doxymacs)
 
-;;(require 'init-minibuffer-tray)
-;;;(require 'init-webkit)
-(require 'init-eim)
-(require 'init-etags)
-(require 'init-weibo)
-;;;(require 'init-webqq)
-(require 'init-ppt)
-;;(require 'init-ediff)
-;;(require 'remote-emacsclient)
-;;(update-tramp-emacs-server-port-forward tramp-default-method)
+
+;;(require 'init-etags)
 
 (when *is-a-mac*
   (setq save-interprogram-paste-before-kill nil))
+
+
+
+;;---------------------------------------------------------------
+;;testing feature
+;;----------------------------------------------------------------
+
+
+
+;;(require 'init-org2blog)
+;;(require 'init-ecb)
+;;(require 'init-doc-view)
+;;(require 'init-chm-view)
+
+;; (when *spell-check-support-enabled*
+;;  (require 'init-spelling))
+
+
+
+
+
+
+
+;;(require 'init-minibuffer-tray)
+;;;(require 'init-webkit)
+;;(require 'init-eim)
+;;(require 'init-webqq)
+;;(require 'init-ppt)
+;;(require 'init-ediff)
+;;(require 'remote-emacsclient)
+;;(update-tramp-emacs-server-port-forward tramp-default-method)
+;;(require 'init-weibo)
+;;(require 'init-tabbar)
+;;(require 'init-helm)
+;;;(require 'init-company-mode)   ;;; maybe not use this configure
+
+
+
+
+
 
 (provide 'init)
 
