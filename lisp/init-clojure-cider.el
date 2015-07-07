@@ -3,13 +3,14 @@
 
 (require-package 'cider)
 (require-package 'ac-cider)
+(require-package 'clojure-snippets)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; nrepl with Clojure
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq nrepl-popup-stacktraces nil)
-
+(setq cider-lein-parameters "with-profile +1.6 repl :headless")
 
 (require 'cider-interaction)
 
