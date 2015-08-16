@@ -3,7 +3,7 @@
 
 (require-package 'cider)
 (require-package 'ac-cider)
-(require-package 'clojure-snippets)
+;;(require-package 'clojure-snippets)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; nrepl with Clojure
