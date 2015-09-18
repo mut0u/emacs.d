@@ -28,17 +28,15 @@ indentation rules."
   (save-excursion
     (goto-char beg)
     (while (search-forward-regexp "\>[ \\t]*\<" end t)
-        (backward-char) (insert "\n"))
+      (backward-char) (insert "\n"))
     (nxml-mode)
-      (indent-region begin end)))
+    (indent-region begin end)))
 
 ;;----------------------------------------------------------------------------
 ;; Integration with tidy for html + xml
 ;;----------------------------------------------------------------------------
 (require-package 'tidy)
 (add-hook 'nxml-mode-hook (lambda () (tidy-build-menu nxml-mode-map)))
-
-
 
 (defun sanityinc/tidy-buffer-xml (beg end)
   "Run \"tidy -xml\" on the region from BEG to END, or whole buffer."

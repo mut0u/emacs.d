@@ -26,6 +26,7 @@
   (defadvice compilation-start (after sanityinc/save-compilation-buffer activate)
     "Save the compilation buffer to find it later."
     (setq sanityinc/last-compilation-buffer next-error-last-buffer))
+
   (defadvice recompile (around sanityinc/find-prev-compilation (&optional edit-command) activate)
     "Find the previous compilation buffer, if present, and recompile there."
     (if (and (null edit-command)
@@ -44,10 +45,13 @@
   (unless output-buffer
     (with-current-buffer "*Shell Command Output*"
       (view-mode 1))))
+
+
 (after-load 'compile
   (require 'ansi-color)
   (defun sanityinc/colourise-compilation-buffer ()
     (when (eq major-mode 'compilation-mode)
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
   (add-hook 'compilation-filter-hook 'sanityinc/colourise-compilation-buffer))
+
 (provide 'init-compile)

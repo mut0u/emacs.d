@@ -10,6 +10,7 @@
   :type 'symbol
   :group 'programming
   :options '(js2-mode js-mode))
+
 (defconst preferred-javascript-indent-level 2)
 
 ;; Need to first remove from list if present, since elpa adds entries too, which
@@ -22,6 +23,7 @@
 
 
 ;; js2-mode
+
 ;; Change some defaults: customize them to override
 (setq-default js2-basic-offset 2
               js2-bounce-indent-p nil)

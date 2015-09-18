@@ -26,6 +26,7 @@
 
 (after-load 'page-break-lines
   (push 'ruby-mode page-break-lines-modes))
+
 
 ;;; Inferior ruby
 (require-package 'inf-ruby)
@@ -66,6 +67,8 @@
 
 (after-load 'robe
   (add-hook 'robe-mode-hook 'sanityinc/maybe-enable-robe-ac))
+
+
 
 ;; Customise highlight-symbol to not highlight do/end/class/def etc.
 (defun sanityinc/suppress-ruby-mode-keyword-highlights ()

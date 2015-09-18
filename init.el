@@ -180,7 +180,7 @@
 ;;testing feature
 ;;----------------------------------------------------------------
 
-(require 'init-blog)
+;;(require 'init-blog)
 
 ;;(require 'init-org2blog)
 ;;(require 'init-ecb)
