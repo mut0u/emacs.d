@@ -1,18 +1,33 @@
 (require 'init-clojure)
-(require-package 'emacs '(24))
 
-(require-package 'cider)
-(require-package 'ac-cider)
-;;(require-package 'clojure-snippets)
+(when (maybe-require-package 'cider)
+  (require-package 'ac-cider)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; nrepl with Clojure
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (setq nrepl-popup-stacktraces nil)
 
-(setq nrepl-popup-stacktraces nil)
-(setq cider-lein-parameters "with-profile +1.6 repl :headless")
+  (after-load 'cider
+    (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+    (add-hook 'cider-mode-hook 'ac-cider-setup)
+    (after-load 'auto-complete
+      (add-to-list 'ac-modes 'cider-repl-mode))
 
-(require 'cider-interaction)
+    (add-hook 'cider-repl-mode-hook 'set-auto-complete-as-completion-at-point-function)
+    (add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
+    (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+    (add-hook 'cider-repl-mode-hook 'subword-mode)
+    (add-hook 'cider-repl-mode-hook 'paredit-mode)
+    (define-key cider-mode-map (kbd "C-c C-d") 'ac-cider-popup-doc)
+
+    ;; nrepl isn't based on comint
+    (add-hook 'cider-repl-mode-hook
+              (lambda () (setq show-trailing-whitespace nil))))
+
+  (require-package 'flycheck-clojure)
+  (after-load 'clojure-mode
+    (after-load 'flycheck
+      (flycheck-clojure-setup))))
+
+
 
 (defun michael/def ()
   (interactive)
@@ -59,26 +74,7 @@
                 (insert (format "(ns %s\n)" namespace) ))))
         (switch-to-buffer (find-file-noselect test-file-path))))))
 
-(after-load 'cider
-  (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
-  (add-hook 'cider-mode-hook 'ac-cider-setup)
-  (after-load 'auto-complete
-    (add-to-list 'ac-modes 'cider-repl-mode))
 
-  (add-hook 'cider-repl-mode-hook 'set-auto-complete-as-completion-at-point-function)
-  (add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
-  (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-  (add-hook 'cider-repl-mode-hook 'subword-mode)
-  (add-hook 'cider-repl-mode-hook 'paredit-mode)
-  (define-key cider-mode-map (kbd "C-c C-d") 'ac-cider-popup-doc)
-  (define-key cider-mode-map (kbd "C-c C-x") nil)
-  ;; nrepl isn't based on comint
-  (add-hook 'cider-repl-mode-hook
-            (lambda () (setq show-trailing-whitespace nil))))
-
-(require-package 'flycheck-clojure)
-(after-load 'flycheck
-  (flycheck-clojure-setup))
 
 
 (after-load 'cider-repl

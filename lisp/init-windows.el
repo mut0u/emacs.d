@@ -73,9 +73,6 @@ Call a second time to restore the original window configuration."
 
 (global-set-key (kbd "<f5>") 'sanityinc/split-window)
 
-
-
-
 (global-set-key (kbd "<f6>")
                 (lambda ()
                   (interactive)
