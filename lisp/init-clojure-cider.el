@@ -22,16 +22,19 @@
     (add-hook 'cider-repl-mode-hook
               (lambda () (setq show-trailing-whitespace nil))))
 
-  (require-package 'flycheck-clojure)
-  (after-load 'clojure-mode
-    (after-load 'flycheck
-      (flycheck-clojure-setup))))
+  ;;(require-package 'flycheck-clojure)
+  ;;(after-load 'clojure-mode
+  ;;  (after-load 'flycheck
+  ;;    (flycheck-clojure-setup)))
+
+
+  )
 
 
 
 (defun michael/def ()
   (interactive)
-  (let* ((begin  (region-beginning) )
+  (let* ((begin (region-beginning))
          (end (region-end))
          (index1 begin)
          (index2 (save-excursion (goto-char begin) (forward-sexp) (forward-sexp) (point))))

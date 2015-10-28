@@ -1,5 +1,11 @@
 ;; See also init-clojure-cider.el
 
+
+
+
+
+;;(setq clojure-defun-indents '(defrecord+))
+
 (when (maybe-require-package 'clojure-mode)
   (require-package 'cljsbuild-mode)
   (require-package 'elein)

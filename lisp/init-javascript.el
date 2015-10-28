@@ -41,7 +41,6 @@
 
   (add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
 
-
   (after-load 'js2-mode
     (js2-imenu-extras-setup)
     (define-key js2-mode-map (kbd "C-M-\\") 'web-beautify-js)
