@@ -178,7 +178,7 @@
 (require 'buffer-extension)
 
 (require 'init-backup)
-(require 'init-irc)
+(require 'init-erc)
 ;;(require 'init-yasnippet)
 ;;(require 'init-doxymacs)
 
