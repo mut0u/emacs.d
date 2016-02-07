@@ -20,7 +20,9 @@
 
     ;; nrepl isn't based on comint
     (add-hook 'cider-repl-mode-hook
-              (lambda () (setq show-trailing-whitespace nil))))
+              (lambda ()
+                (setq cider-repl-display-help-banner nil)
+                (setq show-trailing-whitespace nil))))
 
   ;;(require-package 'flycheck-clojure)
   ;;(after-load 'clojure-mode

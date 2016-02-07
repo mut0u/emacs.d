@@ -11,6 +11,7 @@
   (require-package 'elein)
 
   (after-load 'clojure-mode
+    (put-clojure-indent 'defrecord+ '(2 nil nil (1)))
     (add-hook 'clojure-mode-hook 'sanityinc/lisp-setup)
     (add-hook 'clojure-mode-hook 'paredit-mode)
     (add-hook 'clojure-mode-hook 'subword-mode)))
