@@ -89,11 +89,12 @@ typical word processor."
 ;;(global-set-key (kbd "C-c c") 'org-capture)
 
 (setq org-capture-templates
-      `(("t" "todo" entry (file "")  ; "" => org-default-notes-file
-         "* NEXT %?\n%U\n" :clock-resume t)
-        ("n" "note" entry (file "")
+      `(("t" "Todo" entry (file+headline "~/org/.todo.org" "Tasks")
+         "* TODO %?\nCREATED: %U" :clock-resume t)
+        ("h" "WorkJournal" entry (file+datetree "~/org/.work-journal.org")
          "* %? :NOTE:\n%U\n%a\n" :clock-resume t)
-        ))
+        ("n" "note" entry (file+datetree "~/org/.notes.org")
+         "* %? :NOTE:\n%U\n%a\n" :clock-resume t)))
 
 
 
@@ -142,6 +143,9 @@ typical word processor."
 
 
 ;;; Agenda views
+
+(setq org-agenda-files (file-expand-wildcards "~/org/*.org"))
+
 
 (setq-default org-agenda-clockreport-parameter-plist '(:link t :maxlevel 3))
 
