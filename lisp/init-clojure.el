@@ -1,10 +1,11 @@
 ;; See also init-clojure-cider.el
 
 
-
-
-
-;;(setq clojure-defun-indents '(defrecord+))
+(add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.boot$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.cljs.*$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("lein-env" . clojure-mode))
+(add-to-list 'auto-mode-alist '(".lein-env" . clojure-mode))
 
 (when (maybe-require-package 'clojure-mode)
   (require-package 'cljsbuild-mode)

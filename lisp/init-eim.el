@@ -21,4 +21,3 @@
 ;;             (remove-hook 'comint-output-filter-functions
 ;;                          'comint-postoutput-scroll-to-bottom t)))
 (provide 'init-eim)
-

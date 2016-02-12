@@ -58,6 +58,13 @@
 (global-set-key (kbd "M-C-9") (lambda () (interactive) (sanityinc/adjust-opacity nil 2)))
 (global-set-key (kbd "M-C-0") (lambda () (interactive) (modify-frame-parameters nil `((alpha . 100)))))
 
+
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (toggle-scroll-bar -1)
+            (set-scroll-bar-mode nil)))
+
+
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (with-selected-frame frame
@@ -74,6 +81,10 @@
 (add-hook 'term-mode-hook
           (lambda ()
             (setq line-spacing 0)))
+
+
+
+
 
 
 (provide 'init-gui-frames)

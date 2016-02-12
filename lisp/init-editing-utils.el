@@ -316,4 +316,11 @@ With arg N, insert N newlines."
 (diminish 'guide-key-mode)
 
 
+
+(require 'insert-time)
+
+(global-set-key (kbd "C-c i t") 'insert-date-time)
+(global-set-key (kbd "C-c i d") 'insert-date)
+
+
 (provide 'init-editing-utils)

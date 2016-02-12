@@ -42,4 +42,8 @@
 (after-load 'page-break-lines
   (push 'sql-mode page-break-lines-modes))
 
+(eval-after-load "sql"
+  '(toggle-truncate-lines))
+
+
 (provide 'init-sql)

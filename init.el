@@ -120,7 +120,8 @@
 
 (require 'init-misc)
 
-(require 'init-dash)
+;; this is no use for me.
+;;(require 'init-dash)
 (require 'init-ledger)
 ;; Extra packages which don't require any configuration
 

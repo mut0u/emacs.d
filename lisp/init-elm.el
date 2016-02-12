@@ -1,3 +1,6 @@
+;; this is for Autocompletion
+
+
 (when (maybe-require-package 'elm-mode)
   (after-load 'auto-complete
     (add-to-list 'ac-modes 'elm-mode))
