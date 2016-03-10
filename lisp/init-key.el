@@ -9,7 +9,7 @@
 (global-set-key (kbd "C-<down>")  'shrink-window)
 (global-set-key (kbd "C-<up>")  'enlarge-window)
 
-
+(define-key global-map [(insert)] nil)
 
 (global-unset-key "\C-h\C-n")    ;;; remove the news of Emacs
 
