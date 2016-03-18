@@ -83,6 +83,7 @@
 
 
 (after-load 'cider-repl
+  (setq cider-eval-result-duration 2)
   (define-key cider-repl-mode-map (kbd "C-c C-x") nil)
   (define-key cider-repl-mode-map (kbd "C-c C-o") #'cider-repl-clear-buffer))
 
