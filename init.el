@@ -95,6 +95,7 @@
 ;;(require 'init-erlang)
 (require 'init-javascript)
 ;;(require 'init-php)
+(require 'init-thrift)
 (require 'init-org)
 (require 'init-nxml)
 (require 'init-html)
