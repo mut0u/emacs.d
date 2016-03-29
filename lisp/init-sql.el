@@ -16,7 +16,6 @@
       (sanityinc/pop-to-sqli-buffer))))
 
 (after-load 'sql
-  (toggle-truncate-lines)
   (define-key sql-mode-map (kbd "C-c C-z") 'sanityinc/pop-to-sqli-buffer)
   (add-hook 'sql-interactive-mode-hook 'sanityinc/never-indent)
   (when (package-installed-p 'dash-at-point)
@@ -42,8 +41,11 @@
 (after-load 'page-break-lines
   (push 'sql-mode page-break-lines-modes))
 
-(eval-after-load "sql"
-  '(toggle-truncate-lines))
+
+
+(add-hook 'sql-interactive-mode-hook
+          (lambda ()
+            (toggle-truncate-lines t)))
 
 
 (provide 'init-sql)
