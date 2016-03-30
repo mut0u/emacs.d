@@ -48,4 +48,11 @@
             (toggle-truncate-lines t)))
 
 
+
+(require-package 'edbi)
+(require-package 'edbi-minor-mode)
+(require 'epc)
+
+
+
 (provide 'init-sql)
