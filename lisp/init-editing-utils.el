@@ -364,13 +364,7 @@ With arg N, insert N newlines."
                    (point)))
       (activate-mark))))
 
-
-(global-set-key (kbd "C-m") 'mark-current-word)
-
-
-
-
-
+(global-set-key (kbd "M-s-m") 'mark-current-word)
 
 
 

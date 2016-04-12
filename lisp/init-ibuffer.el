@@ -27,6 +27,15 @@
      (t (format "%8d" (buffer-size))))))
 
 
+
+
+
+;;;(add-hook 'ibuffer-mode-hook
+;;;          '(lambda ()
+;;;             (ibuffer-auto-mode 1)
+;;;             (ibuffer-switch-to-saved-filter-groups "Default")))
+
+
 ;; Explicitly require ibuffer-vc to get its column definitions, which
 ;; can't be autoloaded
 (after-load 'ibuffer
