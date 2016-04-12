@@ -4,6 +4,7 @@
 (defun maybe-map-paredit-newline ()
   (unless (or (memq major-mode '(inferior-emacs-lisp-mode cider-repl-mode))
               (minibufferp))
+    (local-set-key (kbd "<return>") 'paredit-newline)
     (local-set-key (kbd "RET") 'paredit-newline)
     (local-set-key (kbd "C-m") nil)))
 
@@ -22,7 +23,6 @@
 
   ;; Allow my global binding of M-? to work when paredit is active
   (define-key paredit-mode-map (kbd "M-?") nil)
-  (define-key paredit-mode-map (kbd "C-m") nil)
   )
 
 
