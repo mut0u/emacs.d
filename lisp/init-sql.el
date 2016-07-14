@@ -2,7 +2,9 @@
 (after-load 'sql
   (require 'sql-indent))
 
-(setf sql-output-newline-count 1)
+(after-load 'sql
+  ;; sql-mode pretty much requires your psql to be uncustomised from stock settings
+  (push "--no-psqlrc" sql-postgres-options))
 
 (defun sanityinc/pop-to-sqli-buffer ()
   "Switch to the corresponding sqli buffer."
@@ -40,19 +42,5 @@
 
 (after-load 'page-break-lines
   (push 'sql-mode page-break-lines-modes))
-
-
-
-(add-hook 'sql-interactive-mode-hook
-          (lambda ()
-            (toggle-truncate-lines t)))
-
-
-
-(require-package 'edbi)
-(require-package 'edbi-minor-mode)
-(require 'epc)
-
-
 
 (provide 'init-sql)

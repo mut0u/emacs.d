@@ -4,7 +4,7 @@
 (require-package 'gitignore-mode)
 (require-package 'gitconfig-mode)
 (require-package 'git-messenger) ;; Though see also vc-annotate's "n" & "p" bindings
-(require-package 'git-timemachine)
+(maybe-require-package 'git-timemachine)
 
 
 (when (maybe-require-package 'magit)
@@ -77,16 +77,6 @@
 
 (require-package 'git-messenger)
 (global-set-key (kbd "C-x v p") #'git-messenger:popup-message)
-
-
-(defun get-git-user-name ()
-  (interactive)
-  (replace-regexp-in-string "\n$" "" (shell-command-to-string "git config --get user.name")))
-
-(defun get-git-user-email ()
-  (interactive)
-  (replace-regexp-in-string "\n$" "" (shell-command-to-string "git config --get user.email")))
-
 
 
 (provide 'init-git)

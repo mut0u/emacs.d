@@ -26,12 +26,9 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;;; Also use Melpa for most packages
-;;(add-to-list 'package-archives `("melpa" . ,(if (< emacs-major-version 24)
-;;                                                "http://melpa.org/packages/"
-;;                                              "https://melpa.org/packages/")))
-
-
-(add-to-list 'package-archives '("popkit" . "http://elpa.popkit.org/packages/"))
+(add-to-list 'package-archives `("melpa" . ,(if (< emacs-major-version 24)
+                                                "http://melpa.org/packages/"
+                                              "https://melpa.org/packages/")))
 
 
 
@@ -94,9 +91,10 @@ locate PACKAGE."
 
 (defun sanityinc/set-tabulated-list-column-width (col-name width)
   "Set any column with name COL-NAME to the given WIDTH."
+  (when (> width (length col-name))
   (cl-loop for column across tabulated-list-format
            when (string= col-name (car column))
-           do (setf (elt column 1) width)))
+             do (setf (elt column 1) width))))
 
 (defun sanityinc/maybe-widen-package-menu-columns ()
   "Widen some columns of the package menu table to avoid truncation."

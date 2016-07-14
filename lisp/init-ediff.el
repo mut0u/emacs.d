@@ -61,6 +61,7 @@
     (ediff-merge-files local remote nil merged))
   (recursive-edit))
 
+
 (defun git-mergetool-emacsclient-ediff-after-quit-hook ()
   (exit-recursive-edit))
 

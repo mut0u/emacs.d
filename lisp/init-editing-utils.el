@@ -55,6 +55,13 @@
 
 
 
+(when (maybe-require-package 'indent-guide)
+  (add-hook 'prog-mode-hook 'indent-guide-mode)
+  (after-load 'indent-guide
+    (diminish 'indent-guide-mode)))
+
+
+
 (when (fboundp 'global-prettify-symbols-mode)
   (global-prettify-symbols-mode))
 
@@ -132,7 +139,7 @@
 ;; Handy key bindings
 ;;----------------------------------------------------------------------------
 ;; To be able to M-x without meta
-(global-set-key (kbd "C-x C-m") 'execute-extended-command)
+;;(global-set-key (kbd "C-x C-m") 'execute-extended-command)
 
 ;; Vimmy alternatives to M-^ and C-u M-^
 (global-set-key (kbd "C-c j") 'join-line)
@@ -311,9 +318,11 @@ With arg N, insert N newlines."
 
 
 (require-package 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x" "C-c" "C-x 4" "C-x 5" "C-c ;" "C-c ; f" "C-c ' f" "C-x n" "C-x C-r" "C-x r"))
-(guide-key-mode 1)
-(diminish 'guide-key-mode)
+(setq guide-key/guide-key-sequence '("C-x" "C-c" "C-x 4" "C-x 5" "C-c ;" "C-c ; f" "C-c ' f" "C-x n" "C-x C-r" "C-x r" "M-s"))
+(add-hook 'after-init-hook
+          (lambda ()
+            (guide-key-mode 1)
+            (diminish 'guide-key-mode)))
 
 
 
