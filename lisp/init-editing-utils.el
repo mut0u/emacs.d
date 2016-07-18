@@ -54,11 +54,11 @@
     (diminish 'subword-mode)))
 
 
-
-(when (maybe-require-package 'indent-guide)
-  (add-hook 'prog-mode-hook 'indent-guide-mode)
-  (after-load 'indent-guide
-    (diminish 'indent-guide-mode)))
+;;; 竖线对齐功能, 不需要
+;;;(when (maybe-require-package 'indent-guide)
+;;;  (add-hook 'prog-mode-hook 'indent-guide-mode)
+;;;  (after-load 'indent-guide
+;;;    (diminish 'indent-guide-mode)))
 
 
 
