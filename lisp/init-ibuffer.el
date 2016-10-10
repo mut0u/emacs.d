@@ -55,6 +55,12 @@
 
 (setq ibuffer-filter-group-name-face 'font-lock-doc-face)
 
+(advice-add 'ibuffer-vc-generate-filter-groups-by-vc-root
+              :filter-return
+              #'(lambda (ibuffer-filter-groups)
+                  (append '(("*" (name . "^\\*"))) ibuffer-filter-groups)))
+
+
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (provide 'init-ibuffer)
