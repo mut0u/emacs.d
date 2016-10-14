@@ -76,4 +76,9 @@
         ("blog" :components ("-notes" "-static"))))
 
 
+
+(defun blog-publish ()
+  (interactive)
+  (org-publish "blog"))
+
 (provide 'init-blog)
