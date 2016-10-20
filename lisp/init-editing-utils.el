@@ -59,6 +59,13 @@
 ;;;  (add-hook 'prog-mode-hook 'indent-guide-mode)
 ;;;  (after-load 'indent-guide
 ;;;    (diminish 'indent-guide-mode)))
+
+
+(require-package 'nlinum)
+
+
+(when (require-package 'rainbow-delimiters)
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 
 

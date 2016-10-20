@@ -39,7 +39,7 @@
 ;;(global-set-key [f6] 'recompile)
 (defadvice shell-command-on-region
     (after sanityinc/shell-command-in-view-mode
-           (start end command &optional output-buffer replace error-buffer display-error-buffer)
+           (start end command &optional output-buffer &rest other-args)
            activate)
   "Put \"*Shell Command Output*\" buffers into view-mode."
   (unless output-buffer

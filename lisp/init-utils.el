@@ -66,9 +66,9 @@
         (filename (buffer-file-name)))
     (unless filename
       (error "Buffer '%s' is not visiting a file!" name))
-      (progn
-        (when (file-exists-p filename)
-         (rename-file filename new-name 1))
+    (progn
+      (when (file-exists-p filename)
+        (rename-file filename new-name 1))
       (set-visited-file-name new-name)
       (rename-buffer new-name))))
 

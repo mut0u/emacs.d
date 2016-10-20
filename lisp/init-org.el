@@ -2,18 +2,20 @@
   (require-package 'org))
 (require-package 'org-fstree)
 (when *is-a-mac*
-  (require-package 'org-mac-link)
-  (autoload 'org-mac-grab-link "org-mac-link" nil t)
+  (maybe-require-package 'grab-mac-link)
   (require-package 'org-mac-iCal))
+
+(maybe-require-package 'org-cliplink)
 
 (define-key global-map (kbd "C-c l") 'org-store-link)
 (define-key global-map (kbd "C-c a") 'org-agenda)
 
 ;; Various preferences
 (setq org-log-done t
-      org-completion-use-ido t
+      ;;org-completion-use-ido t
       org-edit-timestamp-down-means-later t
       org-archive-mark-done nil
+      org-hide-emphasis-markers t
       org-catch-invisible-edits 'show
       org-export-coding-system 'utf-8
       org-fast-tag-selection-single-key 'expert
@@ -40,7 +42,8 @@
         (delete-file zip-temp)))))
 
 (after-load 'ob-ditaa
-  (unless (file-exists-p org-ditaa-jar-path)
+  (unless (and (boundp 'org-ditaa-jar-path)
+               (file-exists-p org-ditaa-jar-path))
     (let ((jar-name "ditaa0_9.jar")
           (url "http://jaist.dl.sourceforge.net/project/ditaa/ditaa/0.9/ditaa0_9.zip"))
       (setq org-ditaa-jar-path (expand-file-name jar-name (file-name-directory user-init-file)))
@@ -144,9 +147,6 @@ typical word processor."
 
 ;;; Agenda views
 
-(setq org-agenda-files (file-expand-wildcards "~/org/*.org"))
-
-
 (setq-default org-agenda-clockreport-parameter-plist '(:link t :maxlevel 3))
 
 
@@ -200,13 +200,19 @@ typical word processor."
                         ;; TODO: skip if a parent is a project
                         (org-agenda-skip-function
                          '(lambda ()
-                            (or (org-agenda-skip-subtree-if 'todo '("PROJECT" "HOLD" "WAITING"))
+                            (or (org-agenda-skip-subtree-if 'todo '("PROJECT" "HOLD" "WAITING" "DELEGATED"))
                                 (org-agenda-skip-subtree-if 'nottododo '("TODO")))))
                         (org-tags-match-list-sublevels t)
                         (org-agenda-sorting-strategy
                          '(category-keep))))
             (tags-todo "/WAITING"
                        ((org-agenda-overriding-header "Waiting")
+                        (org-agenda-tags-todo-honor-ignore-options t)
+                        (org-agenda-todo-ignore-scheduled 'future)
+                        (org-agenda-sorting-strategy
+                         '(category-keep))))
+            (tags-todo "/DELEGATED"
+                       ((org-agenda-overriding-header "Delegated")
                         (org-agenda-tags-todo-honor-ignore-options t)
                         (org-agenda-todo-ignore-scheduled 'future)
                         (org-agenda-sorting-strategy
