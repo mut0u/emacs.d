@@ -384,15 +384,31 @@ With arg N, insert N newlines."
 
 
 ;;; self configure
-(defun escape-doublequotes-at-car-of-kill-ring ()
+
+
+
+(defun replace-doublequotes-at-car-of-kill-ring (replace-string)
   "Escape doublequotes in car of kill-ring "
-  (interactive)
   (with-temp-buffer
     (insert (car kill-ring))
     (goto-char (point-min))
     (while (search-forward "\"" nil t 1)
-      (replace-match "\\\\\""))
+      (replace-match replace-string))
     (kill-new (buffer-substring-no-properties (point-min) (point-max)))))
+
+
+(defun escape-doublequotes-at-car-of-kill-ring ()
+  "Escape doublequotes in car of kill-ring "
+  (interactive)
+  (replace-doublequotes-at-car-of-kill-ring "\\\\\""))
+
+
+(defun remove-doublequotes-at-car-of-kill-ring ()
+  "Escape doublequotes in car of kill-ring "
+  (interactive)
+  (replace-doublequotes-at-car-of-kill-ring ""))
+
+
 
 
 
