@@ -382,6 +382,18 @@ With arg N, insert N newlines."
 
 (global-set-key (kbd "M-s-m") 'mark-current-word)
 
+
+;;; self configure
+(defun escape-doublequotes-at-car-of-kill-ring ()
+  "Escape doublequotes in car of kill-ring "
+  (interactive)
+  (with-temp-buffer
+    (insert (car kill-ring))
+    (goto-char (point-min))
+    (while (search-forward "\"" nil t 1)
+      (replace-match "\\\\\""))
+    (kill-new (buffer-substring-no-properties (point-min) (point-max)))))
+
 
 
 
