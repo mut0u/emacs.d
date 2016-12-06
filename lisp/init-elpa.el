@@ -28,7 +28,7 @@
 ;;; Also use Melpa for most packages
 (add-to-list 'package-archives `("melpa" . ,(if (< emacs-major-version 24)
                                                 "http://melpa.org/packages/"
-                                              "http://melpa.org/packages/")))
+                                              "http://elpa.zilongshanren.com/melpa/")))
 
 ;; NOTE: In case of MELPA problems, the official mirror URL is
 ;; https://www.mirrorservice.org/sites/stable.melpa.org/packages/
@@ -63,7 +63,7 @@ locate PACKAGE."
   (condition-case err
       (require-package package min-version no-refresh)
     (error
-     (message "Couldn't install package `%s': %S" package err)
+     (message "Couldn't install optional package `%s': %S" package err)
      nil)))
 
 
