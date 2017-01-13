@@ -27,11 +27,10 @@
     (define-key map (kbd "C-c m") 'go-test-current-file)
     (define-key map (kbd "C-c .") 'go-test-current-test)
     (define-key map (kbd "C-c c") 'compile)
+    (define-key map (kbd "M-.") 'godef-jump)
     (define-key map (kbd "C-c C-c" ) 'comment-region)
     (define-key map (kbd "C-u C-c C-c") 'uncomment-region)
     (define-key map (kbd "C-c b") 'go-run)
-
-
     (define-key map (kbd "C-h f") 'godoc-at-point))
   (add-hook 'before-save-hook 'gofmt-before-save nil t)
   (setq compile-command "go test -v")
