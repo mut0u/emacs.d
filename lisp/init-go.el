@@ -13,7 +13,20 @@
 ;;(define-key 'help-command (kbd "G") 'godoc)
 
 
+(defun go-test-generate-code()
+  (interactive)
+  (let ((buf (get-buffer-create "*Gotests patch*"))
+        (coding-system-for-read 'utf-8)
+        (coding-system-for-write 'utf-8))
 
+    (with-current-buffer buf
+      (erase-buffer))
+
+    ;; Only run when buffer is test file
+    (if (string-match-p "_test\\.go\\'" (buffer-file-name))
+        (progn
+          (call-process "gotests" nil buf nil "-w" "-r" (buffer-file-name))
+          (revert-buffer :ignore-auto :noconfirm)))))
 
 (after-load 'go-mode
   ;;(require 'go-oracle)
@@ -28,6 +41,7 @@
     (define-key map (kbd "C-c .") 'go-test-current-test)
     (define-key map (kbd "C-c c") 'compile)
     (define-key map (kbd "M-.") 'godef-jump)
+    (define-key map (kbd "C-u M-.")  'godef-jump-other-window)
     (define-key map (kbd "C-c C-c" ) 'comment-region)
     (define-key map (kbd "C-u C-c C-c") 'uncomment-region)
     (define-key map (kbd "C-c b") 'go-run)
@@ -45,5 +59,24 @@
   ;; CamelCase aware editing operations
   (subword-mode +1)
   )
+
+
+
+
+(defun dlv-set-break-point ()
+  "set breakpoint using dlv"
+  (interactive)
+  (when (get-buffer "*gud-test*")
+    (let ((current-func-loc (format "%s:%d" buffer-file-name (line-number-at-pos)))
+          (cbuffer (current-buffer)))
+      (save-excursion
+        (switch-to-buffer "*gud-test*")
+        (gud-call (format "break %s" current-func-loc))
+        (switch-to-buffer cbuffer)))))
+
+
+
+
+
 
 (provide 'init-go)

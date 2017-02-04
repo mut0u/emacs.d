@@ -8,6 +8,8 @@
 ;;----------------------------------------------------------------------------
 ;; Some basic preferences
 ;;----------------------------------------------------------------------------
+(setq  enable-local-variables :safe)
+
 (setq-default
  blink-cursor-interval 0.4
  bookmark-default-file (expand-file-name ".bookmarks.el" user-emacs-directory)
@@ -420,6 +422,10 @@ With arg N, insert N newlines."
 
 
 
+
+
+
+(global-set-key [f7] 'hs-toggle-hiding)
 
 
 
