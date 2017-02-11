@@ -76,7 +76,7 @@
 ;; ---------------------------------------------------------------------------
 
 (when (maybe-require-package 'js-comint)
-  (setq inferior-js-program-command "js")
+  ;;(setq inferior-js-program-command "js")
 
   (defvar inferior-js-minor-mode-map (make-sparse-keymap))
   (define-key inferior-js-minor-mode-map "\C-x\C-e" 'js-send-last-sexp)
@@ -85,12 +85,19 @@
   (define-key inferior-js-minor-mode-map "\C-c\C-b" 'js-send-buffer-and-go)
   (define-key inferior-js-minor-mode-map "\C-cl" 'js-load-file-and-go)
 
+  (defvar inferior-nodejs-minor-mode-map (make-sparse-keymap))
+  (define-key inferior-nodejs-minor-mode-map "\C-x\C-e" 'nodejs-repl-send-last-sexp)
+
   (define-minor-mode inferior-js-keys-mode
     "Bindings for communicating with an inferior js interpreter."
     nil " InfJS" inferior-js-minor-mode-map)
 
+  (define-minor-mode inferior-nodejs-keys-mode
+    "Bindings for communicating with an inferior js interpreter."
+    nil " InfJS" inferior-nodejs-minor-mode-map)
+
   (dolist (hook '(js2-mode-hook js-mode-hook))
-    (add-hook hook 'inferior-js-keys-mode)))
+    (add-hook hook 'inferior-nodejs-keys-mode)))
 
 ;; ---------------------------------------------------------------------------
 ;; Alternatively, use skewer-mode

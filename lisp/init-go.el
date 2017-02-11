@@ -31,8 +31,8 @@
 (after-load 'go-mode
   ;;(require 'go-oracle)
   ;;(add-hook 'go-mode-hook 'go-oracle-mode)
-
   (add-hook 'go-mode-hook (lambda () (setq tab-width 2)))
+  (add-hook 'go-mode-hook 'hs-minor-mode)
   (let ((map go-mode-map))
     (define-key map (kbd "C-c C-r")'go-remove-unused-imports)
     (define-key map (kbd "C-c C-f") 'gofmt)

@@ -1,6 +1,9 @@
 (require-package 'dired+)
 (require-package 'dired-sort)
 
+
+(require 'dired-x)
+
 (setq-default diredp-hide-details-initially-flag nil
               dired-dwim-target t)
 
@@ -15,7 +18,10 @@
   (when (fboundp 'global-dired-hide-details-mode)
     (global-dired-hide-details-mode -1))
   (setq dired-recursive-deletes 'top)
+  (put 'dired-find-alternate-file 'disabled nil)
+  (setq dired-dwim-target t)
   (define-key dired-mode-map [mouse-2] 'dired-find-file)
+  (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
   (add-hook 'dired-mode-hook
             (lambda () (guide-key/add-local-guide-key-sequence "%"))))
 
@@ -44,6 +50,7 @@
                       (mapcar (lambda (v) (replace-regexp-in-string "^[.0-9]+ +" "" v))
                               (split-string (shell-command-to-string "fasd -d") "\n" t)))))
     (ivy-read "directories:" collection :action 'dired)))
+
 
 
 
