@@ -7,6 +7,8 @@
 (require-package 'highlight-tail)
 (require-package 'highlight-parentheses)
 
+;;有道词典
+(require-package 'youdao-dictionary)
 
 
 (show-paren-mode t)                     ;显示括号匹配

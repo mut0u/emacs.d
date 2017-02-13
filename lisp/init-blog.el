@@ -2,6 +2,9 @@
 
 (require 'ox-publish)
 
+(require-package 'org-octopress)
+
+
 (defconst base-directory "")
 
 (defcustom blog-base-directory "~/org/notes/"
