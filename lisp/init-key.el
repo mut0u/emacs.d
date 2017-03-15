@@ -220,6 +220,30 @@
 ;;;;;;;;;;;;;;;   )
 ;;;;;;;;;;;;;;; "paredit-extension")
 
+(require-package 'helm)
+(require 'helm)
+
+(defun zilongshanren/helm-hotspots ()
+  "helm interface to my hotspots, which includes my locations,
+org-files and bookmarks"
+  (interactive)
+  (helm :buffer "*helm: utities*"
+        :sources `(,(zilongshanren//hotspots-sources))))
+
+(defun zilongshanren//hotspots-sources ()
+  "Construct the helm sources for my hotspots"
+  `((name . "Util")
+    (candidates . (("Calendar" . (lambda ()  (browse-url "https://www.google.com/calendar/render")))
+                   ("Blog" . org-octopress)
+                   ("Calculator" . (lambda () (helm-calcul-expression)))
+                   ("Run current flie" . (lambda () (zilongshanren/run-current-file)))
+                   ("Agenda" . (lambda () (org-agenda "" "a")))
+                   ("New Buffer" . (lambda () (new-empty-buffer)))))
+    (candidate-number-limit)
+    (action . (("Open" . (lambda (x) (funcall x)))))))
+
+(global-set-key (kbd "<f1>") 'zilongshanren/helm-hotspots)
+
 
 
 (provide 'init-key)

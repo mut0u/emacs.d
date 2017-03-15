@@ -1,8 +1,8 @@
 (require-package 'org)
+(require-package 'org-octopress)
 
 (require 'ox-publish)
-
-(require-package 'org-octopress)
+(require 'org-octopress)
 
 
 (defconst base-directory "")
@@ -119,6 +119,19 @@
 (defun wx-publish ()
   (interactive)
   (org-publish "wx"))
+
+
+(when (maybe-require-package 'org-octopress)
+  (setq org-octopress-directory-top       "/home/savior/github.repo/blog/source")
+  (setq org-octopress-directory-posts     "/home/savior/github.repo/blog/source/_posts")
+  (setq org-octopress-directory-org-top   "/home/savior/github.repo/blog")
+  (setq org-octopress-directory-org-posts "/home/savior/github.repo/blog/source/blog")
+  (setq org-octopress-setup-file          "/home/savior/github.repo/blog/setupfile.org")
+  )
+
+
+
+
 
 
 

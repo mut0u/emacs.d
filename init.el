@@ -48,8 +48,8 @@
 (require-package 'diminish)
 (require-package 'scratch)
 (require-package 'mwe-log-commands)
+(require-package 'multi-eshell)
 (require 'lazy-set-key)
-
 
 (require 'init-frame-hooks)
 (require 'init-xterm)

@@ -2,8 +2,15 @@
 
 (require-package 'golint)
 (require-package 'go-mode )
+(require-package 'go-dlv)
+(require-package 'go-errcheck)
+(require-package 'go-playground)
 (require-package 'company-go )
 (require-package 'go-eldoc)
+(require-package 'go-add-tags)
+(require-package 'go-gopath)
+
+
 (require-package 'go-projectile )
 (require-package 'gotest)
 
@@ -40,10 +47,14 @@
     (define-key map (kbd "C-c m") 'go-test-current-file)
     (define-key map (kbd "C-c .") 'go-test-current-test)
     (define-key map (kbd "C-c c") 'compile)
+    (define-key go-mode-map (kbd "C-c C-e") #'go-gopath-set-gopath)
     (define-key map (kbd "M-.") 'godef-jump)
     (define-key map (kbd "C-u M-.")  'godef-jump-other-window)
     (define-key map (kbd "C-c C-c" ) 'comment-region)
     (define-key map (kbd "C-u C-c C-c") 'uncomment-region)
+    (define-key map (kbd "<f1>") 'go-errcheck)
+    (define-key map (kbd "<f2>") 'go-playground)
+    (define-key map (kbd "<f3>") 'go-playground-exec)
     (define-key map (kbd "C-c b") 'go-run)
     (define-key map (kbd "C-h f") 'godoc-at-point))
   (add-hook 'before-save-hook 'gofmt-before-save nil t)

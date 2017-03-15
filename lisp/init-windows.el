@@ -92,8 +92,9 @@ Call a second time to restore the original window configuration."
 (global-set-key (kbd "C-c <down>") 'sanityinc/toggle-current-window-dedication)
 
 ;; popwin mode
-(maybe-require-package 'popwin)
-(popwin-mode t)
+(require-package 'popwin)
+(require 'popwin)
+(popwin-mode 1)
 
 
 (unless (memq window-system '(nt w32))
