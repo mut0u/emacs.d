@@ -238,6 +238,7 @@ org-files and bookmarks"
                    ("Calculator" . (lambda () (helm-calcul-expression)))
                    ("Run current flie" . (lambda () (zilongshanren/run-current-file)))
                    ("Agenda" . (lambda () (org-agenda "" "a")))
+                   ("org-capture" . (lambda () (org-capture)))
                    ("New Buffer" . (lambda () (new-empty-buffer)))))
     (candidate-number-limit)
     (action . (("Open" . (lambda (x) (funcall x)))))))
