@@ -213,7 +213,7 @@
 
 (require 'init-react)
 (require 'init-go)
-
+(require 'init-common-package)
 
 ;;(require 'init-minibuffer-tray)
 ;;;(require 'init-webkit)

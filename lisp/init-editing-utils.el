@@ -8,7 +8,6 @@
 ;;----------------------------------------------------------------------------
 ;; Some basic preferences
 ;;----------------------------------------------------------------------------
-(setq  enable-local-variables :safe)
 
 (setq-default
  blink-cursor-interval 0.4
@@ -35,6 +34,10 @@
 
 (transient-mark-mode t)
 
+
+;; do not ask configure
+(setq enable-local-variables :safe)
+(setq vc-follow-symlinks t)
 
  ;;; A simple visible bell which works in all terminal types
 

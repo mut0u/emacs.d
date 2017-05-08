@@ -71,8 +71,8 @@
   (subword-mode +1)
   )
 
-
-
+(eval-after-load 'page-break-lines
+  '(push 'go-mode page-break-lines-modes))
 
 (defun dlv-set-break-point ()
   "set breakpoint using dlv"
