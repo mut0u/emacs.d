@@ -40,6 +40,9 @@
   ;;(add-hook 'go-mode-hook 'go-oracle-mode)
   (add-hook 'go-mode-hook (lambda () (setq tab-width 2)))
   (add-hook 'go-mode-hook 'hs-minor-mode)
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (add-hook 'before-save-hook 'gofmt-before-save nil t)))
   (let ((map go-mode-map))
     (define-key map (kbd "C-c C-r")'go-remove-unused-imports)
     (define-key map (kbd "C-c C-f") 'gofmt)
@@ -57,7 +60,7 @@
     (define-key map (kbd "<f3>") 'go-playground-exec)
     (define-key map (kbd "C-c b") 'go-run)
     (define-key map (kbd "C-h f") 'godoc-at-point))
-  (add-hook 'before-save-hook 'gofmt-before-save nil t)
+
   (setq compile-command "go test -v")
 
   ;; stop whitespace being highlighted
