@@ -19,7 +19,7 @@
 ;; haskell process, if any.
 
 (require-package 'ac-haskell-process)
-
+(custom-set-variables '(haskell-process-type 'stack-ghci))
 (add-hook 'interactive-haskell-mode-hook 'ac-haskell-process-setup)
 (add-hook 'haskell-interactive-mode-hook 'ac-haskell-process-setup)
 
