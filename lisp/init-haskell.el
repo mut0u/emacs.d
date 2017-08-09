@@ -87,14 +87,13 @@
 ;; Source code helpers
 
 (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
-
+(custom-set-variables '(haskell-tags-on-save t))
 (setq-default haskell-stylish-on-save t)
 
 (maybe-require-package 'hayoo)
 (after-load 'haskell-mode
   (define-key haskell-mode-map (kbd "C-c h") 'hoogle)
   (define-key haskell-mode-map (kbd "C-o") 'open-line)
-
 
   (define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile)
   (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)

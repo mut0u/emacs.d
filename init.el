@@ -2,10 +2,10 @@
 ;;; This file bootstraps the configuration, which is divided into
 ;;; a number of other files.
 
-(let ((minver "23.3"))
-  (when (version<= emacs-version "23.1")
+(let ((minver "24.1"))
+  (when (version< emacs-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
-(when (version<= emacs-version "24")
+(when (version< emacs-version "24.4")
   (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
@@ -47,7 +47,7 @@
 (require-package 'project-local-variables)
 (require-package 'diminish)
 (require-package 'scratch)
-(require-package 'mwe-log-commands)
+(require-package 'command-log-mode)
 (require-package 'multi-eshell)
 (require 'lazy-set-key)
 
@@ -65,10 +65,7 @@
 
 (require 'init-recentf)
 (require 'init-smex)
-;; If you really prefer ido to ivy, change the comments below. I will
-;; likely remove the ido config in due course, though.
-(require 'init-ido)
-;;(require 'init-ivy)
+(require 'init-ivy)
 
 (require 'init-auto-save)
 (require 'init-hippie-expand)
@@ -138,7 +135,7 @@
 (require-package 'dsvn)
 (when *is-a-mac*
   (require-package 'osx-location))
-(require-package 'regex-tool)
+(maybe-require-package 'regex-tool)
 
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient
@@ -166,10 +163,8 @@
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
 
-(add-hook 'after-init-hook
-          (lambda ()
-            (message "init completed in %.2fms"
-                     (sanityinc/time-subtract-millis after-init-time before-init-time))))
+(when (maybe-require-package 'uptimes)
+  (add-hook 'after-init-hook (lambda () (require 'uptimes))))
 
 
 ;;---------------------------------------------------------------

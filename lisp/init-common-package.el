@@ -7,7 +7,7 @@
 (require-package 'projectile)
 (require-package 'popwin)
 (require-package 'ac-octave)
-
+(require-package 'web-mode)
 
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
