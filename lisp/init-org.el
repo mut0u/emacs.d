@@ -1,7 +1,6 @@
-(require-package 'org-fstree)
+(maybe-require-package 'org-fstree)
 (when *is-a-mac*
-  (maybe-require-package 'grab-mac-link)
-  (require-package 'org-mac-iCal))
+  (maybe-require-package 'grab-mac-link))
 
 (maybe-require-package 'org-cliplink)
 
@@ -47,7 +46,18 @@
       (unless (file-exists-p org-ditaa-jar-path)
         (sanityinc/grab-ditaa url jar-name)))))
 
+(after-load 'ob-plantuml
+  (let ((jar-name "plantuml.jar")
+        (url "https://jaist.dl.sourceforge.net/project/plantuml/plantuml.jar"))
+    (setq org-plantuml-jar-path (expand-file-name jar-name (file-name-directory user-init-file)))
+    (unless (file-exists-p org-plantuml-jar-path)
+      (url-copy-file url org-plantuml-jar-path))))
+
+
+
 
+
+(maybe-require-package 'writeroom-mode)
 
 (define-minor-mode prose-mode
   "Set up a buffer for prose editing.
@@ -57,6 +67,8 @@ typical word processor."
   nil " Prose" nil
   (if prose-mode
       (progn
+        (when (fboundp 'writeroom-mode)
+          (writeroom-mode 1))
         (setq truncate-lines nil)
         (setq word-wrap t)
         (setq cursor-type 'bar)
@@ -75,7 +87,9 @@ typical word processor."
     (buffer-face-mode -1)
     ;; (delete-selection-mode -1)
     (flyspell-mode -1)
-    (visual-line-mode -1)))
+    (visual-line-mode -1)
+    (when (fboundp 'writeroom-mode)
+      (writeroom-mode 0))))
 
 ;;(add-hook 'org-mode-hook 'buffer-face-mode)
 
@@ -363,6 +377,7 @@ typical word processor."
      (ledger . t)
      (ocaml . nil)
      (octave . t)
+     (plantuml . t)
      (python . t)
      (ruby . t)
      (screen . nil)

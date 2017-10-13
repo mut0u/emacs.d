@@ -22,6 +22,7 @@
   (setq dired-dwim-target t)
   (define-key dired-mode-map [mouse-2] 'dired-find-file)
   (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
+  (define-key dired-mode-map (kbd "C-c C-p") 'wdired-change-to-wdired-mode)
   (add-hook 'dired-mode-hook
             (lambda () (guide-key/add-local-guide-key-sequence "%"))))
 

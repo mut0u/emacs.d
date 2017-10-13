@@ -49,4 +49,5 @@ ac-comphist.dat
 /.sx/
 /org-clock-save.el
 ede-projects.el
+tldr/
 frame-restore-parameters

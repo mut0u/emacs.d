@@ -13,8 +13,6 @@
  ruby-insert-encoding-magic-comment nil)
 
 (after-load 'ruby-mode
-  (define-key ruby-mode-map (kbd "TAB") 'indent-for-tab-command)
-
   ;; Stupidly the non-bundled ruby-mode isn't a derived mode of
   ;; prog-mode: we run the latter's hooks anyway in that case.
   (add-hook 'ruby-mode-hook
@@ -28,6 +26,12 @@
   (push 'ruby-mode page-break-lines-modes))
 
 (require-package 'rspec-mode)
+
+
+(define-derived-mode brewfile-mode ruby-mode "Brewfile"
+  "A major mode for Brewfiles, used by homebrew-bundle on MacOS.")
+
+(add-auto-mode 'brewfile-mode "Brewfile\\'")
 
 
 ;;; Inferior ruby
@@ -59,15 +63,6 @@
 
 
 
-;; Customise highlight-symbol to not highlight do/end/class/def etc.
-(defun sanityinc/suppress-ruby-mode-keyword-highlights ()
-  "Suppress highlight-symbol for do/end etc."
-  (set (make-local-variable 'highlight-symbol-ignore-list)
-       (list (concat "\\_<" (regexp-opt '("do" "end")) "\\_>"))))
-(add-hook 'ruby-mode-hook 'sanityinc/suppress-ruby-mode-keyword-highlights)
-
-
-
 ;;; ri support
 (require-package 'yari)
 (defalias 'ri 'yari)
@@ -78,13 +73,6 @@
 
 
 (require-package 'bundler)
-
-
-;;; YAML
-
-(when (maybe-require-package 'yaml-mode)
-  (add-auto-mode 'yaml-mode "\\.yml\\.erb\\'"))
-
 
 
 ;;; ERB
@@ -111,7 +99,9 @@
 
 (add-auto-mode 'html-erb-mode "\\.rhtml\\'" "\\.html\\.erb\\'")
 (add-to-list 'auto-mode-alist '("\\.jst\\.ejs\\'"  . html-erb-mode))
+
 (mmm-add-mode-ext-class 'yaml-mode "\\.yaml\\(\\.erb\\)?\\'" 'erb)
+(sanityinc/set-up-mode-for-erb 'yaml-mode)
 
 (dolist (mode (list 'js-mode 'js2-mode 'js3-mode))
   (mmm-add-mode-ext-class mode "\\.js\\.erb\\'" 'erb))

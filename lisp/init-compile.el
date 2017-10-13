@@ -37,7 +37,9 @@
         (with-current-buffer sanityinc/last-compilation-buffer
           ad-do-it)
       ad-do-it)))
+
 ;;(global-set-key [f6] 'recompile)
+
 (defadvice shell-command-on-region
     (after sanityinc/shell-command-in-view-mode
            (start end command &optional output-buffer &rest other-args)

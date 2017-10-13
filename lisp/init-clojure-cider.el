@@ -1,6 +1,5 @@
 (require 'init-clojure)
 
-
 (when (maybe-require-package 'cider)
   (setq nrepl-popup-stacktraces nil)
 
