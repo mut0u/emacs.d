@@ -224,7 +224,7 @@
 ;;;(require 'init-company-mode)   ;;; maybe not use this configure
 
 
-;;(require 'init-evernote)
+(require 'init-evernote)
 
 
 

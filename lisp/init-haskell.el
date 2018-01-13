@@ -1,82 +1,23 @@
 (require-package 'haskell-mode)
 
-
 
+;; Use intero for completion and flycheck
 
+(when (maybe-require-package 'intero)
+  (after-load 'haskell-mode
+    (intero-global-mode)
+    (add-hook 'haskell-mode-hook 'eldoc-mode))
+  (after-load 'haskell-cabal
+    (define-key haskell-cabal-mode-map (kbd "C-c C-l") 'intero-restart))
+  (after-load 'intero
+    ;; Don't clobber sanityinc/counsel-search-project binding
+    (define-key intero-mode-map (kbd "M-?") nil)
+    (after-load 'flycheck
+      (flycheck-add-next-checker 'intero
+                                 '(warning . haskell-hlint)))))
 
-;; Make Emacs look in Cabal directory for binaries
-(let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
-  (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
-  (add-to-list 'exec-path my-cabal-path))
-
-
-
-
-
-;; Completion
-
-;; Hook auto-complete into the completions provided by the inferior
-;; haskell process, if any.
-
-(require-package 'ac-haskell-process)
-(custom-set-variables '(haskell-process-type 'stack-ghci))
-(add-hook 'interactive-haskell-mode-hook 'ac-haskell-process-setup)
-(add-hook 'haskell-interactive-mode-hook 'ac-haskell-process-setup)
-
-(after-load 'haskell-mode
-  (define-key haskell-mode-map (kbd "C-c C-d") 'ac-haskell-process-popup-doc))
-
-(after-load 'auto-complete
-  (add-to-list 'ac-modes 'haskell-interactive-mode)
-  (add-hook 'haskell-interactive-mode-hook 'set-auto-complete-as-completion-at-point-function))
-
-(when (executable-find "ghci-ng")
-  (setq-default haskell-process-args-cabal-repl
-                '("--ghc-option=-ferror-spans" "--with-ghc=ghci-ng")))
-
-
-
-;; Flycheck specifics
-
-(when (and (maybe-require-package 'flycheck-haskell)
-           (require-package 'flycheck-hdevtools))
-  (after-load 'flycheck
-    (add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
-
-    (defun sanityinc/flycheck-haskell-reconfigure ()
-      "Reconfigure flycheck haskell settings, e.g. after changing cabal file."
-      (interactive)
-      (unless (eq major-mode 'haskell-mode)
-        (error "Expected to be in haskell-mode"))
-      (flycheck-haskell-clear-config-cache)
-      (flycheck-haskell-configure)
-      (flycheck-mode -1)
-      (flycheck-mode))
-
-    (after-load 'haskell-mode
-      (require 'flycheck-hdevtools))))
-
-
-;; Docs
-
-(dolist (hook '(haskell-mode-hook inferior-haskell-mode-hook haskell-interactive-mode-hook))
-  (add-hook hook (lambda () (subword-mode +1)))
-  (add-hook hook (lambda () (eldoc-mode 1))))
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-
-(add-hook 'haskell-interactive-mode-hook 'sanityinc/no-trailing-whitespace)
-
-
-;; Interaction
-
-(after-load 'haskell
-  (diminish 'interactive-haskell-mode " IntHS"))
 
 (add-auto-mode 'haskell-mode "\\.ghci\\'")
-
-(when (maybe-require-package 'ghci-completion)
-  (add-hook 'inferior-haskell-mode-hook 'turn-on-ghci-completion))
-
 
 
 ;; Indentation
@@ -87,58 +28,21 @@
 ;; Source code helpers
 
 (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
-(custom-set-variables '(haskell-tags-on-save t))
-(setq-default haskell-stylish-on-save t)
 
-(maybe-require-package 'hayoo)
+(when (maybe-require-package 'hindent)
+  (add-hook 'haskell-mode-hook 'hindent-mode))
+
 (after-load 'haskell-mode
   (define-key haskell-mode-map (kbd "C-c h") 'hoogle)
-  (define-key haskell-mode-map (kbd "C-o") 'open-line)
-
-  (define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile)
-  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-  (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-  (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
-  (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
-  (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
-  (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
-
-  )
-
-
-
-
-(after-load 'haskell-cabal
-
-  (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-  (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-  (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-  (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)
-
-  )
-
-
+  (define-key haskell-mode-map (kbd "C-o") 'open-line))
 
 
 (after-load 'page-break-lines
   (push 'haskell-mode page-break-lines-modes))
 
-;; Make compilation-mode understand "at blah.hs:11:34-50" lines output by GHC
-(after-load 'compile
-  (let ((alias 'ghc-at-regexp))
-    (add-to-list
-     'compilation-error-regexp-alist-alist
-     (list alias " at \\(.*\\.\\(?:l?[gh]hs\\|hi\\)\\):\\([0-9]+\\):\\([0-9]+\\)-[0-9]+$" 1 2 3 0 1))
-    (add-to-list
-     'compilation-error-regexp-alist alias)))
-
-
-;; Stop haskell-mode's compiler note navigation from clobbering highlight-symbol-nav-mode
-(after-load 'haskell
-  (define-key interactive-haskell-mode-map (kbd "M-n") nil)
-  (define-key interactive-haskell-mode-map (kbd "M-p") nil)
-  (define-key interactive-haskell-mode-map (kbd "M-N") 'haskell-goto-next-error)
-  (define-key interactive-haskell-mode-map (kbd "M-P") 'haskell-goto-prev-error))
+
+(when (maybe-require-package 'dhall-mode)
+  (add-hook 'dhall-mode-hook 'sanityinc/no-trailing-whitespace))
 
 
 (provide 'init-haskell)

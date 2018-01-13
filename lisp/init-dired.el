@@ -11,6 +11,10 @@
 (let ((gls (executable-find "gls")))
   (when gls (setq insert-directory-program gls)))
 
+(when (maybe-require-package 'diredfl)
+  (after-load 'dired
+    (diredfl-global-mode)))
+
 (after-load 'dired
   (require 'dired+)
   (require 'dired-tar)

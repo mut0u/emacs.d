@@ -1,6 +1,8 @@
 W3M/
 /auto-save-list
 elpa/
+elpa-25.3/
+
 session.*
 .session
 .emacs.desktop

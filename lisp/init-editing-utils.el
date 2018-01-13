@@ -35,24 +35,38 @@
 
 (add-hook 'after-init-hook 'transient-mark-mode)
 
-
+
+(when (maybe-require-package 'dynamic-spaces)
+  (dynamic-spaces-global-mode))
+
 ;; do not ask configure
 (setq enable-local-variables :safe)
 (setq vc-follow-symlinks t)
 
  ;;; A simple visible bell which works in all terminal types
+;; Huge files
 
-(defun sanityinc/flash-mode-line ()
-  (invert-face 'mode-line)
-  (run-with-timer 0.05 nil 'invert-face 'mode-line))
+(require-package 'vlf)
 
-(setq-default
- ring-bell-function 'sanityinc/flash-mode-line)
+(defun ffap-vlf ()
+  "Find file at point with VLF."
+  (interactive)
+  (let ((file (ffap-file-at-point)))
+    (unless (file-exists-p file)
+      (error "File does not exist: %s" file))
+    (vlf file)))
+
+
+
+
+(require-package 'mode-line-bell)
+(add-hook 'after-init-hook 'mode-line-bell-mode)
 
 
 
 (when (maybe-require-package 'beacon)
   (setq-default beacon-lighter "")
+  (setq-default beacon-size 5)
   (add-hook 'after-init-hook 'beacon-mode))
 
 
@@ -212,10 +226,10 @@
 ;;----------------------------------------------------------------------------
 ;; Page break lines
 ;;----------------------------------------------------------------------------
-(require-package 'page-break-lines)
-(add-hook 'after-init-hook 'global-page-break-lines-mode)
-(after-load 'page-break-lines
-  (diminish 'page-break-lines-mode))
+(when (maybe-require-package 'page-break-lines)
+  (add-hook 'after-init-hook 'global-page-break-lines-mode)
+  (after-load 'page-break-lines
+    (diminish 'page-break-lines-mode)))
 
 ;;----------------------------------------------------------------------------
 ;; Shift lines up and down with M-up and M-down. When paredit is enabled,
@@ -229,7 +243,7 @@
 (global-set-key [M-S-down] 'md/move-lines-down)
 
 (global-set-key (kbd "C-c d") 'md/duplicate-down)
-(global-set-key (kbd "C-c D") 'md/duplicate-up)
+(global-set-key (kbd "C-c u") 'md/duplicate-up)
 
 ;;----------------------------------------------------------------------------
 ;; Fix backward-up-list to understand quotes, see http://bit.ly/h7mdIL

@@ -21,7 +21,6 @@
   (let ((extras (when (require 'slime-company nil t)
                   '(slime-company))))
     (slime-setup (append '(slime-repl slime-fuzzy) extras)))
-  ;;(slime-setup '(slime-repl slime-fuzzy))
   (setq slime-complete-symbol*-fancy t)
   (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
   (add-hook 'slime-mode-hook 'sanityinc/slime-setup))
