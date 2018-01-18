@@ -44,5 +44,6 @@
 (when (maybe-require-package 'dhall-mode)
   (add-hook 'dhall-mode-hook 'sanityinc/no-trailing-whitespace))
 
+(require 'hs-lint)
 
 (provide 'init-haskell)
