@@ -229,7 +229,7 @@
 ;;(require 'init-helm)
 ;;;(require 'init-company-mode)   ;;; maybe not use this configure
 
-
+(require 'init-java)
 (require 'init-evernote)
 
 

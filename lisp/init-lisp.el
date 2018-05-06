@@ -22,8 +22,8 @@
 (after-load 'lisp-mode
   (define-key emacs-lisp-mode-map (kbd "C-x C-e") 'sanityinc/eval-last-sexp-or-region))
 
-(require-package 'ipretty)
-(ipretty-mode 1)
+(when (maybe-require-package 'ipretty)
+  (add-hook 'after-init-hook 'ipretty-mode))
 
 
 (defadvice pp-display-expression (after sanityinc/make-read-only (expression out-buffer-name) activate)
@@ -89,8 +89,8 @@
 ;; Automatic byte compilation
 ;; ----------------------------------------------------------------------------
 (when (maybe-require-package 'auto-compile)
-  (auto-compile-on-save-mode nil)
-  (auto-compile-on-load-mode 1))
+  (add-hook 'after-init-hook 'auto-compile-on-save-mode)
+  (add-hook 'after-init-hook 'auto-compile-on-load-mode))
 
 ;; ----------------------------------------------------------------------------
 ;; Load .el if newer than corresponding .elc
@@ -175,7 +175,7 @@
     (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
   (require-package 'eldoc-eval)
   (require 'eldoc-eval)
-  (eldoc-in-minibuffer-mode 1))
+  (add-hook 'after-init-hook 'eldoc-in-minibuffer-mode))
 
 (add-to-list 'auto-mode-alist '("\\.emacs-project\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("archive-contents\\'" . emacs-lisp-mode))

@@ -121,6 +121,11 @@
   (org-publish "wx"))
 
 
+(defun hello1 (name)
+  (message  "hello11 %s" name)
+  )
+
+
 (when (maybe-require-package 'org-octopress)
   (setq org-octopress-directory-top       "/home/savior/github.repo/blog/source")
   (setq org-octopress-directory-posts     "/home/savior/github.repo/blog/source/_posts")
