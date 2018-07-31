@@ -632,4 +632,8 @@ BEG and END (region to sort)."
           (goto-char next-line))))))
 
 
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+
+
+
 (provide 'init-editing-utils)

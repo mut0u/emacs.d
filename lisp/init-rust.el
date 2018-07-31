@@ -10,5 +10,26 @@
     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
 (maybe-require-package 'rust-playground)
+;;(maybe-require-package 'lsp-mode)
+;;
+;;
+;;(defun my-set-projectile-root ()
+;;  (when lsp--cur-workspace
+;;    (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
+;;
+;;
+;;
+;;
+;;(with-eval-after-load 'lsp-mode
+;;  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+;;  (require 'lsp-rust)
+;;  (add-hook 'rust-mode-hook #'lsp-rust-enable)
+;;  (add-hook 'rust-mode-hook #'flycheck-mode)
+;;  (add-hook 'lsp-before-open-hook #'my-set-projectile-root)
+;;  )
+;;
+;;
+
+
 
 (provide 'init-rust)

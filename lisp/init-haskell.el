@@ -6,12 +6,16 @@
 (when (maybe-require-package 'intero)
   (after-load 'haskell-mode
     (intero-global-mode)
+    (add-hook 'haskell-mode-hook 'subword-mode)
     (add-hook 'haskell-mode-hook 'eldoc-mode))
   (after-load 'haskell-cabal
+    (add-hook 'haskell-cabal-mode 'subword-mode)
     (define-key haskell-cabal-mode-map (kbd "C-c C-l") 'intero-restart))
   (after-load 'intero
     ;; Don't clobber sanityinc/counsel-search-project binding
     (define-key intero-mode-map (kbd "M-?") nil)
+    (define-key intero-mode-map (kbd "C-c C-k") 'intero-repl-load)
+
     (after-load 'flycheck
       (flycheck-add-next-checker 'intero
                                  '(warning . haskell-hlint)))))
@@ -22,7 +26,7 @@
 
 ;; Indentation
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-
+(add-hook 'haskell-mode-hook 'paredit-mode)
 
 
 ;; Source code helpers
@@ -58,9 +62,15 @@
       (when (and (executable-find "stack")
                  (locate-dominating-file default-directory "stack.yaml"))
         (setq-local
-         exec-path (parse-colon-path
-                    (replace-regexp-in-string "[\r\n]+\\'" ""
-                                              (shell-command-to-string "stack path --bin-path")))))
+         exec-path
+         (seq-uniq
+          (append (list (concat (string-trim-right (shell-command-to-string "stack path --local-install-root")) "/bin"))
+                  (parse-colon-path
+                   (replace-regexp-in-string "[\r\n]+\\'" ""
+                                             (shell-command-to-string "stack path --bin-path"))))
+          'string-equal))
+                                        ;(add-to-list (make-local-variable 'process-environment) (format "PATH=%s" (string-join exec-path path-separator)))
+        )
     (kill-local-variable 'exec-path)))
 
 (add-hook 'haskell-mode-hook 'stack-exec-path-mode)
@@ -71,6 +81,8 @@
   (add-hook 'dhall-mode-hook 'sanityinc/no-trailing-whitespace)
   (add-hook 'dhall-mode-hook 'stack-exec-path-mode))
 
+
 (require 'hs-lint)
 
 (provide 'init-haskell)
+;;; init-haskell.el ends here

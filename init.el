@@ -45,11 +45,10 @@
 ;;----------------------------------------------------------------------------
 
 (require-package 'wgrep)
-(require-package 'project-local-variables)
 (require-package 'diminish)
 (require-package 'scratch)
 (require-package 'command-log-mode)
-(require-package 'multi-eshell)
+;;(require-package 'multi-eshell)
 (require 'lazy-set-key)
 
 (require 'init-frame-hooks)
@@ -140,7 +139,8 @@
 (require-package 'dsvn)
 (when *is-a-mac*
   (require-package 'osx-location))
-(maybe-require-package 'regex-tool)
+(unless (eq system-type 'windows-nt)
+  (maybe-require-package 'daemons))
 (maybe-require-package 'dotenv-mode)
 
 ;;----------------------------------------------------------------------------
@@ -225,10 +225,12 @@
 ;;(require 'remote-emacsclient)
 ;;(update-tramp-emacs-server-port-forward tramp-default-method)
 ;;(require 'init-weibo)
-;;(require 'init-tabbar)
+(require 'init-tabbar)
 ;;(require 'init-helm)
 ;;;(require 'init-company-mode)   ;;; maybe not use this configure
 
+
+(require 'eaf)
 (require 'init-java)
 (require 'init-evernote)
 
