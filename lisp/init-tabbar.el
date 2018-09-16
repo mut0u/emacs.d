@@ -84,6 +84,8 @@
 
 ;;; Code:
 
+(require-package 'tabbar)
+
 (tabbar-mode t)                                                ;多标签模式
 (setq uniquify-separator "/")                                  ;分隔符
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets) ;反方向的显示重复的Buffer名字
