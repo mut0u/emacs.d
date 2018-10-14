@@ -1,7 +1,10 @@
 W3M/
 /auto-save-list
 elpa/
-elpa-25.3/
+
+eaf/
+elpa-26.1/
+rust-playground/
 
 session.*
 .session
