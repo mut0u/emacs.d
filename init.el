@@ -200,6 +200,7 @@
 ;;testing feature
 ;;----------------------------------------------------------------
 
+(require 'init-enhance)
 (require 'init-blog)
 
 ;;(require 'init-org2blog)
@@ -233,8 +234,6 @@
 (require 'eaf)
 (require 'init-java)
 (require 'init-evernote)
-
-
 
 (provide 'init)
 

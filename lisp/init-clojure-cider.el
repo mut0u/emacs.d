@@ -19,7 +19,8 @@
   (after-load 'clojure-mode
     (after-load 'cider
       (after-load 'flycheck
-        (flycheck-clojure-setup)))))
+        ;;(flycheck-clojure-setup)
+        ))))
 
 (defun michael/def ()
   (interactive)
