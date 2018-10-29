@@ -25,26 +25,22 @@
 ;; js2-mode
 
 ;; Change some defaults: customize them to override
-(setq-default js2-basic-offset 2
-              js2-bounce-indent-p nil)
+(setq-default js2-bounce-indent-p nil)
 (after-load 'js2-mode
   ;; Disable js2 mode's syntax error highlighting by default...
   (setq-default js2-mode-show-parse-errors nil
                 js2-mode-show-strict-warnings nil)
   ;; ... but enable it if flycheck can't handle javascript
   (autoload 'flycheck-get-checker-for-buffer "flycheck")
-  (defun sanityinc/disable-js2-checks-if-flycheck-active ()
+  (defun sanityinc/enable-js2-checks-if-flycheck-inactive ()
     (unless (flycheck-get-checker-for-buffer)
       (set (make-local-variable 'js2-mode-show-parse-errors) t)
       (set (make-local-variable 'js2-mode-show-strict-warnings) t)))
-  (add-hook 'js2-mode-hook 'sanityinc/disable-js2-checks-if-flycheck-active)
+  (add-hook 'js2-mode-hook 'sanityinc/enable-js2-checks-if-flycheck-inactive)
 
   (add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
 
-  (after-load 'js2-mode
-    (js2-imenu-extras-setup)
-    (define-key js2-mode-map (kbd "C-M-\\") 'web-beautify-js)
-    ))
+  (js2-imenu-extras-setup))
 
 ;; js-mode
 (setq-default js-indent-level preferred-javascript-indent-level)
@@ -86,16 +82,9 @@
   (define-key inferior-js-minor-mode-map "\C-c\C-b" 'js-send-buffer-and-go)
   (define-key inferior-js-minor-mode-map "\C-cl" 'js-load-file-and-go)
 
-  (defvar inferior-nodejs-minor-mode-map (make-sparse-keymap))
-  (define-key inferior-nodejs-minor-mode-map "\C-x\C-e" 'nodejs-repl-send-last-sexp)
-
   (define-minor-mode inferior-js-keys-mode
     "Bindings for communicating with an inferior js interpreter."
     nil " InfJS" inferior-js-minor-mode-map)
-
-  (define-minor-mode inferior-nodejs-keys-mode
-    "Bindings for communicating with an inferior js interpreter."
-    nil " InfJS" inferior-nodejs-minor-mode-map)
 
   (dolist (hook '(js2-mode-hook js-mode-hook))
     (add-hook hook 'inferior-js-keys-mode)))

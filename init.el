@@ -200,7 +200,7 @@
 ;;testing feature
 ;;----------------------------------------------------------------
 
-(require 'init-enhance)
+
 (require 'init-blog)
 
 ;;(require 'init-org2blog)
@@ -213,11 +213,10 @@
 
 
 
-(require 'init-react)
+;;(require 'init-react)
 (require 'init-go)
 (require 'init-common-package)
 
-;;(require 'init-minibuffer-tray)
 ;;;(require 'init-webkit)
 ;;(require 'init-eim)
 ;;(require 'init-webqq)
@@ -233,7 +232,10 @@
 
 (require 'eaf)
 (require 'init-java)
-(require 'init-evernote)
+;;(require 'init-evernote)
+
+
+(require 'init-enhance)
 
 (provide 'init)
 
