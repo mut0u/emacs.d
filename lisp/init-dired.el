@@ -1,3 +1,7 @@
+;;; init-dired.el --- Dired customisations -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (setq-default dired-dwim-target t)
 
 ;; Prefer g-prefixed coreutils version of standard utilities when available
@@ -16,12 +20,6 @@
 (when (maybe-require-package 'diff-hl)
   (after-load 'dired
     (add-hook 'dired-mode-hook 'diff-hl-dired-mode)))
-
-
-(require-package 'swiper)
-(require 'cl)
-(require 'ivy)
-
 
 (defun goto-recent-directory ()
   "Recent directories"
@@ -43,3 +41,4 @@
 
 
 (provide 'init-dired)
+;;; init-dired.el ends here

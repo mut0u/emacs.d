@@ -1,12 +1,18 @@
-;; -*- lexical-binding: t -*-
+;;; init.el --- Load the full configuration -*- lexical-binding: t -*-
+;;; Commentary:
 
-;;; This file bootstraps the configuration, which is divided into
-;;; a number of other files.
+;; This file bootstraps the configuration, which is divided into
+;; a number of other files.
 
-(let ((minver "24.3"))
+;;; Code:
+
+;; Produce backtraces when errors occur
+(setq debug-on-error t)
+
+(let ((minver "24.4"))
   (when (version< emacs-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
-(when (version< emacs-version "24.5")
+(when (version< emacs-version "25.1")
   (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
@@ -21,14 +27,13 @@
 (let ((normal-gc-cons-threshold (* 20 1024 1024))
       (init-gc-cons-threshold (* 128 1024 1024)))
   (setq gc-cons-threshold init-gc-cons-threshold)
-  (add-hook 'after-init-hook
+  (add-hook 'emacs-startup-hook
             (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
 ;;----------------------------------------------------------------------------
 ;; Bootstrap config
 ;;----------------------------------------------------------------------------
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(require 'init-compat)
 (require 'init-utils)
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
@@ -48,8 +53,6 @@
 (require-package 'diminish)
 (require-package 'scratch)
 (require-package 'command-log-mode)
-;;(require-package 'multi-eshell)
-(require 'lazy-set-key)
 
 (require 'init-frame-hooks)
 (require 'init-xterm)
@@ -67,20 +70,14 @@
 (require 'init-smex)
 (require 'init-ivy)
 
-(require 'init-auto-save)
 (require 'init-hippie-expand)
 (require 'init-company)
 (require 'init-windows)
 (require 'init-sessions)
-(when (display-graphic-p)
-  (require 'init-fonts))
-
 (require 'init-mmm)
-;;;(require 'init-w3m)
 
 (require 'init-editing-utils)
 (require 'init-whitespace)
-(require 'init-fci)
 
 (require 'init-vc)
 (require 'init-darcs)
@@ -143,13 +140,19 @@
   (maybe-require-package 'daemons))
 (maybe-require-package 'dotenv-mode)
 
+(when (maybe-require-package 'uptimes)
+  (setq-default uptimes-keep-count 200)
+  (add-hook 'after-init-hook (lambda () (require 'uptimes))))
+
+
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient
 ;;----------------------------------------------------------------------------
-(require 'server)
-(unless (server-running-p)
-  (server-start))
-
+(add-hook 'after-init-hook
+          (lambda ()
+            (require 'server)
+            (unless (server-running-p)
+              (server-start))))
 
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
@@ -159,80 +162,68 @@
 
 
 ;;----------------------------------------------------------------------------
+;; Locales (setting them earlier in this file doesn't work in X)
+;;----------------------------------------------------------------------------
+(require 'init-locales)
+
+
+;;----------------------------------------------------------------------------
 ;; Allow users to provide an optional "init-local" containing personal settings
 ;;----------------------------------------------------------------------------
 (require 'init-local nil t)
 
 
-;;----------------------------------------------------------------------------
-;; Locales (setting them earlier in this file doesn't work in X)
-;;----------------------------------------------------------------------------
-(require 'init-locales)
+;;---------------------------------------------------------------
+;; configure for savior only...
+;;----------------------------------------------------------------
 
-(when (maybe-require-package 'uptimes)
-  (add-hook 'after-init-hook (lambda () (require 'uptimes))))
+(require 'lazy-set-key)
+(require 'init-key)
 
 
 ;;---------------------------------------------------------------
-;;init key bounding
+;; configure for savior feature
 ;;----------------------------------------------------------------
 
-;;(require 'tabbar)
+(require 'init-backup)
+(require 'init-auto-save)
 
 
-;;(require 'init-mew)
-(require 'init-key)
+
 (require 'buffer-extension)
 
-(require 'init-backup)
-(require 'init-erc)
+
+;;(require 'init-erc)
+
+;;(require 'init-blog)
+
 
 
 
 ;;(require 'init-etags)
 
-(when *is-a-mac*
-  (setq save-interprogram-paste-before-kill nil))
 
+;;---------------------------------------------------------------
+;; configure for savior language feature
+;;----------------------------------------------------------------
 
+;;(require 'init-java)
+;;(require 'init-go)
+;;(require 'init-react)
 
 ;;---------------------------------------------------------------
 ;;testing feature
 ;;----------------------------------------------------------------
 
 
-(require 'init-blog)
-
-;;(require 'init-org2blog)
-;;(require 'init-ecb)
-;;(require 'init-doc-view)
-;;(require 'init-chm-view)
-
-;; (when *spell-check-support-enabled*
-;;  (require 'init-spelling))
 
 
 
-;;(require 'init-react)
-(require 'init-go)
 (require 'init-common-package)
 
-;;;(require 'init-webkit)
-;;(require 'init-eim)
-;;(require 'init-webqq)
-;;(require 'init-ppt)
-;;(require 'init-ediff)
-;;(require 'remote-emacsclient)
-;;(update-tramp-emacs-server-port-forward tramp-default-method)
-;;(require 'init-weibo)
-(require 'init-tabbar)
-;;(require 'init-helm)
-;;;(require 'init-company-mode)   ;;; maybe not use this configure
 
 
-(require 'eaf)
-(require 'init-java)
-;;(require 'init-evernote)
+;;(require 'eaf)
 
 
 (require 'init-enhance)
@@ -243,3 +234,4 @@
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
+;;; init.el ends here

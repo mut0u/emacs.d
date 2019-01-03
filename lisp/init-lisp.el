@@ -1,3 +1,7 @@
+;;; init-lisp.el --- Emacs lisp settings, and common config for other lisps -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (require-package 'elisp-slime-nav)
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'turn-on-elisp-slime-nav-mode))
@@ -127,7 +131,6 @@
 
 (defvar sanityinc/lispy-modes-hook
   '(enable-paredit-mode
-    turn-on-eldoc-mode
     sanityinc/enable-check-parens-on-save)
   "Hook run in all Lisp modes.")
 
@@ -160,11 +163,8 @@
 (dolist (hook (mapcar #'derived-mode-hook-name sanityinc/elispy-modes))
   (add-hook hook 'sanityinc/emacs-lisp-setup))
 
-(if (boundp 'eval-expression-minibuffer-setup-hook)
-    (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
-  (require-package 'eldoc-eval)
-  (require 'eldoc-eval)
-  (add-hook 'after-init-hook 'eldoc-in-minibuffer-mode))
+(when (boundp 'eval-expression-minibuffer-setup-hook)
+  (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode))
 
 (add-to-list 'auto-mode-alist '("\\.emacs-project\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("archive-contents\\'" . emacs-lisp-mode))
@@ -250,32 +250,9 @@
   (define-key ert-results-mode-map (kbd "g") 'ert-results-rerun-all-tests))
 
 
-(defun sanityinc/cl-libify-next ()
-  "Find next symbol from 'cl and replace it with the 'cl-lib equivalent."
-  (interactive)
-  (let ((case-fold-search nil))
-    (re-search-forward
-     (concat
-      "("
-      (regexp-opt
-       ;; Not an exhaustive list
-       '("loop" "incf" "plusp" "first" "decf" "minusp" "assert"
-         "case" "destructuring-bind" "second" "third" "defun*"
-         "defmacro*" "return-from" "labels" "cadar" "fourth"
-         "cadadr") t)
-      "\\_>")))
-  (let ((form (match-string 1)))
-    (backward-sexp)
-    (cond
-     ((string-match "^\\(defun\\|defmacro\\)\\*$")
-      (kill-sexp)
-      (insert (concat "cl-" (match-string 1))))
-     (t
-      (insert "cl-")))
-    (when (fboundp 'aggressive-indent-indent-defun)
-      (aggressive-indent-indent-defun))))
-
+(maybe-require-package 'cl-libify)
 
 (maybe-require-package 'cask-mode)
 
 (provide 'init-lisp)
+;;; init-lisp.el ends here

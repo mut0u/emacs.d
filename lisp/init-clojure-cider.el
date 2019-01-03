@@ -19,8 +19,7 @@
   (after-load 'clojure-mode
     (after-load 'cider
       (after-load 'flycheck
-        ;;(flycheck-clojure-setup)
-        ))))
+        (flycheck-clojure-setup)))))
 
 (defun michael/def ()
   (interactive)
@@ -76,3 +75,4 @@
   (define-key cider-repl-mode-map (kbd "C-c M-o") #'cider-repl-clear-buffer))
 
 (provide 'init-clojure-cider)
+;;; init-clojure-cider.el ends here

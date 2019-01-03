@@ -1,3 +1,7 @@
+;;; init-editing-utils.el --- Day-to-day editing helpers -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 ;; -*- lexical-binding: t -*-
 (require-package 'unfill)
 
@@ -38,13 +42,6 @@
 
 (add-hook 'after-init-hook 'transient-mark-mode)
 
-
-(when (maybe-require-package 'dynamic-spaces)
-  (dynamic-spaces-global-mode))
-
-;; do not ask configure
-(setq enable-local-variables :safe)
-(setq vc-follow-symlinks t)
 
 
 ;; Huge files
@@ -102,12 +99,6 @@
 
 (when (fboundp 'global-prettify-symbols-mode)
   (add-hook 'after-init-hook 'global-prettify-symbols-mode))
-
-
-(require-package 'undo-tree)
-(add-hook 'after-init-hook 'global-undo-tree-mode)
-(after-load 'undo-tree
-  (diminish 'undo-tree-mode))
 
 
 (when (maybe-require-package 'symbol-overlay)
@@ -251,16 +242,16 @@
 ;;----------------------------------------------------------------------------
 ;; Fix backward-up-list to understand quotes, see http://bit.ly/h7mdIL
 ;;----------------------------------------------------------------------------
-(defun backward-up-sexp (arg)
+(defun sanityinc/backward-up-sexp (arg)
   "Jump up to the start of the ARG'th enclosing sexp."
   (interactive "p")
   (let ((ppss (syntax-ppss)))
     (cond ((elt ppss 3)
            (goto-char (elt ppss 8))
-           (backward-up-sexp (1- arg)))
+           (sanityinc/backward-up-sexp (1- arg)))
           ((backward-up-list arg)))))
 
-(global-set-key [remap backward-up-list] 'backward-up-sexp) ; C-M-u, C-M-up
+(global-set-key [remap backward-up-list] 'sanityinc/backward-up-sexp) ; C-M-u, C-M-up
 
 
 ;;----------------------------------------------------------------------------
@@ -331,8 +322,8 @@ With arg N, insert N newlines."
 ;;----------------------------------------------------------------------------
 ;; Random line sorting
 ;;----------------------------------------------------------------------------
-(defun sort-lines-random (beg end)
-  "Sort lines in region randomly."
+(defun sanityinc/sort-lines-random (beg end)
+  "Sort lines in region from BEG to END randomly."
   (interactive "r")
   (save-excursion
     (save-restriction

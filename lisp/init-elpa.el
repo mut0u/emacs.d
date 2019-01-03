@@ -1,3 +1,7 @@
+;;; init-elpa.el --- Settings and helpers for package.el -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (require 'package)
 
 
@@ -27,6 +31,7 @@
 ;; We include the org repository for completeness, but don't normally
 ;; use it.
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+
 
 
 
@@ -111,3 +116,4 @@ locate PACKAGE."
 
 
 (provide 'init-elpa)
+;;; init-elpa.el ends here

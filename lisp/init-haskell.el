@@ -1,3 +1,7 @@
+;;; init-haskell.el --- Support the Haskell language -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (require-package 'haskell-mode)
 
 
@@ -15,7 +19,6 @@
     ;; Don't clobber sanityinc/counsel-search-project binding
     (define-key intero-mode-map (kbd "M-?") nil)
     (define-key intero-mode-map (kbd "C-c C-k") 'intero-repl-load)
-
     (after-load 'flycheck
       (flycheck-add-next-checker 'intero
                                  '(warning . haskell-hlint)))))

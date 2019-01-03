@@ -1,3 +1,7 @@
+;;; init-gui-frames.el --- Behaviour specific to non-TTY frames -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 ;;----------------------------------------------------------------------------
 ;; Stop C-z from minimizing windows under OS X
 ;;----------------------------------------------------------------------------
@@ -36,9 +40,6 @@
                                          1 0))))
   (when (fboundp 'menu-bar-mode)
     (menu-bar-mode -1)))
-
-(when (fboundp 'pixel-scroll-mode)
-  (pixel-scroll-mode 1))
 
 (let ((no-border '(internal-border-width . 0)))
   (add-to-list 'default-frame-alist no-border)
@@ -95,3 +96,4 @@
 
 
 (provide 'init-gui-frames)
+;;; init-gui-frames.el ends here

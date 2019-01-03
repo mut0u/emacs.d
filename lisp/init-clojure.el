@@ -1,3 +1,7 @@
+;;; init-clojure.el --- Clojure support -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 ;; See also init-clojure-cider.el
 
 (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
@@ -24,3 +28,4 @@
   '(push 'clojure-mode page-break-lines-modes))
 
 (provide 'init-clojure)
+;;; init-clojure.el ends here
