@@ -1,6 +1,7 @@
 ;;;
+
 (require 'awesome-tray)
-(awesome-tray-mode 1)
+(awesome-tray-mode t)
 
 
 (global-disable-mouse-mode)
