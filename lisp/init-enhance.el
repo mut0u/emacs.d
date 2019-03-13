@@ -1,9 +1,4 @@
 ;;;
-
-(require 'awesome-tray)
-(awesome-tray-mode t)
-
-
 (global-disable-mouse-mode)
 
 
@@ -15,6 +10,11 @@
 
 (require 'youdao-dictionary)
 (global-set-key (kbd "<f8>") 'youdao-dictionary-search-at-point+)
+
+
+
+(require 'awesome-tray)
+(awesome-tray-mode t)
 
 
 (provide 'init-enhance)

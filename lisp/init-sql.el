@@ -31,7 +31,7 @@ Fix for the above hasn't been released as of Emacs 25.2."
   (when (package-installed-p 'dash-at-point)
     (defun sanityinc/maybe-set-dash-db-docset (&rest _)
       (when (eq sql-product 'postgres)
-        (set (make-local-variable 'dash-at-point-docset) "psql")))
+        (setq-local dash-at-point-docset "psql")))
 
     (add-hook 'sql-mode-hook 'sanityinc/maybe-set-dash-db-docset)
     (add-hook 'sql-interactive-mode-hook 'sanityinc/maybe-set-dash-db-docset)
@@ -48,7 +48,8 @@ Fix for the above hasn't been released as of Emacs 25.2."
 
 
 (require-package 'sqlformat)
-(add-hook 'sql-mode-hook 'sqlformat-mode)
+(after-load 'sql
+  (define-key sql-mode-map (kbd "C-c C-f") 'sqlformat))
 
 (maybe-require-package 'sqlup-mode)
 (add-hook 'sql-mode-hook 'sqlup-mode)
