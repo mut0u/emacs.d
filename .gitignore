@@ -64,3 +64,6 @@ meghanada/
 plantuml.jar
 projectile-bookmarks.eld
 recentf
+transient/
+anaconda-mode/
+forge-database.sqlite
