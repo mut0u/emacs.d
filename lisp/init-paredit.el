@@ -3,13 +3,22 @@
 ;;; Code:
 
 (require-package 'paredit)
+(require 'awesome-pair)
 
 (defun maybe-map-paredit-newline ()
-  (unless (or (memq major-mode '(inferior-emacs-lisp-mode cider-repl-mode))
+  (unless (or (memq major-mode '(inferior-emacs-lisp-mode cider-repl-mode python-mode))
               (minibufferp))
     (local-set-key (kbd "RET") 'paredit-newline)))
 
+(defun maybe-map-paredit-new-key ()
+  (when (memq major-mode '(python-mode))
+    (message "hello##")
+    (define-key paredit-mode-map (read-kbd-macro "(") 'awesome-pair-open-round)
+    (define-key paredit-mode-map (kbd "DEL") 'awesome-pair-backward-delete)
+    (local-set-key (kbd "DEL") 'awesome-pair-backward-delete)))
+
 (add-hook 'paredit-mode-hook 'maybe-map-paredit-newline)
+(add-hook 'paredit-mode-hook 'maybe-map-paredit-new-key)
 
 (after-load 'paredit
   (diminish 'paredit-mode " Par")
@@ -50,52 +59,23 @@
   (define-key paredit-everywhere-mode-map (kbd "M-s") nil))
 (add-hook 'prog-mode-hook 'paredit-everywhere-mode)
 
-(require 'awesome-pair)
 ;; remove ( with paredit when python
-(add-hook 'python-mode (lambda ()
-                         (when paredit-everywhere-mode
-                           (define-key paredit-everywhere-mode-map (kbd "(") nil)
-                           (define-key paredit-mode-map (kbd "RET") nil))
-                         (when paredit-mode
-                           (define-key paredit-mode-map (kbd "(") nil)
-                           (define-key paredit-mode-map (kbd "RET") nil))))
-
-
-(add-hook 'golang-mode (lambda ()
-                         (when paredit-everywhere-mode
-                           (define-key paredit-everywhere-mode-map (kbd "(") nil)
-                           (define-key paredit-mode-map (kbd "RET") nil))
-                         (when paredit-mode
-                           (define-key paredit-mode-map (kbd "(") nil)
-                           (define-key paredit-mode-map (kbd "RET") nil))))
-
 
 (dolist (hook (list
                'c-mode-common-hook
                'c-mode-hook
                'c++-mode-hook
-               'java-mode-hook
                'haskell-mode-hook
                'emacs-lisp-mode-hook
                'lisp-interaction-mode-hook
                'lisp-mode-hook
-               'maxima-mode-hook
                'ielm-mode-hook
                'sh-mode-hook
-               'makefile-gmake-mode-hook
-               'php-mode-hook
                'python-mode-hook
                'js-mode-hook
                'go-mode-hook
-               'qml-mode-hook
-               'jade-mode-hook
-               'css-mode-hook
-               'ruby-mode-hook
-               'coffee-mode-hook
                'rust-mode-hook
                'qmake-mode-hook
-               'lua-mode-hook
-               'swift-mode-hook
                'minibuffer-inactive-mode-hook
                ))
   (add-hook hook '(lambda () (awesome-pair-mode 1))))
