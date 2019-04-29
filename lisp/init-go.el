@@ -20,6 +20,23 @@
 ;;(define-key 'help-command (kbd "G") 'godoc)
 
 
+
+;;;; this is just hack the go test function, because it has not update the package recently.
+(defun go-test-current-test-verbose ()
+  "Launch go test on the current test."
+  (interactive)
+  (cl-destructuring-bind (test-suite test-name) (go-test--get-current-test-info)
+    (let ((test-flag (if (> (length test-suite) 0) "-m " "-run "))
+          (additional-arguments (if go-test-additional-arguments-function
+                                    (funcall go-test-additional-arguments-function
+                                             test-suite test-name) "")))
+      (when test-name
+        (if (go-test--is-gb-project)
+            (go-test--gb-start (s-concat "-test.v=true -test.run=" test-name "\\$ ."))
+          (go-test--go-test (s-concat test-flag test-name additional-arguments "\\$ -v .")))))))
+
+
+
 (defun go-test-generate-code()
   (interactive)
   (let ((buf (get-buffer-create "*Gotests patch*"))
@@ -48,7 +65,7 @@
     (define-key map (kbd "C-c C-f") 'gofmt)
     (define-key map (kbd "C-c a") 'go-test-current-project) ;; current package, really
     (define-key map (kbd "C-c m") 'go-test-current-file)
-    (define-key map (kbd "C-c .") 'go-test-current-test)
+    (define-key map (kbd "C-c .") 'go-test-current-test-verbose)
     (define-key map (kbd "C-c c") 'compile)
     (define-key go-mode-map (kbd "C-c C-e") #'go-gopath-set-gopath)
     (define-key map (kbd "M-.") 'godef-jump)

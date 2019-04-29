@@ -6,7 +6,7 @@
 ;;(require 'aweshell)
 (require 'awesome-tab)
 (awesome-tab-mode t)
-
+(setq awesome-tab-style "bar")
 
 (require 'youdao-dictionary)
 (global-set-key (kbd "<f8>") 'youdao-dictionary-search-at-point+)
