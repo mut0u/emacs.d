@@ -1,6 +1,10 @@
 ;;;
 (global-disable-mouse-mode)
 
+;;;(require 'lazycat-theme)
+
+(require 'awesome-tray)
+(awesome-tray-mode 1)
 
 (require 'thing-edit)
 ;;(require 'aweshell)
@@ -14,10 +18,6 @@
 (add-hook 'kill-emacs-query-functions
           (lambda () (y-or-n-p "Do you really want to exit Emacs? "))
           'append)
-
-(require 'awesome-tray)
-(awesome-tray-mode t)
-
 
 (defun michael-enhance ()
   "I am not sure the tray mode why ..."

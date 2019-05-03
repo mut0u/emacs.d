@@ -1089,7 +1089,7 @@ If PREFIX is non-nil, will view page after post successful."
   (set-buffer post-buffer)
   ;; Try to save file before post.
   (when buffer-file-name
-    (flet ((message (&rest args)))
+    (cl-flet ((message (&rest args)))
       (basic-save-buffer)))
   ;; Post page.
   (yaoddmuse-post yaoddmuse-wikiname
@@ -1442,7 +1442,7 @@ HANDLE-FUNCTION is function that handle download content."
     (with-current-buffer (get-buffer retrieve-buffer-name)
       (setq table (mapcar 'list (split-string (buffer-string))))
       (puthash wikiname table yaoddmuse-pages-hash)
-      (kill-buffer (current-buffer))    ;in 22, must have argument with kill-buffer
+      (kill-buffer (current-buffer)) ;in 22, must have argument with kill-buffer
       )
     ;; Add special action.
     (when (and (fboundp handle-function)
@@ -1523,12 +1523,12 @@ PAGENAME is page name for post."
   "Adjust page content."
   (goto-char (point-min))
   (save-excursion
-    (cond ( ;; If got new page.
+    (cond (;; If got new page.
            (looking-at "\\`This page does not exist")
            ;; Adjust string when got new page.
            (erase-buffer)
            (insert "This page does not exist, you can create it now. :)"))
-          ( ;; If got image page and option `yaoddmuse-transform-image' is non-nil.
+          (;; If got image page and option `yaoddmuse-transform-image' is non-nil.
            (and (looking-at "\\`#FILE image/\\(png\\|jpeg\\)$")
                 yaoddmuse-transform-image)
            ;; Transform image content.

@@ -592,7 +592,7 @@ SUBEXP is sub-expression number for regexp match."
         ;; sexp not last sexp of line.
         (forward-list)                  ;Move to after of ")"
         (unless (or (elisp-format-last-sexp-of-line-p))
-          (newline))                    ;Newline when not last sexp of line.
+          (newline))              ;Newline when not last sexp of line.
         )
       ;; Jump to end position of match keyword,
       ;; for continue search next keyword.

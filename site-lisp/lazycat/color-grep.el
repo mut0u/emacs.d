@@ -61,7 +61,7 @@
 (make-variable-buffer-local 'color-grep-buffer-list)
 
 (defadvice compilation-start
-  (before kill-buffer-by-color-grep activate)
+    (before kill-buffer-by-color-grep activate)
   (let* ((cmode
           (or (ad-get-arg 1)
               'compilation-mode))
@@ -178,4 +178,3 @@
   (color-grep-next (- arg)))
 
 (provide 'color-grep)
-

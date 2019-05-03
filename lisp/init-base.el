@@ -10,7 +10,7 @@
 ;;有道词典
 (require-package 'youdao-dictionary)
 
-
+(require-package 'sudo-edit)            ;安装sudo edit.
 (show-paren-mode t)                     ;显示括号匹配
 
 ;(add-hook 'find-file-hook 'highlight-parentheses-mode t)  ;增强的括号高亮 should only available the C mode

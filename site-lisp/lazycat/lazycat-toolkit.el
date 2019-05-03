@@ -17,7 +17,7 @@
 ;;
 ;; `mwe-log-commands' `ecb'
 ;; `shell-command-extension'
-;; `ascii' `windows' `color-moccur'
+;; `ascii' `windows'
 ;; `cycle-buffer' `basic-toolkit'
 ;;
 
@@ -91,7 +91,6 @@
 ;;; Require
 (require 'mwe-log-commands)
 (require 'shell-command-extension)
-(require 'color-moccur)
 (require 'basic-toolkit)
 
 ;;; Code:
@@ -187,20 +186,6 @@
   "Insert changelog date, like yyyy/mm/dd."
   (interactive)
   (insert (format-time-string "%Y/%m/%d")))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Notes create and search ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun notes-search(str)
-  "Notes search"
-  (interactive
-   (list
-    (moccur-grep-read-regexp moccur-grep-default-mask)))
-  (moccur-grep-find my-notes-directory str))
-
-(defun notes-new (str)
-  "Create a new notes."
-  (interactive "sNotes name: ")
-  (find-file (concat my-notes-directory str ".org")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Single functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -638,19 +623,6 @@ Otherwise, use the value of said variable as argument to a funcall."
     (narrow-to-region start end)
     (goto-char (point-min))
     (shrink-window-if-larger-than-buffer)))
-
-(defun goto-line-with-feedback ()
-  "Show line numbers temporarily, while prompting for the line number input.
-This function will detect current linum-mode status, it won't disable linum-mode if current buffer has enable it."
-  (interactive)
-  (let ((linum-mode-p linum-mode))
-    (unwind-protect
-        (progn
-          (linum-mode 1)
-          (goto-line (read-number "Goto line: ")))
-      (unless linum-mode-p
-        (linum-mode -1))
-      )))
 
 (provide 'lazycat-toolkit)
 

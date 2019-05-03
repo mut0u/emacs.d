@@ -2,13 +2,13 @@
 
 ;; Author: Andy Stewart lazycat.manatee@gmail.com
 ;; Maintainer: Andy Stewart lazycat.manatee@gmail.com
-;; Copyright (C) 2008, 2009, Andy Stewart, all rights reserved.
+;; Copyright (C) 2008 ~ 2016, Andy Stewart, all rights reserved.
 ;; Created: 2008-10-11 22:57:07
-;; Version: 0.1
-;; Last-Updated: 2008-10-11 22:57:11
+;; Version: 0.3
+;; Last-Updated: 2018-07-02 17:30:09
 ;; URL:
 ;; Keywords: dired
-;; Compatibility: GNU Emacs 23.0.60.1
+;; Compatibility: GNU Emacs 27.0.50
 
 ;; This file is not part of GNU Emacs
 
@@ -63,8 +63,18 @@
 
 ;;; Change log:
 ;;
+;; 2016/07/02
+;;      * Move function `file-binary-p' to `moccur-extension.el'
+;;
+;; 2016/06/29
+;;      * Move moccur function to `moccur-extension.el'.
+;;
+;; 2016/6/6
+;;      * Build new function `moccur-grep-find-without-binary-files' that make `moccur-grep-find-pwd' remove binary files from search result.
+;;        I hate cross binary files in moccur search result.
+;;
 ;; 2008/10/11
-;;      First released.
+;;      * First released.
 ;;
 
 ;;; Acknowledgements:
@@ -78,8 +88,6 @@
 ;;
 
 ;;; Require
-
-(require 'color-moccur)
 
 ;;; Code:
 (defvar my-dired-omit-status t
@@ -302,11 +310,6 @@ See also file-name-directory and file-name-nondirectory.."
   "Find files in DIR, matching REGEXP."
   (interactive "sMatching regexp: ")
   (find-lisp-find-dired default-directory regexp))
-
-(defun moccur-grep-find-pwd (inputs)
-  (interactive
-   (list (moccur-grep-read-regexp moccur-grep-default-mask)))
-  (moccur-grep-find default-directory inputs))
 
 (provide 'dired-extension)
 ;;; dired-extension.el ends here

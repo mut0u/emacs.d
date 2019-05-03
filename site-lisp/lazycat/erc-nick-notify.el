@@ -6,8 +6,8 @@
 ;; Maintainer: Andy Stewart lazycat.manatee@gmail.com
 ;; Copyright (C) 2008, 2009, Andy Stewart, all rights reserved.
 ;; Created: 2008-12-04 12:47:28
-;; Version: 0.2.1
-;; Last-Updated: 2009-01-31 10:47:32
+;; Version: 0.3
+;; Last-Updated: 2018-09-16 21:27:34
 ;;           By: Andy Stewart
 ;; URL: http://www.emacswiki.org/emacs/download/erc-nick-notify.el
 ;; Keywords: erc, notify
@@ -79,17 +79,20 @@
 
 ;;; Change log:
 ;;
+;; 2019/09/16
+;;      * Support MacOS now.
+;;
 ;; 2009/01/31
-;;      Fix doc.
+;;      * Fix doc.
 ;;
 ;; 2008/12/21
-;;      Fix `void-variable' bug.
+;;      * Fix `void-variable' bug.
 ;;
 ;; 2008/12/08
-;;      Add customize support.
+;;      * Add customize support.
 ;;
 ;; 2008/12/04
-;;      First released.
+;;      * First released.
 ;;
 
 ;;; Acknowledgements:
@@ -119,27 +122,37 @@ Default is 5 minutes."
   :group 'erc-nick-notify)
 
 (defcustom erc-nick-notify-cmd "notify-send"
-  "The command that use for notify."
+  "The command that use for notify.
+
+This option just for linux, MacOS user don't need this."
   :type 'string
   :group 'erc-nick-notify)
 
 (defcustom erc-nick-notify-icon "/usr/share/deepin-emacs/Image/Irc.png"
-  "Specifies an icon filename or stock icon to display."
+  "Specifies an icon filename or stock icon to display.
+
+This option just for linux, MacOS user don't need this."
   :type 'string
   :group 'erc-nick-notify)
 
 (defcustom erc-nick-notify-timeout 10000
-  "Specifies the timeout in milliseconds at which to expire the notification."
+  "Specifies the timeout in milliseconds at which to expire the notification.
+
+This option just for linux, MacOS user don't need this."
   :type 'number
   :group 'erc-nick-notify)
 
 (defcustom erc-nick-notify-urgency "low"
-  "Specifies the urgency level (low, normal, critical)."
+  "Specifies the urgency level (low, normal, critical).
+
+This option just for linux, MacOS user don't need this."
   :type 'string
   :group 'erc-nick-notify)
 
 (defcustom erc-nick-notify-category "im.received"
-  "Specifies the notification category."
+  "Specifies the notification category.
+
+This option just for linux, MacOS user don't need this."
   :type 'string
   :group 'erc-nick-notify)
 
@@ -182,18 +195,22 @@ This function should be in the insert-post-hook."
                               "&gt;</b> "))
                     (match-string-no-properties 5))))
           (setq erc-nick-notify-buffer (buffer-name))
-          (shell-command (concat erc-nick-notify-cmd
-                                 " -i " erc-nick-notify-icon
-                                 " -t " (int-to-string
-                                         erc-nick-notify-timeout)
-                                 " -u " erc-nick-notify-urgency
-                                 " -c " erc-nick-notify-category
-                                 " -- "
-                                 " \"" erc-nick-notify-buffer "\""
-                                 " \""
-                                 (if (boundp 'msg)
-                                     msg "")
-                                 "\"")))))))
+          (if (featurep 'cocoa)
+              (ns-do-applescript (format "display notification \"%s: %s\""
+                                         (match-string-no-properties 2)
+                                         (match-string-no-properties 5)))
+            (shell-command (concat erc-nick-notify-cmd
+                                   " -i " erc-nick-notify-icon
+                                   " -t " (int-to-string
+                                           erc-nick-notify-timeout)
+                                   " -u " erc-nick-notify-urgency
+                                   " -c " erc-nick-notify-category
+                                   " -- "
+                                   " \"" erc-nick-notify-buffer "\""
+                                   " \""
+                                   (if (boundp 'msg)
+                                       msg "")
+                                   "\""))))))))
 
 ;; Add `erc-nick-notify' to `erc-insert-post-hook'
 (add-hook 'erc-insert-post-hook 'erc-nick-notify)

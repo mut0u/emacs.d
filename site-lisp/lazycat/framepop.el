@@ -32,7 +32,7 @@
 ;; 1. PURPOSE
 
 ;; Defines temp-buffer-show-function to display buffers in a dedicated
-;; temporary frame (and so requires a display which can accomodate
+;; temporary frame (and so requires a display which can accommodate
 ;; separate frames). The frame is automatically shrink-wrapped to just
 ;; contain the buffer (restricted to a maximum and minimum
 ;; size). Buffers thus affected include *Help*, completion buffers and
@@ -126,7 +126,7 @@
 ;; will not be displayed in the framepop-frame by default.
 ;;
 ;; You may set the variable `framepop-auto-resize' to t to have the
-;; FramePop frame automatically resize to accomodate buffers which
+;; FramePop frame automatically resize to accommodate buffers which
 ;; change size. If you do not, initially empty buffers (which are
 ;; likely to grow) get a FramePop frame of full size.
 
@@ -288,7 +288,7 @@ This prevents excessive frame recreations on slow displays."
   "^\\\\*grep\\\\*$\\|\\\\*[Cc]ompilation\\\\*$"
   "Regexp matching buffer names that are likely to grow from empty.
 When `framepop-auto-resize' is nil, buffers with names matching this regexp
-are given a framepop frame of maximal size, to accomodate the data which
+are given a framepop frame of maximal size, to accommodate the data which
 is soon to appear."
   :group 'framepop
   :type 'regexp)
@@ -484,7 +484,7 @@ However, returns nil for buffers in `framepop-do-not-display-list'."
 ;;; User commands
 
 (defun framepop-resize-frame (&optional buf height)
-  "Resize the framepop frame to accomodate buffer BUF.
+  "Resize the framepop frame to accommodate buffer BUF.
 BUF defaults to the buffer displayed in the framepop frame
 If HEIGHT is non-nil, BUF is ignored and the frame is given height."
   (interactive)

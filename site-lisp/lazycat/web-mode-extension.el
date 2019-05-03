@@ -4,14 +4,14 @@
 ;; Description: Extension for web-mode
 ;; Author: Andy Stewart <lazycat.manatee@gmail.com>
 ;; Maintainer: Andy Stewart <lazycat.manatee@gmail.com>
-;; Copyright (C) 2014, Andy Stewart, all rights reserved.
+;; Copyright (C) 2014 ~ 2018 Andy Stewart, all rights reserved.
 ;; Created: 2014-03-14 21:45:07
-;; Version: 0.1
-;; Last-Updated: 2014-03-16 17:10:13
+;; Version: 0.2
+;; Last-Updated: 2018-07-05 22:31:04
 ;;           By: Andy Stewart
 ;; URL: http://www.emacswiki.org/emacs/download/web-mode-extension.el
 ;; Keywords:
-;; Compatibility: GNU Emacs 24.3.50.1
+;; Compatibility: GNU Emacs 23.0.60.1 ~ GNU Emacs 27.0.50
 ;;
 ;; Features that might be required by this library:
 ;;
@@ -65,6 +65,9 @@
 
 ;;; Change log:
 ;;
+;; 2018/07/05
+;;      * Fix `web-mode-element-unwrap' error cause by `web-mode-element-vanish'.
+;;
 ;; 2014/03/16
 ;;      * Add `web-mode-element-unwrap'.
 ;;
@@ -88,15 +91,6 @@
 (require 'sgml-mode)
 
 ;;; Code:
-
-(defun web-mode-match-paren (arg)
-  "Go to the matching tag if on tag, otherwise insert %."
-  (interactive "p")
-  (cond ((looking-at "<")
-         (sgml-skip-tag-forward 1))
-        ((looking-back ">")
-         (sgml-skip-tag-backward 1))
-        (t (self-insert-command (or arg 1)))))
 
 (defun web-mode-element-wrap+ ()
   "Like `web-mode-element-wrap', but jump after tag for continue edit."
@@ -134,7 +128,7 @@ Just like `paredit-splice-sexp+' style."
   (interactive)
   (save-excursion
     (web-mode-element-parent)
-    (web-mode-element-vanish)
+    (web-mode-element-vanish 1)
     (back-to-indentation)
     ))
 

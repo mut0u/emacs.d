@@ -4,10 +4,10 @@
 ;; Description: Basic edit toolkit.
 ;; Author: Andy Stewart <lazycat.manatee@gmail.com>
 ;; Maintainer: Andy Stewart <lazycat.manatee@gmail.com>
-;; Copyright (C) 2009, Andy Stewart, all rights reserved.
+;; Copyright (C) 2009 ~ 2018 Andy Stewart, all rights reserved.
 ;; Created: 2009-02-07 20:56:08
-;; Version: 0.1
-;; Last-Updated: 2009-02-07 20:56:08
+;; Version: 0.7
+;; Last-Updated: 2018-08-26 03:01:43
 ;;           By: Andy Stewart
 ;; URL: http://www.emacswiki.org/emacs/download/basic-toolkit.el
 ;; Keywords: edit, toolkit
@@ -59,6 +59,16 @@
 
 ;;; Change log:
 ;;
+;; 2018/08/26
+;;      * Add function `goto-line-with-feedback', use `display-line-numbers-mode' instead `linum-mode', for better performance.
+;;      * `match-paren' should instead by `paredit-match-paren' by `paredit-extension.el'.
+;;
+;; 2018/07/13
+;;      * Add `css-sort-buffer' for sort css attributable before format css buffer.
+;;
+;; 2018/06/14
+;;      * Add function `kill-unused-buffers'
+;;
 ;; 2009/02/07
 ;;      * First released.
 ;;
@@ -77,7 +87,7 @@
 
 (require 'windows)
 (require 'cycle-buffer)
-(require 'tramp)
+(require 'display-line-numbers)
 
 ;;; Code:
 
@@ -104,25 +114,6 @@ The test for presence of the car of ELT-CONS is done with `equal'."
             (rplacd existing-element (cdr elt-cons)))
       (set alist-var (cons elt-cons (symbol-value alist-var)))))
   (symbol-value alist-var))
-
-(defun open-newline-above (arg)
-  "Move to the previous line (like vi) and then opens a line."
-  (interactive "p")
-  (beginning-of-line)
-  (open-line arg)
-  (if (not (member major-mode '(haskell-mode org-mode literate-haskell-mode)))
-      (indent-according-to-mode)
-    (beginning-of-line)))
-
-(defun open-newline-below (arg)
-  "Move to the next line (like vi) and then opens a line."
-  (interactive "p")
-  (end-of-line)
-  (open-line arg)
-  (call-interactively 'next-line arg)
-  (if (not (member major-mode '(haskell-mode org-mode literate-haskell-mode)))
-      (indent-according-to-mode)
-    (beginning-of-line)))
 
 (defun insert-line-number (beg end &optional start-line)
   "Insert line numbers into buffer."
@@ -163,16 +154,16 @@ if not select any area, then strip all line number of buffer."
   "Strip all string that match REGULAR-EXPRESSION in select area of buffer.
 If not select any area, then strip current buffer"
   (interactive)
-  (let ((begin (point-min))             ;initialization make select all buffer
+  (let ((begin (point-min))     ;initialization make select all buffer
         (end (point-max)))
-    (if mark-active                     ;if have select some area of buffer, then strip this area
+    (if mark-active ;if have select some area of buffer, then strip this area
         (setq begin (region-beginning)
               end (region-end)))
-    (save-excursion                                              ;save position
-      (goto-char end)                                            ;goto end position
-      (while (and (> (point) begin)                              ;when above beginning position
+    (save-excursion                     ;save position
+      (goto-char end)                   ;goto end position
+      (while (and (> (point) begin)     ;when above beginning position
                   (re-search-backward regular-expression nil t)) ;and find string that match regular expression
-        (replace-match "" t t)))))                               ;replace target string with null
+        (replace-match "" t t)))))    ;replace target string with null
 
 (defun comment-part-move-up (n)
   "Move comment part up."
@@ -223,30 +214,12 @@ If not select any area, then strip current buffer"
         (forward-line (- n))
         (if cmt-another (comment-indent))))))
 
-(defun comment-copy (arg)
-  "Copy the first comment on this line, if any.
-With prefix ARG, copy comments on that many lines starting with this one."
-  (interactive "P")
-  (comment-normalize-vars)
-  (dotimes (_ (prefix-numeric-value arg))
-    (save-excursion
-      (beginning-of-line)
-      (let ((cs (comment-search-forward (line-end-position) t)))
-        (when cs
-          (goto-char cs)
-          (skip-syntax-backward " ")
-          (setq cs (point))
-          (comment-forward)
-          (kill-ring-save cs (if (bolp) (1- (point)) (point)))
-          (indent-according-to-mode))))
-    (if arg (forward-line 1))))
-
 (defun comment-paste ()
   "Paste comment part of current line.
 If have return comment, otherwise return nil."
   (let (cs ce cmt)
     (setq cs (comment-on-line-p))
-    (if cs                              ;If have comment start position
+    (if cs                             ;If have comment start position
         (progn
           (goto-char cs)
           (skip-syntax-backward " ")
@@ -254,8 +227,8 @@ If have return comment, otherwise return nil."
           (comment-forward)
           (setq ce (if (bolp) (1- (point)) (point))) ;get comment end position
           (setq cmt (buffer-substring cs ce))        ;get comment
-          (kill-region cs ce)                        ;kill region between comment start and end
-          (goto-char cs)                             ;revert position
+          (kill-region cs ce) ;kill region between comment start and end
+          (goto-char cs)      ;revert position
           cmt)
       nil)))
 
@@ -304,86 +277,6 @@ Optional argument REVERSED default is move next line, if reversed is non-nil mov
           (comment-indent)
         (goto-char end)))))
 
-(defun duplicate-line-or-region-above (&optional reverse)
-  "Duplicate current line or region above.
-By default, duplicate current line above.
-If mark is activate, duplicate region lines above.
-Default duplicate above, unless option REVERSE is non-nil."
-  (interactive)
-  (let ((origianl-column (current-column))
-        duplicate-content)
-    (if mark-active
-        ;; If mark active.
-        (let ((region-start-pos (region-beginning))
-              (region-end-pos (region-end)))
-          ;; Set duplicate start line position.
-          (setq region-start-pos (progn
-                                   (goto-char region-start-pos)
-                                   (line-beginning-position)))
-          ;; Set duplicate end line position.
-          (setq region-end-pos (progn
-                                 (goto-char region-end-pos)
-                                 (line-end-position)))
-          ;; Get duplicate content.
-          (setq duplicate-content (buffer-substring region-start-pos region-end-pos))
-          (if reverse
-              ;; Go to next line after duplicate end position.
-              (progn
-                (goto-char region-end-pos)
-                (forward-line +1))
-            ;; Otherwise go to duplicate start position.
-            (goto-char region-start-pos)))
-      ;; Otherwise set duplicate content equal current line.
-      (setq duplicate-content (buffer-substring
-                               (line-beginning-position)
-                               (line-end-position)))
-      ;; Just move next line when `reverse' is non-nil.
-      (and reverse (forward-line 1))
-      ;; Move to beginning of line.
-      (beginning-of-line))
-    ;; Open one line.
-    (open-line 1)
-    ;; Insert duplicate content and revert column.
-    (insert duplicate-content)
-    (move-to-column origianl-column t)))
-
-(defun duplicate-line-or-region-below ()
-  "Duplicate current line or region below.
-By default, duplicate current line below.
-If mark is activate, duplicate region lines below."
-  (interactive)
-  (duplicate-line-or-region-above t))
-
-(defun duplicate-line-above-comment (&optional reverse)
-  "Duplicate current line above, and comment current line."
-  (interactive)
-  (if reverse
-      (duplicate-line-or-region-below)
-    (duplicate-line-or-region-above))
-  (save-excursion
-    (if reverse
-        (forward-line -1)
-      (forward-line +1))
-    (comment-or-uncomment-region+)))
-
-(defun duplicate-line-below-comment ()
-  "Duplicate current line below, and comment current line."
-  (interactive)
-  (duplicate-line-above-comment t))
-
-(defun comment-or-uncomment-region+ ()
-  "This function is to comment or uncomment a line or a region."
-  (interactive)
-  (let (beg end)
-    (if mark-active
-        (progn
-          (setq beg (region-beginning))
-          (setq end (region-end)))
-      (setq beg (line-beginning-position))
-      (setq end (line-end-position)))
-    (save-excursion
-      (comment-or-uncomment-region beg end))))
-
 (defun upcase-char (arg)
   "Uppercase for character."
   (interactive "P")
@@ -402,7 +295,7 @@ If mark is activate, duplicate region lines below."
   (let ((arg (or arg 1))
         (inc (if (and arg (< arg 0)) 1 -1))
         (opoint (point)))
-    (while (or                          ;(not (= arg 0)) ;; This condition is implied.
+    (while (or          ;(not (= arg 0)) ;; This condition is implied.
             (and (> arg 0) (not (eobp)))
             (and (< arg 0) (not (bobp))))
       (if (> arg 0)
@@ -509,15 +402,6 @@ Argument STRING the string that need pretty."
   (while (not (bolp))
     (call-interactively 'backward-button)))
 
-(defun match-paren (arg)
-  "Go to the matching parenthesis if on parenthesis, otherwise insert %."
-  (interactive "p")
-  (cond ((looking-at "\\s\(\\|\\s\{\\|\\s\[")
-         (forward-list))
-        ((looking-back "\\s\)\\|\\s\}\\|\\s\\]")
-         (backward-list))
-        (t (self-insert-command (or arg 1)))))
-
 (defun goto-column (number)
   "Untabify, and go to a column NUMBER within the current line (0 is beginning of the line)."
   (interactive "nColumn number: ")
@@ -537,54 +421,6 @@ Otherwise return nil."
                    (back-to-indentation)
                    (point))))
       nil)))
-
-(defun zap-back-to-char (arg char)
-  "No need to enter C-- to zap back."
-  (interactive "p\ncZap back to char: ")
-  (zap-to-char (- arg) char))
-
-(defun region-or-buffer-limits ()
-  "Return the start and end of the region as a list, smallest first.
-If the region is not active or empty, then bob and eob are used."
-  (if (or (not mark-active) (null (mark)) (= (point) (mark)))
-      (list (point-min) (point-max))
-    (if (< (point) (mark)) (list (point) (mark)) (list (mark) (point)))))
-
-(defun goto-longest-line (beg end)
-  "Goto the longest line of current buffer."
-  (interactive `,(region-or-buffer-limits))
-  (when (= beg end) (error "The buffer is empty"))
-  (when (eq this-command last-command) (forward-line 1) (setq beg (point)))
-  (goto-char beg)
-  (let* ((start-line (line-number-at-pos))
-         (max-width 0)
-         (line start-line)
-         long-lines col)
-    (when (eobp) (error "End of buffer"))
-    (while (and (not (eobp)) (or (not mark-active) (< (point) end)))
-      (end-of-line)
-      (setq col (current-column))
-      (when (>= col max-width)
-        (if (= col max-width)
-            (setq long-lines (cons line long-lines))
-          (setq long-lines (list line)))
-        (setq max-width col))
-      (forward-line 1)
-      (setq line (1+ line)))
-    (setq long-lines (nreverse long-lines))
-    (let ((lines long-lines))
-      (while (and lines (> start-line (car lines))) (pop lines))
-      (goto-line (or (car lines) start-line)))
-    (when (interactive-p)
-      (let ((others (cdr long-lines)))
-        (message
-         "Line %d: %d chars%s (%d lines measured)"
-         (car long-lines) max-width
-         (concat (and others (format ", Others: {%s}"
-                                     (mapconcat (lambda (line) (format "%d" line))
-                                                (cdr long-lines) ", "))))
-         (- line start-line))))
-    (list (car long-lines) max-width (cdr long-lines) (- line start-line))))
 
 (defun current-line-move-to-top()
   "Move current line to top of buffer."
@@ -690,16 +526,6 @@ use function `completion-delete'."
   (interactive)
   (scroll-down 1))
 
-(defun scroll-other-window-up-line ()
-  "Scroll other window up one line."
-  (interactive)
-  (scroll-other-window 1))
-
-(defun scroll-other-window-down-line ()
-  "Scroll other window line down."
-  (interactive)
-  (scroll-other-window-down 1))
-
 (defun refresh-file ()
   "Automatic reload current file."
   (interactive)
@@ -715,35 +541,23 @@ use function `completion-delete'."
         ((member major-mode '(haskell-mode sh-mode))
          (indent-comment-buffer)
          (save-buffer))
+        ((derived-mode-p 'scss-mode)
+         (require 'css-sort)
+         (css-sort))
         (t (message "Current mode is not supported, so not reload"))))
-
-(defun go-to-next-pair-right()
-  "To right of next match parentheses."
-  (interactive)
-  (while (not (looking-at "\\(['\">)}]\\|]\\)")) (forward-char 1))
-  (forward-char 1))
-
-(defun go-to-next-pair-left()
-  "To left of previous match parentheses."
-  (interactive)
-  (backward-char 1)
-  (while (not (looking-at "\\(['\"<({]\\|[[]\\)")) (backward-char 1)))
 
 (defun cycle-buffer-in-special-mode (special-mode)
   "Cycle in special mode."
-  (setq cycle-buffer-filter nil)
-  (setq cycle-buffer-filter (cons '(eq major-mode special-mode) cycle-buffer-filter))
-  (cycle-buffer-backward-permissive 1))
-
-(defun cycle-buffer-in-special-mode-except-buffer (special-mode except-buffer-name)
-  "Cycle in special mode."
-  (setq cycle-buffer-filter nil)
-  (setq cycle-buffer-filter (cons '(and (eq major-mode special-mode) (not (equal (buffer-name) except-buffer-name))) cycle-buffer-filter))
-  (cycle-buffer-backward-permissive 1))
+  (catch 'done
+    (dolist (buffer (buffer-list))
+      (with-current-buffer buffer
+        (when (derived-mode-p special-mode)
+          (throw 'done (switch-to-buffer buffer)))))))
 
 (defun find-file-root (file)
   "Find file with root."
   (interactive "fFind file as sudo: ")
+  (require 'tramp)
   (tramp-cleanup-all-connections)
   (find-file (concat "/sudo:root@localhost:" file)))
 
@@ -751,6 +565,16 @@ use function `completion-delete'."
   "Access file through samba protocol."
   (interactive "fFind file as samba: ")
   (find-file (concat "/smb:" file)))
+
+(defun kill-unused-buffers ()
+  (interactive)
+  (ignore-errors
+    (save-excursion
+      (dolist (buf (buffer-list))
+        (set-buffer buf)
+        (if (and (string-prefix-p "*" (buffer-name)) (string-suffix-p "*" (buffer-name)))
+            (kill-buffer buf))
+        ))))
 
 (provide 'basic-toolkit)
 

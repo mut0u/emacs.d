@@ -74,7 +74,6 @@
 ;;; Require
 (require 'emms)
 (require 'chm-view)
-(require 'w3m)
 (require 'doc-view)
 
 ;;; Code:
@@ -90,27 +89,7 @@
 Open file use another tool"
   (interactive)
   (dolist (file (dired-get-marked-files))
-    (dired-open-file-internal file)
-    ))
-
-(defun dired-open-buffer ()
-  (interactive)
-  (dired-open-file-internal buffer-file-name))
-
-(defun dired-open-file-internal (file)
-  "Open diversified format FILE."
-  (interactive "fFile: ")
-  (let ((file-extension (file-name-extension file)))
-    (cond ((string-equal "html" file-extension)
-           (require 'init-w3m)
-           (w3m-find-file file))
-          ((string-equal "chm" file-extension)
-           (require 'chm-view)
-           (chm-view-file file))
-          ((string-match "\\(pdf\\|ps\\|dvi\\)$" file-extension)
-           (dired-view-file)
-           (doc-view-mode))
-          (t (find-file file)))
+    (find-file file)
     ))
 
 (provide 'dired-open)
