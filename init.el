@@ -185,19 +185,15 @@
 ;;----------------------------------------------------------------
 
 (require 'init-backup)
+;;(require 'init-base)
 (require 'init-auto-save)
-
 
 
 (require 'buffer-extension)
 
 
-;;(require 'init-erc)
 
-;;(require 'init-blog)
-
-
-
+;;(require 'init-anki)
 
 ;;(require 'init-etags)
 
@@ -206,7 +202,7 @@
 ;; configure for savior language feature
 ;;----------------------------------------------------------------
 
-(require 'init-java)
+;;(require 'init-java)
 (require 'init-go)
 ;;(require 'init-react)
 
@@ -215,17 +211,19 @@
 ;;----------------------------------------------------------------
 
 
-
-
-
 (require 'init-common-package)
-
-
+;;(require 'init-erc)
+;;(require 'init-blog)
 
 ;;(require 'eaf)
 
-
 (require 'init-enhance)
+
+
+;;---------------------------------------------------------------
+;; end of all config.
+;;----------------------------------------------------------------
+
 
 (provide 'init)
 
