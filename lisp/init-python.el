@@ -9,6 +9,15 @@
 
 (require-package 'pip-requirements)
 
+(when (maybe-require-package 'yapfify)
+  (after-load 'python
+    (add-hook 'python-mode-hook 'yapfify-mode)))
+
+(when (maybe-require-package 'importmagic)
+  (after-load 'python
+    (add-hook 'python-mode-hook 'importmagic-mode)))
+
+
 (when (maybe-require-package 'anaconda-mode)
   (after-load 'python
     (add-hook 'python-mode-hook 'anaconda-mode)

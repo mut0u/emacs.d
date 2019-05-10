@@ -19,8 +19,6 @@
 
 ;;(define-key 'help-command (kbd "G") 'godoc)
 
-
-
 ;;;; this is just hack the go test function, because it has not update the package recently.
 (defun go-test-current-test-verbose ()
   "Launch go test on the current test."

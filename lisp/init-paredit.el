@@ -5,6 +5,13 @@
 (require-package 'paredit)
 (require 'awesome-pair)
 
+
+(after-load 'awesome-pair
+  ;; disable awesome-space.
+  (define-key awesome-pair-mode-map (kbd "SPC") nil))
+
+
+
 (defun maybe-map-paredit-newline ()
   (unless (or (memq major-mode '(inferior-emacs-lisp-mode cider-repl-mode python-mode))
               (minibufferp))
@@ -12,7 +19,6 @@
 
 (defun maybe-map-paredit-new-key ()
   (when (memq major-mode '(python-mode))
-    (message "hello##")
     (define-key paredit-mode-map (read-kbd-macro "(") 'awesome-pair-open-round)
     (define-key paredit-mode-map (kbd "DEL") 'awesome-pair-backward-delete)
     (local-set-key (kbd "DEL") 'awesome-pair-backward-delete)))
