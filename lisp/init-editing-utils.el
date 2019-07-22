@@ -88,7 +88,7 @@
 
 
 (when (fboundp 'display-line-numbers-mode)
-  (setq display-line-numbers-width 3)
+  (setq-default display-line-numbers-width 3)
   ;;(add-hook 'prog-mode-hook 'display-line-numbers-mode)
   )
 
@@ -117,6 +117,7 @@
   (after-load 'symbol-overlay
     (diminish 'symbol-overlay-mode)
     (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
+    (define-key symbol-overlay-mode-map (kbd "M-I") 'symbol-overlay-remove-all)
     (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
     (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev)))
 
@@ -469,7 +470,7 @@ Version 2016-12-27"
   (interactive)
   (let ((-buf (generate-new-buffer "untitled")))
     (switch-to-buffer -buf)
-    (funcall initial-major-mode)
+    (funcall default-major-mode)
     (setq buffer-offer-save t)))
 
 

@@ -1,14 +1,18 @@
 ;;;
+(setq default-major-mode 'text-mode)    ;设置默认地主模式为TEXT模式
 (global-disable-mouse-mode)
 
 ;;;(require 'lazycat-theme)
+(custom-set-faces  '(header-line ((t (:background "Black" :foreground "Green")))))
 
 (require 'awesome-tray)
 (awesome-tray-mode 1)
 
 (require 'thing-edit)
-;;(require 'aweshell)
+(require 'aweshell)
+(require 'snails)
 (require 'awesome-tab)
+(require-package 'all-the-icons)
 (awesome-tab-mode t)
 (setq awesome-tab-style "bar")
 
@@ -37,21 +41,7 @@
   (interactive)
   (setq-local eldoc-documentation-function #'ignore))
 
-
-
-(defun wren-add-to-anki ()
-  "Add word/definition/sententce to Anki web, assuming moz-controller is running"
-  (interactive)
-  (let* ((word (thing-at-point 'word t))
-         (definition (ido-completing-read "Choose a definition: "
-                                          (append (assoc-default 'explains
-                                                                 (assoc-default 'basic (youdao-dictionary--request word))) nil)))
-         (sentence (replace-regexp-in-string "\"" "'" (replace-regexp-in-string "\n" "" (thing-at-point 'sentence t)))))
-    (comint-send-string
-     (inferior-moz-process)
-     (format "var typeSelect = content.window.document.getElementById('models'); for(var i = 0, j = typeSelect.length; i < j; ++i) { if(typeSelect.options[i].innerHTML === 'EN') { typeSelect.selectedIndex = i; var event = new content.window.UIEvent('change', {'bubbles': true, 'cancelable': true}); typeSelect.dispatchEvent(event); break; } }; content.window.document.getElementById('f0').textContent = '%s'; content.window.document.getElementById('f1').textContent=\"%s\"; content.window.document.getElementById('f2').textContent=\"%s\"; content.window.document.getElementsByClassName('btn-primary')[0].click();" word definition sentence)
-     )
-    ))
+(maybe-require-package 'undo-tree)
 
 
 (provide 'init-enhance)

@@ -51,7 +51,7 @@
 
 (require-package 'wgrep)
 (require-package 'diminish)
-(require-package 'scratch)
+(maybe-require-package 'scratch)
 (require-package 'command-log-mode)
 
 (require 'init-frame-hooks)
@@ -112,6 +112,8 @@
 (require 'init-yaml)
 ;;(require 'init-docker)
 ;;(require 'init-terraform)
+(maybe-require-package 'nginx-mode)
+
 (require 'init-paredit)
 (require 'init-lisp)
 (require 'init-slime)
@@ -218,7 +220,6 @@
 ;;(require 'eaf)
 
 (require 'init-enhance)
-
 
 ;;---------------------------------------------------------------
 ;; end of all config.

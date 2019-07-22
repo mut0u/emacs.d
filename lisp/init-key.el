@@ -3,7 +3,7 @@
 ;;;-----------------------------------
 ;;; global key binds
 ;;;-----------------------------------
-
+;;; Code:
 (global-set-key (kbd "C-<left>")  'shrink-window-horizontally)
 (global-set-key (kbd "C-<right>")  'enlarge-window-horizontally)
 (global-set-key (kbd "C-<down>")  'shrink-window)

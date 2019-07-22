@@ -20,9 +20,12 @@
 ;;(define-key 'help-command (kbd "G") 'godoc)
 
 ;;;; this is just hack the go test function, because it has not update the package recently.
+;;;###autoload
 (defun go-test-current-test-verbose ()
   "Launch go test on the current test."
   (interactive)
+  (require 'gotest)
+  (add-hook 'go-test-mode-hook #'toggle-truncate-lines)
   (cl-destructuring-bind (test-suite test-name) (go-test--get-current-test-info)
     (let ((test-flag (if (> (length test-suite) 0) "-m " "-run "))
           (additional-arguments (if go-test-additional-arguments-function
@@ -30,8 +33,8 @@
                                              test-suite test-name) "")))
       (when test-name
         (if (go-test--is-gb-project)
-            (go-test--gb-start (s-concat "-test.v=true -test.run=" test-name "\\$ ."))
-          (go-test--go-test (s-concat test-flag test-name additional-arguments "\\$ -v .")))))))
+            (go-test--gb-start (s-concat "-count=1 -test.v=true -test.run=" test-name "\\$ ."))
+          (go-test--go-test (s-concat test-flag test-name additional-arguments "\\$ -v -count=1 .")))))))
 
 
 
@@ -89,8 +92,6 @@
   (subword-mode +1)
   )
 
-(eval-after-load 'page-break-lines
-  '(push 'go-mode page-break-lines-modes))
 
 (defun dlv-set-break-point ()
   "set breakpoint using dlv"

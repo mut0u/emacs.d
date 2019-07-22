@@ -136,6 +136,11 @@
   :type 'string
   :group 'eaf)
 
+(defcustom eaf-python-command "python3"
+  "The Python interpreter used to run eaf.py."
+  :type 'string
+  :group 'eaf)
+
 (defun eaf-call (method &rest args)
   (apply 'dbus-call-method
          :session                   ; use the session (not system) bus
@@ -144,8 +149,8 @@
          "com.lazycat.eaf"          ; interface name
          method args))
 
-(defun eaf-get-emacs-xid ()
-  (frame-parameter nil 'window-id))
+(defun eaf-get-emacs-xid (frame)
+  (frame-parameter frame 'window-id))
 
 (defun eaf-start-process ()
   (interactive)
@@ -155,7 +160,7 @@
           (apply 'start-process
                  eaf-name
                  eaf-name
-                 "python3" (append (list eaf-python-file (eaf-get-emacs-xid)) (eaf-get-render-size) (list eaf-http-proxy-host eaf-http-proxy-port))
+                 eaf-python-command (append (list eaf-python-file) (eaf-get-render-size) (list eaf-http-proxy-host eaf-http-proxy-port))
                  ))
     (set-process-query-on-exit-flag eaf-process nil)
     (set-process-sentinel
@@ -266,18 +271,19 @@ We need calcuate render allocation to make sure no black border around render co
 (defun eaf-monitor-configuration-change (&rest _)
   (ignore-errors
     (let (view-infos)
-      (dolist (window (window-list))
-        (let ((buffer (window-buffer window)))
-          (with-current-buffer buffer
-            (if (eq major-mode 'eaf-mode)
-                (let* ((window-allocation (eaf-get-window-allocation window))
-                       (x (nth 0 window-allocation))
-                       (y (nth 1 window-allocation))
-                       (w (nth 2 window-allocation))
-                       (h (nth 3 window-allocation))
-                       )
-                  (add-to-list 'view-infos (format "%s:%s:%s:%s:%s" buffer-id x y w h))
-                  )))))
+      (dolist (frame (frame-list))
+        (dolist (window (window-list frame))
+          (let ((buffer (window-buffer window)))
+            (with-current-buffer buffer
+              (if (eq major-mode 'eaf-mode)
+                  (let* ((window-allocation (eaf-get-window-allocation window))
+                         (x (nth 0 window-allocation))
+                         (y (nth 1 window-allocation))
+                         (w (nth 2 window-allocation))
+                         (h (nth 3 window-allocation))
+                         )
+                    (add-to-list 'view-infos (format "%s:%s:%s:%s:%s:%s" buffer-id (eaf-get-emacs-xid frame) x y w h))
+                    ))))))
       ;; I don't know how to make emacs send dbus-message with two-dimensional list.
       ;; So i package two-dimensional list in string, then unpack on server side. ;)
       (eaf-call "update_views" (mapconcat 'identity view-infos ","))
@@ -531,6 +537,10 @@ We need calcuate render allocation to make sure no black border around render co
       (message buffer-result))
     ))
 
+(defun eaf-open-url (url &optional arguments)
+  (interactive "MOpen url with EAF: ")
+  (eaf-open url "browser" arguments))
+
 (defun eaf-open (url &optional app-name arguments)
   (interactive "FOpen with EAF: ")
   ;; Try set app-name along with url if app-name is set.
@@ -539,6 +549,8 @@ We need calcuate render allocation to make sure no black border around render co
            (setq app-name "demo"))
           ((string-equal url "eaf-camera")
            (setq app-name "camera"))
+          ((string-equal url "eaf-qutebrowser")
+           (setq app-name "qutebrowser"))
           ((file-exists-p url)
            (setq url (expand-file-name url))
            (setq extension-name (file-name-extension url))
