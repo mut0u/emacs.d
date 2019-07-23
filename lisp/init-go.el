@@ -73,7 +73,7 @@
     (define-key map (kbd "C-u M-.")  'godef-jump-other-window)
     (define-key map (kbd "C-c C-c" ) 'comment-region)
     (define-key map (kbd "C-u C-c C-c") 'uncomment-region)
-    (define-key map (kbd "<f1>") 'go-errcheck)
+    (define-key map (kbd "C-<f1>") 'go-errcheck)
     (define-key map (kbd "<f2>") 'go-playground)
     (define-key map (kbd "<f3>") 'go-playground-exec)
     (define-key map (kbd "C-c b") 'go-run)

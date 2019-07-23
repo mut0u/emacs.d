@@ -11,8 +11,9 @@
 (require 'thing-edit)
 (require 'aweshell)
 (require 'snails)
+(maybe-require-package 'all-the-icons)
+(require 'all-the-icons)
 (require 'awesome-tab)
-(require-package 'all-the-icons)
 (awesome-tab-mode t)
 (setq awesome-tab-style "bar")
 
