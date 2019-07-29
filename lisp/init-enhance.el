@@ -2,7 +2,6 @@
 (setq default-major-mode 'text-mode)    ;设置默认地主模式为TEXT模式
 (global-disable-mouse-mode)
 
-;;;(require 'lazycat-theme)
 (custom-set-faces  '(header-line ((t (:background "Black" :foreground "Green")))))
 
 (require 'awesome-tray)
@@ -17,19 +16,17 @@
 (awesome-tab-mode t)
 (setq awesome-tab-style "bar")
 
+;;;; disable frame title. I think it is useless.
+(setq default-frame-alist '((undecorated . t)))
+(setq frame-resize-pixelwise t)
+
+
 (require 'youdao-dictionary)
 (global-set-key (kbd "<f8>") 'youdao-dictionary-search-at-point+)
 
 (add-hook 'kill-emacs-query-functions
           (lambda () (y-or-n-p "Do you really want to exit Emacs? "))
           'append)
-
-(defun michael-enhance ()
-  "I am not sure the tray mode why ..."
-  (interactive)
-  (awesome-tray-mode t)
-  )
-
 
 (defun eldoc-trigger ()
   (interactive)
