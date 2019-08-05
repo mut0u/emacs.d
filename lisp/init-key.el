@@ -208,12 +208,12 @@ org-files and bookmarks"
   "Construct the helm sources for my hotspots"
   `((name . "Util")
     (candidates . (("Calendar" . (lambda ()  (browse-url "https://www.google.com/calendar/render")))
-                   ("Blog" . org-octopress)
-                   ("Calculator" . (lambda () (helm-calcul-expression)))
+                   ("[1] Blog" . org-octopress)
+                   ("[2] Calculator" . (lambda () (helm-calcul-expression)))
                    ("Run current flie" . (lambda () (zilongshanren/run-current-file)))
                    ("Agenda" . (lambda () (org-agenda "" "a")))
-                   ("org-capture" . (lambda () (org-capture)))
-                   ("New Buffer" . (lambda () (new-empty-buffer)))))
+                   ("[5] org-capture" . (lambda () (org-capture)))
+                   ("[6] New Buffer" . (lambda () (new-empty-buffer)))))
     (candidate-number-limit)
     (action . (("Open" . (lambda (x) (funcall x)))))))
 
