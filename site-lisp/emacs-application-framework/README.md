@@ -39,27 +39,27 @@ Using this framework, you can use PyQt to develop powerful graphics programs to 
 
 1. Install python dependences:
 
-    Make sure python3 and pip has install in your operating system, then execute below command:
-
 ```Bash
-    sudo pip install dbus-python PyMuPDF grip qrcode pyqt5 python-xlib
+sudo pip3 install dbus-python pymupdf grip qrcode python-xlib pyqt5 pyqtwebengine
 ```
 
 2. Clone this repository and add below code in your ~/.emacs
+
 ```Elisp
-    (require 'eaf)
+(require 'eaf)
 ```
 
 ### Package description.
 
-| Package      | Use for                                          |
-| :--------    | :----                                            |
-| python-xlib  | Stick app window into emacs frame                |
-| python-pyqt5 | GUI library required for application development |
-| dbus-python  | DBus IPC for python and elisp                    |
-| PyMuPDF      | Render engine required for PDF Viewer            |
-| grip         | Markdown render server for Markdown Previewer    |
-| qrcode       | Render local file QR code                        |
+| Debian Package | Use for                                          |
+| :--------      | :----                                            |
+| dbus-python    | DBus IPC for python and elisp                    |
+| pymupdf        | Render engine required for PDF Viewer            |
+| grip           | Markdown render server for Markdown Previewer    |
+| qrcode         | Render local file QR code                        |
+| python-xlib    | Stick app window into emacs frame                |
+| pyqt5          | GUI library required for application development |
+| pyqtwebengine  | QtWebEngine for browser application              |
 
 ### Or run EAF with docker
 

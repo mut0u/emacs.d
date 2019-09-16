@@ -405,5 +405,8 @@ typical word processor."
      (sqlite . t))))
 
 
+(setq org-agenda-files '("~/org/.todo.org"))
+
+
 (provide 'init-org)
 ;;; init-org.el ends here

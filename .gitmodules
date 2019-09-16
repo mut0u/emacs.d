@@ -20,3 +20,6 @@
 [submodule "site-lisp/fuz"]
 	path = site-lisp/fuz
 	url = https://github.com/cireu/fuz.el.git
+[submodule "site-lisp/posframe"]
+	path = site-lisp/posframe
+	url = https://github.com/tumashu/posframe.git
