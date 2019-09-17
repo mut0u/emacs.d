@@ -404,7 +404,7 @@ typical word processor."
      (sql . t)
      (sqlite . t))))
 
-
+(setq org-agenda-skip-scheduled-if-done t)
 (setq org-agenda-files '("~/org/.todo.org"))
 
 
