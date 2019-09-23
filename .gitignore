@@ -67,3 +67,9 @@ recentf
 transient/
 anaconda-mode/
 forge-database.sqlite
+
+pyim/dcache/
+pyim/rime/build/
+pyim/rime/luna_pinyin.userdb/
+pyim/rime/luna_pinyin.userdb.old/
+eww-bookmarks
