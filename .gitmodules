@@ -23,3 +23,6 @@
 [submodule "site-lisp/posframe"]
 	path = site-lisp/posframe
 	url = https://github.com/tumashu/posframe.git
+[submodule "site-lisp/eaf"]
+	path = site-lisp/eaf
+	url = https://github.com/manateelazycat/emacs-application-framework.git
