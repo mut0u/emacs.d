@@ -473,10 +473,7 @@ Version 2016-12-27"
     (funcall default-major-mode)
     (setq buffer-offer-save t)))
 
-
-
 (require-package 'string-inflection)
-
 
 (defun toggle-camelcase-underscores ()
   "Toggle between camelcase and underscore notation for the symbol at point."
@@ -494,7 +491,6 @@ Version 2016-12-27"
             (downcase-region start (1+ start)))
         (replace-regexp "\\([A-Z]\\)" "_\\1" nil (1+ start) end)
         (downcase-region start (cdr (bounds-of-thing-at-point 'symbol)))))))
-
 
 (defun xah-change-bracket-pairs (*from-chars *to-chars)
   "Change bracket pairs from one type to another on current line or text selection.
@@ -629,8 +625,6 @@ Version 2017-05-17"
                   (while (search-forward -fromRight nil t)
                     (overlay-put (make-overlay (match-beginning 0) (match-end 0)) 'face 'highlight)
                     (replace-match -toRight "FIXEDCASE" "LITERAL")))))))))))
-
-
 
 (defun uniq-lines (beg end)
   "Unique lines in region.
