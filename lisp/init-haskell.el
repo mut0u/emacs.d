@@ -2,57 +2,42 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-package 'haskell-mode)
+(when (maybe-require-package 'haskell-mode)
+  (add-hook 'haskell-mode-hook 'subword-mode)
+  (add-hook 'haskell-cabal-mode 'subword-mode)
 
-
-;; Use intero for completion and flycheck
+  (when (maybe-require-package 'dante)
+    (add-hook 'haskell-mode-hook 'dante-mode)
+    (after-load 'dante
+      (flycheck-add-next-checker 'haskell-dante
+                                 '(warning . haskell-hlint))))
 
-(add-hook 'haskell-mode-hook 'subword-mode)
-(add-hook 'haskell-cabal-mode 'subword-mode)
+  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
-(when (maybe-require-package 'dante)
-  (add-hook 'haskell-mode-hook 'dante-mode)
-  (after-load 'dante
-    (flycheck-add-next-checker 'haskell-dante
-                               '(warning . haskell-hlint))))
+  (add-auto-mode 'haskell-mode "\\.ghci\\'")
 
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-
-(add-auto-mode 'haskell-mode "\\.ghci\\'")
-
-;; Workaround for https://github.com/haskell/haskell-mode/issues/1577
-(when (eq 25 emacs-major-version)
-  (defun sanityinc/inhibit-bracket-inside-comment-or-default (ch)
-    (or (nth 4 (syntax-ppss))
-        (funcall #'electric-pair-default-inhibit ch)))
-  (add-hook 'haskell-mode-hook
-            (lambda ()
-              (setq-local electric-pair-inhibit-predicate 'sanityinc/inhibit-bracket-inside-comment-or-default))))
-
-
-;; Indentation
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'haskell-mode-hook 'paredit-mode)
-
-
-;; Source code helpers
-
-(add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
-
-(when (maybe-require-package 'reformatter)
-  (reformatter-define hindent
-    :program "hindent"
-    :lighter " Hin")
-
-  (defalias 'hindent-mode 'hindent-on-save-mode))
-
-(after-load 'haskell-mode
-  (define-key haskell-mode-map (kbd "C-c h") 'hoogle)
-  (define-key haskell-mode-map (kbd "C-o") 'open-line))
+  ;; Indentation
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 
-(after-load 'page-break-lines
-  (push 'haskell-mode page-break-lines-modes))
+  ;; Source code helpers
+
+  (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
+
+  (when (maybe-require-package 'reformatter)
+    (reformatter-define hindent
+      :program "hindent"
+      :lighter " Hin")
+
+    (defalias 'hindent-mode 'hindent-on-save-mode))
+
+  (after-load 'haskell-mode
+    (define-key haskell-mode-map (kbd "C-c h") 'hoogle)
+    (define-key haskell-mode-map (kbd "C-o") 'open-line))
+
+
+  (after-load 'page-break-lines
+    (push 'haskell-mode page-break-lines-modes)))
 
 
 
@@ -79,11 +64,10 @@
 
 
 (when (maybe-require-package 'dhall-mode)
-  (add-hook 'dhall-mode-hook 'sanityinc/no-trailing-whitespace)
   (add-hook 'dhall-mode-hook 'stack-exec-path-mode))
 
 
-(require 'hs-lint)
+
 
 (provide 'init-haskell)
 ;;; init-haskell.el ends here
