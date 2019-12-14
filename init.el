@@ -219,7 +219,7 @@
 ;;(require 'init-erc)
 ;;(require 'init-blog)
 
-;;(require 'eaf)
+(require 'eaf)
 
 (require 'init-enhance)
 

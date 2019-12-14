@@ -8,7 +8,7 @@
 (awesome-tray-mode 1)
 
 (require 'thing-edit)
-(require 'aweshell)
+;;(require 'aweshell)
 (require 'snails)
 (maybe-require-package 'all-the-icons)
 (require 'all-the-icons)
