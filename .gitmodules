@@ -1,7 +1,6 @@
 [submodule "site-lisp/awesome-tab"]
 	path = site-lisp/awesome-tab
 	url = https://github.com/manateelazycat/awesome-tab.git
-
 [submodule "site-lisp/awesome-tray"]
 	path = site-lisp/awesome-tray
 	url = https://github.com/manateelazycat/awesome-tray.git
@@ -23,9 +22,9 @@
 [submodule "site-lisp/posframe"]
 	path = site-lisp/posframe
 	url = https://github.com/tumashu/posframe.git
-[submodule "site-lisp/eaf"]
-	path = site-lisp/eaf
-	url = https://github.com/manateelazycat/emacs-application-framework.git
 [submodule "site-lisp/flycheck-golangci-lint"]
 	path = site-lisp/flycheck-golangci-lint
 	url = https://github.com/weijiangan/flycheck-golangci-lint.git
+[submodule "site-lisp/emacs-application-framework"]
+	path = site-lisp/emacs-application-framework
+	url = https://github.com/manateelazycat/emacs-application-framework.git
