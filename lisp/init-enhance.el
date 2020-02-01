@@ -41,6 +41,10 @@
 
 (maybe-require-package 'undo-tree)
 
+(defun disable-query-add-ctags ()
+  (interactive)
+  (setq tags-add-tables nil))
+
 
 (provide 'init-enhance)
 ;;; init-enhance.el ends here
