@@ -11,7 +11,7 @@
 (require-package 'go-gopath)
 
 
-(require-package 'go-projectile )
+(require-package 'go-projectile)
 (require-package 'gotest)
 
 ;; Ignore go test -c output files
@@ -52,6 +52,11 @@
         (progn
           (call-process "gotests" nil buf nil "-w" "-r" (buffer-file-name))
           (revert-buffer :ignore-auto :noconfirm)))))
+
+
+;;; flycheck-golangci-lint
+;;(eval-after-load 'flycheck
+;;  '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
 
 (after-load 'go-mode
   ;;(require 'go-oracle)

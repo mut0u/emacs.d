@@ -28,3 +28,12 @@
 [submodule "site-lisp/emacs-application-framework"]
 	path = site-lisp/emacs-application-framework
 	url = https://github.com/manateelazycat/emacs-application-framework.git
+[submodule "site-lisp/emacs-rime"]
+	path = site-lisp/emacs-rime
+	url = https://github.com/DogLooksGood/emacs-rime
+[submodule "site-lisp/nox"]
+	path = site-lisp/nox
+	url = https://github.com/manateelazycat/nox.git
+[submodule "site-lisp/lazy-load"]
+	path = site-lisp/lazy-load
+	url = https://github.com/manateelazycat/lazy-load.git

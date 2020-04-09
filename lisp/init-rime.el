@@ -1,17 +1,17 @@
-;;; init-pyim.el --- Configuration for pyim
+;;; init-rime.el --- Configuration for emacs-rime
 
-;; Filename: init-pyim.el
-;; Description: Configuration for pyim
+;; Filename: init-rime.el
+;; Description: Configuration for emacs-rime
 ;; Author: Andy Stewart <lazycat.manatee@gmail.com>
 ;; Maintainer: Andy Stewart <lazycat.manatee@gmail.com>
-;; Copyright (C) 2018, Andy Stewart, all rights reserved.
-;; Created: 2018-09-24 18:01:39
+;; Copyright (C) 2020, Andy Stewart, all rights reserved.
+;; Created: 2020-03-22 14:52:23
 ;; Version: 0.1
-;; Last-Updated: 2018-09-24 18:01:39
+;; Last-Updated: 2020-03-22 14:52:23
 ;;           By: Andy Stewart
-;; URL: http://www.emacswiki.org/emacs/download/init-pyim.el
+;; URL: http://www.emacswiki.org/emacs/download/init-rime.el
 ;; Keywords:
-;; Compatibility: GNU Emacs 27.0.50
+;; Compatibility: GNU Emacs 26.3
 ;;
 ;; Features that might be required by this library:
 ;;
@@ -39,19 +39,19 @@
 
 ;;; Commentary:
 ;;
-;; Configuration for pyim
+;; Configuration for emacs-rime
 ;;
 
 ;;; Installation:
 ;;
-;; Put init-pyim.el to your load-path.
+;; Put init-rime.el to your load-path.
 ;; The load-path is usually ~/elisp/.
 ;; It's set in your ~/.emacs like this:
 ;; (add-to-list 'load-path (expand-file-name "~/elisp"))
 ;;
 ;; And the following to your ~/.emacs startup file.
 ;;
-;; (require 'init-pyim)
+;; (require 'init-rime)
 ;;
 ;; No need more.
 
@@ -60,12 +60,12 @@
 ;;
 ;;
 ;; All of the above can customize by:
-;;      M-x customize-group RET init-pyim RET
+;;      M-x customize-group RET init-rime RET
 ;;
 
 ;;; Change log:
 ;;
-;; 2018/09/24
+;; 2020/03/22
 ;;      * First released.
 ;;
 
@@ -80,36 +80,28 @@
 ;;
 
 ;;; Require
-(require 'posframe)
-(require-package 'pyim)
-(require 'liberime)
+(require 'lazy-load)
+(require 'rime)
 
 ;;; Code:
+(setq rime-user-data-dir "/home/savior/.config/fcitx/rime")
 
-(setq default-input-method "pyim")
-(setq pyim-page-tooltip 'posframe)
-(setq pyim-fuzzy-pinyin-alist
-      '(("en" "eng") ("in" "ing") ("l" "n") ("z" "zh") ("c" "ch")))
-(setq pyim-punctuation-translate-p '(auto yes no))
-(setq-default pyim-english-input-switch-functions
-              '(pyim-probe-isearch-mode))
-(setq pyim-page-length 9)
-(setq pyim-posframe-min-width 0)
-(setq pyim-dcache-backend 'pyim-dregcache)
+(setq rime-posframe-properties
+      (list :background-color "#333333"
+            :foreground-color "#dcdccc"
+            :font "WenQuanYi Micro Hei Mono-14"
+            :internal-border-width 10))
 
-;; Rime配置
-(liberime-start
- (if (featurep 'cocoa)
-     "/Library/Input Methods/Squirrel.app/Contents/SharedSupport"
-   "/usr/share/rime-data")
- (file-truename "~/.emacs.d/pyim/rime/"))
+(setq default-input-method "rime"
+      rime-show-candidate 'posframe)
 
-(liberime-select-schema "luna_pinyin_simp")
-(setq pyim-default-scheme 'rime-quanpin)
+(lazy-load-set-keys
+ '(
+   ("M-o" . rime--backspace)
+   ("M-m" . rime--return)
+   ("M-h" . rime--escape))
+ rime-active-mode-map)
 
-(setq pyim-page-length 9)
-(global-set-key (kbd "C-\\") 'toggle-input-method)
+(provide 'init-rime)
 
-(provide 'init-pyim)
-
-;;; init-pyim.el ends here
+;;; init-rime.el ends here

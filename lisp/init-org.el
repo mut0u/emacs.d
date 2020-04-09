@@ -152,7 +152,11 @@ typical word processor."
          "* %? :NOTE:\n%U\n%a\n" :clock-resume t)))
 
 
+
+
 (global-set-key (kbd "C-<f1>") (lambda () (interactive) (org-capture nil "t")))
+(global-set-key (kbd "C-<f2>") (lambda () (interactive) (org-capture nil "h")))
+
 (global-set-key (kbd "C-<f12>") (lambda () (interactive)
                                   (org-agenda-list)
                                   (org-agenda-week-view)))

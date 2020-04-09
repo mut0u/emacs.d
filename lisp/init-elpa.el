@@ -93,6 +93,10 @@ locate PACKAGE."
 (fullframe list-packages quit-window)
 
 
+(let ((package-check-signature nil))
+  (require-package 'gnu-elpa-keyring-update))
+
+
 (defun sanityinc/set-tabulated-list-column-width (col-name width)
   "Set any column with name COL-NAME to the given WIDTH."
   (when (> width (length col-name))
@@ -109,9 +113,6 @@ locate PACKAGE."
 
 (add-hook 'package-menu-mode-hook 'sanityinc/maybe-widen-package-menu-columns)
 
-
-
-(setq package-check-signature nil)
 
 (provide 'init-elpa)
 ;;; init-elpa.el ends here

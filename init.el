@@ -223,7 +223,8 @@
 
 (require 'init-enhance)
 
-(require 'init-pyim)
+(require 'init-rime)
+;;(require 'init-nox)
 
 ;;---------------------------------------------------------------
 ;; end of all config.

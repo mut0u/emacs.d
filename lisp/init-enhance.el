@@ -16,6 +16,10 @@
 (awesome-tab-mode t)
 (setq awesome-tab-style "bar")
 
+
+(require 'all-the-icons-ibuffer)
+(all-the-icons-ibuffer-mode 1)
+
 ;;;; disable frame title. I think it is useless.
 (setq default-frame-alist '((undecorated . t)))
 (setq frame-resize-pixelwise t)
