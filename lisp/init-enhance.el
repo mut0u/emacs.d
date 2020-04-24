@@ -32,6 +32,11 @@
           (lambda () (y-or-n-p "Do you really want to exit Emacs? "))
           'append)
 
+
+;;; treemacs mode
+(require-package 'treemacs)
+(require-package 'treemacs-projectile)
+
 (defun eldoc-trigger ()
   (interactive)
   (if global-eldoc-mode
