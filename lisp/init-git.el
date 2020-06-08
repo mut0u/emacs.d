@@ -97,5 +97,65 @@
     (compile (concat "git svn " command))))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defvar one-key-menu-magit-alist nil
+  "The `one-key' menu alist for MAGIT.")
+
+(setq one-key-menu-magit-alist
+      '(
+        (("s" . "Magit status") . magit-status+)
+        (("c" . "Magit checkout") . magit-checkout)
+        (("C" . "Magit commit") . magit-commit)
+        (("u" . "Magit push to remote") . magit-push-current-to-pushremote)
+        (("p" . "Magit delete remote branch") . magit-delete-remote-branch)
+        (("i" . "Magit pull") . magit-pull-from-upstream)
+        (("r" . "Magit rebase") . magit-rebase)
+        (("e" . "Magit merge") . magit-merge)
+        (("l" . "Magit log") . magit-log-all)
+        (("L" . "Magit blame") . magit-blame+)
+        (("b" . "Magit branch") . magit-branch)
+        (("B" . "Magit buffer") . magit-process-buffer)
+        (("m" . "Magit submodule add") . magit-submodule-add+)
+        (("d" . "Magit submodule remove") . magit-submodule-remove+)
+        (("M" . "Magit submodule list") . magit-list-submodules)
+        (("D" . "Magit discarded") . magit-discard)
+        (("," . "Magit init") . magit-init)
+        (("." . "Magit add remote") . magit-remote-add)
+        (("h" . "Magithub menu") . one-key-menu-magithub)
+        ))
+
+(defun one-key-menu-magit ()
+  "The `one-key' menu for MAGIT."
+  (interactive)
+  (one-key-menu "MAGIT" one-key-menu-magit-alist t))
+
+
+(defun magit-submodule-remove+ ()
+  (interactive)
+  (magit-submodule-remove (list (magit-read-module-path "Remove module")) "--force" nil))
+
+(defun magit-status+ ()
+  (interactive)
+  (magit-status)
+  (other-window 1))
+
+(defun magit-blame+ ()
+  (interactive)
+  (setq magit-blame--style
+        '(margin
+          (margin-format " %s%f" " %C %a" " %H")
+          (margin-width . 42)
+          (margin-face . magit-blame-margin)
+          (margin-body-face magit-blame-dimmed)))
+  (magit-blame))
+
+(defun magit-delete-remote-branch ()
+  (interactive)
+  (when (y-or-n-p (format "Delete remote branch (%s): " (magit-get-current-branch)))
+    (magit-run-git-async "push" "origin" (format ":%s" (magit-get-current-branch)))))
+
+
+
 (provide 'init-git)
 ;;; init-git.el ends here

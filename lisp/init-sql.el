@@ -4,7 +4,7 @@
 
 (after-load 'sql
   ;; sql-mode pretty much requires your psql to be uncustomised from stock settings
-  (push "--no-psqlrc" sql-postgres-options))
+  (add-to-list 'sql-postgres-options "--no-psqlrc"))
 
 (defun sanityinc/fix-postgres-prompt-regexp ()
   "Work around https://debbugs.gnu.org/cgi/bugreport.cgi?bug=22596.
@@ -50,9 +50,6 @@ Fix for the above hasn't been released as of Emacs 25.2."
 (require-package 'sqlformat)
 (after-load 'sql
   (define-key sql-mode-map (kbd "C-c C-f") 'sqlformat))
-
-(maybe-require-package 'sqlup-mode)
-(add-hook 'sql-mode-hook 'sqlup-mode)
 
 ;; Package ideas:
 ;;   - PEV
@@ -121,7 +118,7 @@ This command currently blocks the UI, sorry."
 
 
 (after-load 'page-break-lines
-  (push 'sql-mode page-break-lines-modes))
+  (add-to-list 'page-break-lines-modes 'sql-mode))
 
 (provide 'init-sql)
 ;;; init-sql.el ends here

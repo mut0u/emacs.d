@@ -1,11 +1,11 @@
 ;;
 
 (require-package 'golint)
-(require-package 'go-mode )
+(require-package 'go-mode)
 (require-package 'go-dlv)
 (require-package 'go-errcheck)
 (require-package 'go-playground)
-(require-package 'company-go )
+(require-package 'company-go)
 (require-package 'go-eldoc)
 (require-package 'go-add-tags)
 (require-package 'go-gopath)
