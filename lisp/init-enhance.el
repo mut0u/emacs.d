@@ -4,6 +4,8 @@
 
 (custom-set-faces  '(header-line ((t (:background "Black" :foreground "Green")))))
 
+(require-package 'iedit)
+
 (require 'awesome-tray)
 (awesome-tray-mode 1)
 

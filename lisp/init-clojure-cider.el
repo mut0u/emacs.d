@@ -16,9 +16,9 @@
                 )))
 
   (require-package 'flycheck-clojure)
-  (after-load 'clojure-mode
-    (after-load 'cider
-      (after-load 'flycheck
+  (with-eval-after-load 'clojure-mode
+    (with-eval-after-load 'cider
+      (with-eval-after-load 'flycheck
         (flycheck-clojure-setup)))))
 
 (defun michael/def ()

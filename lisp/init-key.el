@@ -218,6 +218,7 @@ org-files and bookmarks"
     (action . (("Open" . (lambda (x) (funcall x)))))))
 
 (global-set-key (kbd "<f1>") 'zilongshanren/helm-hotspots)
+(global-set-key (kbd "<f9>") 'thing-copy-word)
 
 
 

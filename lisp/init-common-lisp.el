@@ -9,7 +9,7 @@
                               (require 'slime)
                               (normal-mode))))
 
-(after-load 'slime
+(with-eval-after-load 'slime
   (slime-setup '(slime-asdf slime-autodoc slime-banner
                                slime-compiler-notes-tree
                                slime-fancy-inspector slime-fancy slime-fontifying-fu slime-fuzzy

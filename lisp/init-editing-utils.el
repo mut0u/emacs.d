@@ -6,14 +6,13 @@
 
 (when (fboundp 'electric-pair-mode)
   (add-hook 'after-init-hook 'electric-pair-mode))
-(when (eval-when-compile (version< "24.4" emacs-version))
-  (add-hook 'after-init-hook 'electric-indent-mode))
+(add-hook 'after-init-hook 'electric-indent-mode)
 
 (maybe-require-package 'list-unicode-display)
 
-;;----------------------------------------------------------------------------
-;; Some basic preferences
-;;----------------------------------------------------------------------------
+
+;;; Some basic preferences
+
 (setq-default
  blink-cursor-interval 0.4
  bookmark-default-file (expand-file-name ".bookmarks.el" user-emacs-directory)
@@ -38,7 +37,7 @@
 (add-hook 'after-init-hook 'global-auto-revert-mode)
 (setq global-auto-revert-non-file-buffers t
       auto-revert-verbose nil)
-(after-load 'autorevert
+(with-eval-after-load 'autorevert
   (diminish 'auto-revert-mode))
 
 (add-hook 'after-init-hook 'transient-mark-mode)
@@ -46,6 +45,9 @@
 
 
 ;; Huge files
+
+(when (fboundp 'so-long-enable)
+  (add-hook 'after-init-hook 'so-long-enable))
 
 (require-package 'vlf)
 
