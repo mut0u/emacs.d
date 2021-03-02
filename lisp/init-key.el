@@ -13,6 +13,11 @@
 
 (global-unset-key "\C-h\C-n")    ;;; remove the news of Emacs
 
+
+;;; disable the pageUp and pageDn keybindings.
+(global-unset-key (kbd "<prior>"))
+(global-unset-key (kbd "<next>"))
+
 (when window-system
   (global-unset-key "\C-z")
   (global-unset-key "\C-x\C-z"))

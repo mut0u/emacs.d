@@ -34,3 +34,9 @@
 [submodule "site-lisp/emacs-application-framework"]
 	path = site-lisp/emacs-application-framework
 	url = https://github.com/manateelazycat/emacs-application-framework.git
+[submodule "site-lisp/all-the-icons-ibuffer"]
+	path = site-lisp/all-the-icons-ibuffer
+	url = https://github.com/seagle0128/all-the-icons-ibuffer.git
+[submodule "site-lisp/all-the-icons-ivy-rich"]
+	path = site-lisp/all-the-icons-ivy-rich
+	url = https://github.com/seagle0128/all-the-icons-ivy-rich.git
