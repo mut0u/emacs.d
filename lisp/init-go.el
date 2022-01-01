@@ -25,6 +25,7 @@
   "Launch go test on the current test."
   (interactive)
   (require 'gotest)
+  (setq go-test-verbose t)
   (add-hook 'go-test-mode-hook #'toggle-truncate-lines)
   (cl-destructuring-bind (test-suite test-name) (go-test--get-current-test-info)
     (let ((test-flag (if (> (length test-suite) 0) "-m " "-run "))
@@ -52,7 +53,6 @@
         (progn
           (call-process "gotests" nil buf nil "-w" "-r" (buffer-file-name))
           (revert-buffer :ignore-auto :noconfirm)))))
-
 
 ;;; flycheck-golangci-lint
 ;;(eval-after-load 'flycheck

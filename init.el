@@ -21,18 +21,19 @@
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 (defconst *is-a-mac* (eq system-type 'darwin))
 
-;;----------------------------------------------------------------------------
+
 ;; Adjust garbage collection thresholds during startup, and thereafter
-;;----------------------------------------------------------------------------
+
 (let ((normal-gc-cons-threshold (* 20 1024 1024))
       (init-gc-cons-threshold (* 128 1024 1024)))
   (setq gc-cons-threshold init-gc-cons-threshold)
   (add-hook 'emacs-startup-hook
             (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
-;;----------------------------------------------------------------------------
+
 ;; Bootstrap config
-;;----------------------------------------------------------------------------
+
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (require 'init-utils)
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
@@ -40,12 +41,10 @@
 (require 'init-elpa)      ;; Machinery for installing required packages
 (require 'init-exec-path) ;; Set up $PATH
 
-;;----------------------------------------------------------------------------
+
 ;; Allow users to provide an optional "init-preload-local.el"
-;;----------------------------------------------------------------------------
 (require 'init-preload-local nil t)
 
-;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
 
@@ -67,7 +66,7 @@
 (require 'init-flycheck)
 
 (require 'init-recentf)
-(require 'init-selectrum)
+(require 'init-minibuffer)
 ;;(require 'init-smex)
 ;;(require 'init-ivy)
 
@@ -153,9 +152,9 @@
 
 (require 'init-direnv)
 
-;;----------------------------------------------------------------------------
+
+
 ;; Allow access from emacsclient
-;;----------------------------------------------------------------------------
 (add-hook 'after-init-hook
           (lambda ()
             (require 'server)
@@ -225,6 +224,22 @@
 ;;(require 'init-blog)
 
 (require 'eaf)
+(require 'eaf-airshare)
+(require 'eaf-browser)
+(require 'eaf-file-browser)
+(require 'eaf-file-manager)
+(require 'eaf-file-sender)
+(require 'eaf-image-viewer)
+(require 'eaf-markdown-previewer)
+;;(require 'eaf-mermaid)
+(require 'eaf-mindmap)
+(require 'eaf-music-player)
+(require 'eaf-org-previewer)
+(require 'eaf-pdf-viewer)
+(require 'eaf-system-monitor)
+(require 'eaf-terminal)
+(require 'eaf-video-player)
+(require 'eaf-netease-cloud-music)
 
 
 (defun adviser-find-file (orig-fn file &rest args)

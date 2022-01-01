@@ -9,6 +9,7 @@
 (require 'awesome-tray)
 (awesome-tray-mode 1)
 
+(setq tags-add-tables nil)
 (require 'thing-edit)
 ;;(require 'aweshell)
 (require 'snails)
